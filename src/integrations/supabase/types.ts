@@ -14,6 +14,407 @@ export type Database = {
   }
   public: {
     Tables: {
+      assets: {
+        Row: {
+          created_at: string
+          file_name: string
+          file_size_bytes: number | null
+          file_type: string
+          file_url: string
+          id: string
+          metadata: Json | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          file_name: string
+          file_size_bytes?: number | null
+          file_type: string
+          file_url: string
+          id?: string
+          metadata?: Json | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          file_name?: string
+          file_size_bytes?: number | null
+          file_type?: string
+          file_url?: string
+          id?: string
+          metadata?: Json | null
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      courses: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          is_published: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      grammar_chapters: {
+        Row: {
+          cefr_level: string
+          chapter_code: string
+          common_errors: string | null
+          contrast_notes: string | null
+          created_at: string
+          cross_links: Json | null
+          form_content: string | null
+          id: string
+          is_published: boolean
+          meaning_content: string | null
+          micro_practice: Json | null
+          sort_order: number
+          title: string
+          updated_at: string
+          use_content: string | null
+        }
+        Insert: {
+          cefr_level: string
+          chapter_code: string
+          common_errors?: string | null
+          contrast_notes?: string | null
+          created_at?: string
+          cross_links?: Json | null
+          form_content?: string | null
+          id?: string
+          is_published?: boolean
+          meaning_content?: string | null
+          micro_practice?: Json | null
+          sort_order?: number
+          title: string
+          updated_at?: string
+          use_content?: string | null
+        }
+        Update: {
+          cefr_level?: string
+          chapter_code?: string
+          common_errors?: string | null
+          contrast_notes?: string | null
+          created_at?: string
+          cross_links?: Json | null
+          form_content?: string | null
+          id?: string
+          is_published?: boolean
+          meaning_content?: string | null
+          micro_practice?: Json | null
+          sort_order?: number
+          title?: string
+          updated_at?: string
+          use_content?: string | null
+        }
+        Relationships: []
+      }
+      lesson_stages: {
+        Row: {
+          content: Json | null
+          created_at: string
+          id: string
+          instructions: string | null
+          lesson_id: string
+          sort_order: number
+          stage_type: string
+          timing_minutes: number | null
+          title: string
+        }
+        Insert: {
+          content?: Json | null
+          created_at?: string
+          id?: string
+          instructions?: string | null
+          lesson_id: string
+          sort_order?: number
+          stage_type: string
+          timing_minutes?: number | null
+          title: string
+        }
+        Update: {
+          content?: Json | null
+          created_at?: string
+          id?: string
+          instructions?: string | null
+          lesson_id?: string
+          sort_order?: number
+          stage_type?: string
+          timing_minutes?: number | null
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_stages_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          challenge_track: string | null
+          created_at: string
+          goal: string | null
+          homework: Json | null
+          id: string
+          interaction_pattern: string | null
+          is_published: boolean
+          lesson_type: Database["public"]["Enums"]["lesson_type"]
+          new_language: Json | null
+          recycled_language: Json | null
+          sort_order: number
+          success_criteria: string | null
+          support_track: string | null
+          title: string
+          unit_id: string
+          updated_at: string
+        }
+        Insert: {
+          challenge_track?: string | null
+          created_at?: string
+          goal?: string | null
+          homework?: Json | null
+          id?: string
+          interaction_pattern?: string | null
+          is_published?: boolean
+          lesson_type?: Database["public"]["Enums"]["lesson_type"]
+          new_language?: Json | null
+          recycled_language?: Json | null
+          sort_order?: number
+          success_criteria?: string | null
+          support_track?: string | null
+          title: string
+          unit_id: string
+          updated_at?: string
+        }
+        Update: {
+          challenge_track?: string | null
+          created_at?: string
+          goal?: string | null
+          homework?: Json | null
+          id?: string
+          interaction_pattern?: string | null
+          is_published?: boolean
+          lesson_type?: Database["public"]["Enums"]["lesson_type"]
+          new_language?: Json | null
+          recycled_language?: Json | null
+          sort_order?: number
+          success_criteria?: string | null
+          support_track?: string | null
+          title?: string
+          unit_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      levels: {
+        Row: {
+          cefr_code: string
+          course_id: string
+          created_at: string
+          id: string
+          is_published: boolean
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cefr_code: string
+          course_id: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cefr_code?: string
+          course_id?: string
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "levels_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lexicon_entries: {
+        Row: {
+          cefr_productive: string | null
+          cefr_receptive: string | null
+          collocations: Json | null
+          created_at: string
+          definition_simple: string | null
+          definition_teacher: string | null
+          entry_type: string
+          examples: Json | null
+          frequency_band: string | null
+          headword: string
+          id: string
+          ipa: string | null
+          is_published: boolean
+          patterns: Json | null
+          pos: string | null
+          register: string | null
+          updated_at: string
+          usage_notes: string | null
+          variety: string | null
+        }
+        Insert: {
+          cefr_productive?: string | null
+          cefr_receptive?: string | null
+          collocations?: Json | null
+          created_at?: string
+          definition_simple?: string | null
+          definition_teacher?: string | null
+          entry_type?: string
+          examples?: Json | null
+          frequency_band?: string | null
+          headword: string
+          id?: string
+          ipa?: string | null
+          is_published?: boolean
+          patterns?: Json | null
+          pos?: string | null
+          register?: string | null
+          updated_at?: string
+          usage_notes?: string | null
+          variety?: string | null
+        }
+        Update: {
+          cefr_productive?: string | null
+          cefr_receptive?: string | null
+          collocations?: Json | null
+          created_at?: string
+          definition_simple?: string | null
+          definition_teacher?: string | null
+          entry_type?: string
+          examples?: Json | null
+          frequency_band?: string | null
+          headword?: string
+          id?: string
+          ipa?: string | null
+          is_published?: boolean
+          patterns?: Json | null
+          pos?: string | null
+          register?: string | null
+          updated_at?: string
+          usage_notes?: string | null
+          variety?: string | null
+        }
+        Relationships: []
+      }
+      pragmatics_items: {
+        Row: {
+          content: Json | null
+          created_at: string
+          id: string
+          label: string
+          pack_id: string
+          sort_order: number
+        }
+        Insert: {
+          content?: Json | null
+          created_at?: string
+          id?: string
+          label: string
+          pack_id: string
+          sort_order?: number
+        }
+        Update: {
+          content?: Json | null
+          created_at?: string
+          id?: string
+          label?: string
+          pack_id?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pragmatics_items_pack_id_fkey"
+            columns: ["pack_id"]
+            isOneToOne: false
+            referencedRelation: "pragmatics_packs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pragmatics_packs: {
+        Row: {
+          cefr_level: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_published: boolean
+          pack_type: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          cefr_level?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          pack_type: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          cefr_level?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_published?: boolean
+          pack_type?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -37,6 +438,171 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      pronunciation_scripts: {
+        Row: {
+          audio_asset_id: string | null
+          cefr_level: string | null
+          chunked_content: string | null
+          created_at: string
+          focus_tags: Json | null
+          id: string
+          is_published: boolean
+          script_type: string
+          speed_plan: string | null
+          stress_marked_content: string | null
+          text_content: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          audio_asset_id?: string | null
+          cefr_level?: string | null
+          chunked_content?: string | null
+          created_at?: string
+          focus_tags?: Json | null
+          id?: string
+          is_published?: boolean
+          script_type?: string
+          speed_plan?: string | null
+          stress_marked_content?: string | null
+          text_content?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          audio_asset_id?: string | null
+          cefr_level?: string | null
+          chunked_content?: string | null
+          created_at?: string
+          focus_tags?: Json | null
+          id?: string
+          is_published?: boolean
+          script_type?: string
+          speed_plan?: string | null
+          stress_marked_content?: string | null
+          text_content?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pronunciation_scripts_audio_asset_id_fkey"
+            columns: ["audio_asset_id"]
+            isOneToOne: false
+            referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      taggings: {
+        Row: {
+          created_at: string
+          id: string
+          tag_id: string
+          taggable_id: string
+          taggable_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          tag_id: string
+          taggable_id: string
+          taggable_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          tag_id?: string
+          taggable_id?: string
+          taggable_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "taggings_tag_id_fkey"
+            columns: ["tag_id"]
+            isOneToOne: false
+            referencedRelation: "tags"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tags: {
+        Row: {
+          category: string | null
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      units: {
+        Row: {
+          created_at: string
+          estimated_time_minutes: number | null
+          flagship_task: string | null
+          id: string
+          is_published: boolean
+          level_id: string
+          outcomes: Json | null
+          secondary_tasks: Json | null
+          sort_order: number
+          theme: string | null
+          title: string
+          track: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          estimated_time_minutes?: number | null
+          flagship_task?: string | null
+          id?: string
+          is_published?: boolean
+          level_id: string
+          outcomes?: Json | null
+          secondary_tasks?: Json | null
+          sort_order?: number
+          theme?: string | null
+          title: string
+          track?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          estimated_time_minutes?: number | null
+          flagship_task?: string | null
+          id?: string
+          is_published?: boolean
+          level_id?: string
+          outcomes?: Json | null
+          secondary_tasks?: Json | null
+          sort_order?: number
+          theme?: string | null
+          title?: string
+          track?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "units_level_id_fkey"
+            columns: ["level_id"]
+            isOneToOne: false
+            referencedRelation: "levels"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {
@@ -75,6 +641,18 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "curriculum_designer" | "teacher" | "learner"
+      lesson_type:
+        | "listening"
+        | "reading"
+        | "grammar"
+        | "vocabulary"
+        | "pronunciation"
+        | "speaking"
+        | "writing"
+        | "fluency"
+        | "mediation"
+        | "review"
+        | "assessment"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -203,6 +781,19 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "curriculum_designer", "teacher", "learner"],
+      lesson_type: [
+        "listening",
+        "reading",
+        "grammar",
+        "vocabulary",
+        "pronunciation",
+        "speaking",
+        "writing",
+        "fluency",
+        "mediation",
+        "review",
+        "assessment",
+      ],
     },
   },
 } as const

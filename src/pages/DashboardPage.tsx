@@ -1,4 +1,5 @@
 import { AppLayout } from '@/components/layout/AppLayout';
+import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -36,10 +37,12 @@ const recentProgress = [
 ];
 
 export default function DashboardPage() {
+  const { profile } = useAuth();
   const currentUnit = SEED_UNITS.B1[0];
+  const firstName = profile?.full_name?.split(' ')[0] || 'there';
 
   return (
-    <AppLayout title="Dashboard" subtitle="Welcome back, Jane! Let's continue learning.">
+    <AppLayout title="Dashboard" subtitle={`Welcome back, ${firstName}! Let's continue learning.`}>
       <div className="p-6 space-y-6">
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
