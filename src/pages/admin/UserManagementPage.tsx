@@ -1,109 +1,140 @@
-import { useState, useEffect } from 'react';
-import { AppLayout } from '@/components/layout/AppLayout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Search, UserPlus, Shield } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { useToast } from '@/hooks/use-toast';
-import type { Database } from '@/integrations/supabase/types';
-
-type AppRole = Database['public']['Enums']['app_role'];
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+import { AppRole } from '@/types/auth.types'
+import { ProtectedRoute } from '@/components/ProtectedRoute'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 interface UserWithRoles {
-  id: string;
-  full_name: string | null;
-  created_at: string;
-  roles: AppRole[];
-  email?: string;
+  id: string
+  email: string
+  full_name: string
+  created_at: string
+  roles: AppRole[]
 }
 
-export default function UserManagementPage() {
-  const { toast } = useToast();
-  const [users, setUsers] = useState<UserWithRoles[]>([]);
-  const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
+export const UserManagementPage = () => {
+  const [users, setUsers] = useState<UserWithRoles[]>([])
+  const [loading, setLoading] = useState(true)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedRole, setSelectedRole] = useState<AppRole | 'all'>('all')
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
 
   const fetchUsers = async () => {
-    setLoading(true);
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name, created_at');
-    const { data: allRoles } = await supabase.from('user_roles').select('user_id, role');
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select(`
+          id,
+          full_name,
+          created_at,
+          user_roles (app_role)
+        `)
 
-    if (profiles && allRoles) {
-      const usersWithRoles: UserWithRoles[] = profiles.map((p) => ({
-        id: p.id,
-        full_name: p.full_name,
-        created_at: p.created_at,
-        roles: allRoles.filter((r) => r.user_id === p.id).map((r) => r.role),
-      }));
-      setUsers(usersWithRoles);
+      if (error) throw error
+
+      // Get emails from auth
+      const { data: { users: authUsers } } = await supabase.auth.admin.listUsers()
+
+      const mappedUsers: UserWithRoles[] = (data || []).map((profile: any) => ({
+        id: profile.id,
+        email: authUsers?.find(u => u.id === profile.id)?.email || '',
+        full_name: profile.full_name,
+        created_at: profile.created_at,
+        roles: profile.user_roles.map((ur: any) => ur.app_role),
+      }))
+
+      setUsers(mappedUsers)
+    } catch (error) {
+      console.error('Error fetching users:', error)
+    } finally {
+      setLoading(false)
     }
-    setLoading(false);
-  };
+  }
 
-  useEffect(() => { fetchUsers(); }, []);
+  const updateUserRole = async (userId: string, newRole: AppRole) => {
+    try {
+      // Remove old roles
+      await supabase
+        .from('user_roles')
+        .delete()
+        .eq('user_id', userId)
 
-  const addRole = async (userId: string, role: AppRole) => {
-    const { error } = await supabase.from('user_roles').insert({ user_id: userId, role });
-    if (error) {
-      toast({ title: 'Error', description: error.message, variant: 'destructive' });
-    } else {
-      toast({ title: 'Role added', description: `Added ${role} role.` });
-      fetchUsers();
+      // Add new role
+      await supabase
+        .from('user_roles')
+        .insert({ user_id: userId, app_role: newRole })
+
+      fetchUsers()
+    } catch (error) {
+      console.error('Error updating role:', error)
     }
-  };
+  }
 
-  const removeRole = async (userId: string, role: AppRole) => {
-    const { error } = await supabase.from('user_roles').delete().eq('user_id', userId).eq('role', role);
-    if (error) {
-      toast({ title: 'Error', description: error.message, variant: 'destructive' });
-    } else {
-      toast({ title: 'Role removed', description: `Removed ${role} role.` });
-      fetchUsers();
-    }
-  };
-
-  const filteredUsers = users.filter((u) =>
-    (u.full_name || '').toLowerCase().includes(search.toLowerCase())
-  );
-
-  const roleColors: Record<AppRole, string> = {
-    admin: 'bg-destructive/10 text-destructive border-destructive/30',
-    curriculum_designer: 'bg-primary/10 text-primary border-primary/30',
-    teacher: 'bg-accent/10 text-accent-foreground border-accent/30',
-    learner: 'bg-secondary text-secondary-foreground border-border',
-  };
+  const filteredUsers = users.filter(user => {
+    const matchesSearch = user.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    const matchesRole = selectedRole === 'all' || user.roles.includes(selectedRole)
+    return matchesSearch && matchesRole
+  })
 
   return (
-    <AppLayout title="User Management" subtitle="Manage user roles and permissions">
-      <div className="p-6 space-y-6">
+    <ProtectedRoute requiredRoles={['admin']}>
+      <div className="p-8">
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="font-display flex items-center gap-2">
-                <Shield className="h-5 w-5" />
-                All Users
-              </CardTitle>
-              <div className="relative w-64">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input placeholder="Search users..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
-              </div>
-            </div>
+            <CardTitle>User Management</CardTitle>
           </CardHeader>
           <CardContent>
+            <div className="flex gap-4 mb-6">
+              <Input
+                placeholder="Search by name or email..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="max-w-sm"
+              />
+              <Select value={selectedRole} onValueChange={(val) => setSelectedRole(val as AppRole | 'all')}>
+                <SelectTrigger className="max-w-xs">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Roles</SelectItem>
+                  <SelectItem value="learner">Learner</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="curriculum_designer">Curriculum Designer</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
             {loading ? (
-              <div className="flex justify-center py-12">
-                <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
-              </div>
+              <div className="text-center py-8">Loading...</div>
             ) : (
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
-                    <TableHead>Roles</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Role</TableHead>
                     <TableHead>Joined</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
@@ -111,32 +142,31 @@ export default function UserManagementPage() {
                 <TableBody>
                   {filteredUsers.map((user) => (
                     <TableRow key={user.id}>
-                      <TableCell className="font-medium">{user.full_name || 'Unnamed'}</TableCell>
+                      <TableCell>{user.full_name}</TableCell>
+                      <TableCell>{user.email}</TableCell>
                       <TableCell>
-                        <div className="flex flex-wrap gap-1.5">
-                          {user.roles.map((role) => (
-                            <Badge key={role} variant="outline" className={cn(roleColors[role], 'cursor-pointer')} onClick={() => removeRole(user.id, role)}>
-                              {role.replace('_', ' ')} ×
-                            </Badge>
-                          ))}
-                        </div>
+                        <Select
+                          value={user.roles[0] || 'learner'}
+                          onValueChange={(val) => updateUserRole(user.id, val as AppRole)}
+                        >
+                          <SelectTrigger className="w-[180px]">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="learner">Learner</SelectItem>
+                            <SelectItem value="teacher">Teacher</SelectItem>
+                            <SelectItem value="curriculum_designer">Curriculum Designer</SelectItem>
+                            <SelectItem value="admin">Admin</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </TableCell>
-                      <TableCell className="text-muted-foreground text-sm">
+                      <TableCell>
                         {new Date(user.created_at).toLocaleDateString()}
                       </TableCell>
                       <TableCell>
-                        <Select onValueChange={(value) => addRole(user.id, value as AppRole)}>
-                          <SelectTrigger className="w-[160px]">
-                            <SelectValue placeholder="Add role..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {(['admin', 'curriculum_designer', 'teacher', 'learner'] as AppRole[])
-                              .filter((r) => !user.roles.includes(r))
-                              .map((r) => (
-                                <SelectItem key={r} value={r}>{r.replace('_', ' ')}</SelectItem>
-                              ))}
-                          </SelectContent>
-                        </Select>
+                        <Button variant="outline" size="sm">
+                          Edit
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -146,10 +176,6 @@ export default function UserManagementPage() {
           </CardContent>
         </Card>
       </div>
-    </AppLayout>
-  );
-}
-
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
+    </ProtectedRoute>
+  )
 }
