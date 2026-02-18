@@ -1,140 +1,88 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from '@/contexts/AuthContext'
-import { AppSidebar } from '@/components/AppSidebar'
-import { ProtectedRoute } from '@/components/ProtectedRoute'
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/hooks/useAuth";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import DashboardPage from "./pages/DashboardPage";
+import CoursePage from "./pages/CoursePage";
+import UnitPage from "./pages/UnitPage";
+import LessonPlayerPage from "./pages/LessonPlayerPage";
+import NotFound from "./pages/NotFound";
 
-// Auth Pages
-import { LoginPage } from '@/pages/LoginPage'
-import { SignupPage } from '@/pages/SignupPage'
+// Admin
+import UserManagementPage from "./pages/admin/UserManagementPage";
+import AdminSettingsPage from "./pages/admin/AdminSettingsPage";
 
-// Learner Pages
-import { DashboardPage } from '@/pages/DashboardPage'
-import { CoursePage } from '@/pages/CoursePage'
-import { ReviewCenterPage } from '@/pages/ReviewCenterPage'
-import { PortfolioPage } from '@/pages/PortfolioPage'
-import { ProgressPage } from '@/pages/ProgressPage'
-import { ReferencePage } from '@/pages/ReferencePage'
+// Author
+import CourseBuilderPage from "./pages/author/CourseBuilderPage";
+import LevelDetailPage from "./pages/author/LevelDetailPage";
+import UnitEditorPage from "./pages/author/UnitEditorPage";
+import LessonEditorPage from "./pages/author/LessonEditorPage";
+import LexiconManagerPage from "./pages/author/LexiconManagerPage";
+import GrammarManagerPage from "./pages/author/GrammarManagerPage";
+import PronunciationManagerPage from "./pages/author/PronunciationManagerPage";
+import PragmaticsManagerPage from "./pages/author/PragmaticsManagerPage";
+import AssetManagerPage from "./pages/author/AssetManagerPage";
+import TagManagerPage from "./pages/author/TagManagerPage";
 
-// Admin Pages
-import { UserManagementPage } from '@/pages/admin/UserManagementPage'
-import { OrganizationSettingsPage } from '@/pages/admin/OrganizationSettingsPage'
+// Teach
+import TeachDashboardPage from "./pages/teach/TeachDashboardPage";
+import FeedbackQueuePage from "./pages/teach/FeedbackQueuePage";
+import StudentAnalyticsPage from "./pages/teach/StudentAnalyticsPage";
 
-// Author Pages (coming next)
-// import { CourseBuilderPage } from '@/pages/author/CourseBuilderPage'
-// import { LexiconManagerPage } from '@/pages/author/LexiconManagerPage'
-// ... etc
+const queryClient = new QueryClient();
 
-// Teacher Pages (coming later)
-// import { TeacherDashboardPage } from '@/pages/teach/TeacherDashboardPage'
-// ... etc
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            {/* Public */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
 
-function AppLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex h-screen">
-      <AppSidebar />
-      <main className="flex-1 overflow-y-auto">{children}</main>
-    </div>
-  )
-}
+            {/* Learner (authenticated) */}
+            <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/course" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
+            <Route path="/course/:level/:unitId" element={<ProtectedRoute><UnitPage /></ProtectedRoute>} />
+            <Route path="/course/:level/:unitId/:lessonId" element={<ProtectedRoute><LessonPlayerPage /></ProtectedRoute>} />
 
-export function App() {
-  return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Public routes */}
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
+            {/* Admin */}
+            <Route path="/admin/users" element={<ProtectedRoute requiredRoles={['admin']}><UserManagementPage /></ProtectedRoute>} />
+            <Route path="/admin/settings" element={<ProtectedRoute requiredRoles={['admin']}><AdminSettingsPage /></ProtectedRoute>} />
 
-          {/* Protected routes - Learner section */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <DashboardPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/course"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <CoursePage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/review"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <ReviewCenterPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/portfolio"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <PortfolioPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/progress"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <ProgressPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/reference"
-            element={
-              <ProtectedRoute>
-                <AppLayout>
-                  <ReferencePage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
+            {/* Author */}
+            <Route path="/author/courses" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><CourseBuilderPage /></ProtectedRoute>} />
+            <Route path="/author/levels/:levelId" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><LevelDetailPage /></ProtectedRoute>} />
+            <Route path="/author/units/:unitId" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><UnitEditorPage /></ProtectedRoute>} />
+            <Route path="/author/lessons/:lessonId" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><LessonEditorPage /></ProtectedRoute>} />
+            <Route path="/author/lexicon" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><LexiconManagerPage /></ProtectedRoute>} />
+            <Route path="/author/grammar" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><GrammarManagerPage /></ProtectedRoute>} />
+            <Route path="/author/pronunciation" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><PronunciationManagerPage /></ProtectedRoute>} />
+            <Route path="/author/pragmatics" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><PragmaticsManagerPage /></ProtectedRoute>} />
+            <Route path="/author/assets" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><AssetManagerPage /></ProtectedRoute>} />
+            <Route path="/author/tags" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer']}><TagManagerPage /></ProtectedRoute>} />
 
-          {/* Admin routes */}
-          <Route
-            path="/admin/users"
-            element={
-              <ProtectedRoute requiredRoles={['admin']}>
-                <AppLayout>
-                  <UserManagementPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/settings"
-            element={
-              <ProtectedRoute requiredRoles={['admin']}>
-                <AppLayout>
-                  <OrganizationSettingsPage />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
+            {/* Teach */}
+            <Route path="/teach/dashboard" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><TeachDashboardPage /></ProtectedRoute>} />
+            <Route path="/teach/feedback" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><FeedbackQueuePage /></ProtectedRoute>} />
+            <Route path="/teach/analytics" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><StudentAnalyticsPage /></ProtectedRoute>} />
 
-          {/* Redirects */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
-      </AuthProvider>
-    </Router>
-  )
-}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;

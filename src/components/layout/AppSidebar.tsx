@@ -1,91 +1,211 @@
-import { useAuth } from '@/contexts/AuthContext'
-import { Link, useLocation } from 'react-router-dom'
-import { cn } from '@/lib/utils'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import { useAuth } from '@/hooks/useAuth';
 import {
-  LayoutDashboard,
-  Book,
-  Users,
-  BarChart3,
-  Settings,
-  LogOut,
-  FileText,
-  Briefcase,
-  Mic,
-  MessageSquare,
-  Layers,
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
+  LayoutDashboard, GraduationCap, BookOpen, Languages, Mic, Speech,
+  FolderOpen, BarChart3, RefreshCw, Settings, LogOut, ChevronRight,
+  Sparkles, Users, FileText, Headphones, MessageSquare, Upload,
+  UsersRound, ClipboardList, LineChart, Tags
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ProgressRing } from '@/components/ui/progress-ring';
+import { LevelBadge } from '@/components/ui/level-badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
 
-export const AppSidebar = () => {
-  const { user, hasRole, signOut } = useAuth()
-  const location = useLocation()
+interface NavItem {
+  label: string;
+  href: string;
+  icon: React.ElementType;
+  badge?: string | number;
+}
 
-  if (!user) return null
+const learnerNavItems: NavItem[] = [
+  { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { label: 'My Course', href: '/course', icon: GraduationCap },
+  { label: 'Review Center', href: '/review', icon: RefreshCw },
+  { label: 'Portfolio', href: '/portfolio', icon: FolderOpen },
+  { label: 'Progress', href: '/progress', icon: BarChart3 },
+];
 
-  const navItems = [
-    // All roles
-    { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard, show: true },
-    { href: '/course', label: 'My Course', icon: Book, show: true },
-    { href: '/review', label: 'Review Center', icon: FileText, show: true },
-    { href: '/portfolio', label: 'Portfolio', icon: Briefcase, show: true },
-    { href: '/progress', label: 'Progress', icon: BarChart3, show: true },
-    { href: '/reference', label: 'Reference', icon: Book, show: true },
+const referenceNavItems: NavItem[] = [
+  { label: 'Vocabulary', href: '/lexicon', icon: BookOpen },
+  { label: 'Grammar', href: '/grammar', icon: Languages },
+  { label: 'Pronunciation', href: '/pronunciation', icon: Mic },
+  { label: 'Pragmatics', href: '/pragmatics', icon: Speech },
+];
 
-    // Teachers
-    { href: '/teach/dashboard', label: 'Cohort Dashboard', icon: Users, show: hasRole('teacher') || hasRole('admin') },
-    { href: '/teach/feedback', label: 'Feedback Queue', icon: MessageSquare, show: hasRole('teacher') || hasRole('admin') },
-    { href: '/teach/analytics', label: 'Student Analytics', icon: BarChart3, show: hasRole('teacher') || hasRole('admin') },
+const authorNavItems: NavItem[] = [
+  { label: 'Course Builder', href: '/author/courses', icon: GraduationCap },
+  { label: 'Lexicon Manager', href: '/author/lexicon', icon: BookOpen },
+  { label: 'Grammar Chapters', href: '/author/grammar', icon: Languages },
+  { label: 'Pronunciation Lab', href: '/author/pronunciation', icon: Headphones },
+  { label: 'Pragmatics Lab', href: '/author/pragmatics', icon: MessageSquare },
+  { label: 'Asset Manager', href: '/author/assets', icon: Upload },
+  { label: 'Tags', href: '/author/tags', icon: Tags },
+];
 
-    // Authors/Curriculum Designers
-    { href: '/author/courses', label: 'Course Builder', icon: Book, show: hasRole('curriculum_designer') || hasRole('admin') },
-    { href: '/author/lexicon', label: 'Lexicon Manager', icon: FileText, show: hasRole('curriculum_designer') || hasRole('admin') },
-    { href: '/author/grammar', label: 'Grammar Chapters', icon: Layers, show: hasRole('curriculum_designer') || hasRole('admin') },
-    { href: '/author/pronunciation', label: 'Pronunciation Lab', icon: Mic, show: hasRole('curriculum_designer') || hasRole('admin') },
-    { href: '/author/pragmatics', label: 'Pragmatics Lab', icon: MessageSquare, show: hasRole('curriculum_designer') || hasRole('admin') },
-    { href: '/author/assets', label: 'Asset Manager', icon: Layers, show: hasRole('curriculum_designer') || hasRole('admin') },
+const teacherNavItems: NavItem[] = [
+  { label: 'Cohorts', href: '/teach/dashboard', icon: UsersRound },
+  { label: 'Feedback Queue', href: '/teach/feedback', icon: ClipboardList },
+  { label: 'Student Analytics', href: '/teach/analytics', icon: LineChart },
+];
 
-    // Admins only
-    { href: '/admin/users', label: 'User Management', icon: Users, show: hasRole('admin') },
-    { href: '/admin/settings', label: 'Organization Settings', icon: Settings, show: hasRole('admin') },
-  ]
+const adminNavItems: NavItem[] = [
+  { label: 'User Management', href: '/admin/users', icon: Users },
+  { label: 'Settings', href: '/admin/settings', icon: Settings },
+];
 
-  const visibleItems = navItems.filter(item => item.show)
+interface AppSidebarProps {
+  className?: string;
+}
 
-  return (
-    <aside className="w-64 bg-slate-900 text-white h-screen overflow-y-auto sticky top-0">
-      <div className="p-6 border-b border-slate-700">
-        <h1 className="text-2xl font-bold">English Compass</h1>
-        <p className="text-sm text-slate-400 mt-1">Welcome, {user.profile.full_name}</p>
-      </div>
+export function AppSidebar({ className }: AppSidebarProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { profile, isContentCreator, isTeacher, isAdmin, signOut } = useAuth();
 
-      <nav className="p-4 space-y-2">
-        {visibleItems.map((item) => (
-          <Link
-            key={item.href}
-            to={item.href}
-            className={cn(
-              'flex items-center gap-3 px-4 py-2 rounded-md transition-colors',
-              location.pathname === item.href
-                ? 'bg-blue-600 text-white'
-                : 'text-slate-300 hover:bg-slate-800'
-            )}
-          >
-            <item.icon className="w-5 h-5" />
-            <span>{item.label}</span>
-          </Link>
-        ))}
-      </nav>
+  const NavLink = ({ item }: { item: NavItem }) => {
+    const isActive = location.pathname === item.href || location.pathname.startsWith(item.href + '/');
 
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-700">
+    return (
+      <Link to={item.href}>
         <Button
           variant="ghost"
-          className="w-full justify-start text-slate-300 hover:bg-slate-800 hover:text-white"
-          onClick={signOut}
+          className={cn(
+            "w-full justify-start gap-3 px-3 py-2.5 h-auto font-medium",
+            "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent",
+            isActive && "bg-sidebar-accent text-sidebar-primary font-semibold"
+          )}
         >
-          <LogOut className="w-5 h-5 mr-3" />
-          Sign Out
+          <item.icon size={20} className={cn(isActive && "text-sidebar-primary")} />
+          <span className="flex-1 text-left">{item.label}</span>
+          {item.badge && (
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground px-1.5">
+              {item.badge}
+            </span>
+          )}
+          {isActive && <ChevronRight size={16} className="text-sidebar-primary" />}
+        </Button>
+      </Link>
+    );
+  };
+
+  const SectionHeader = ({ label }: { label: string }) => (
+    <div className="mb-2 mt-1">
+      <p className="px-3 text-xs font-semibold text-sidebar-foreground/50 uppercase tracking-wider">
+        {label}
+      </p>
+    </div>
+  );
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
+
+  return (
+    <aside className={cn(
+      "flex h-screen w-64 flex-col bg-sidebar border-r border-sidebar-border",
+      className
+    )}>
+      {/* Logo */}
+      <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary shadow-lg">
+          <Sparkles className="h-5 w-5 text-white" />
+        </div>
+        <div>
+          <h1 className="font-display font-bold text-lg text-sidebar-foreground">English Mastery</h1>
+          <p className="text-xs text-sidebar-foreground/60">Lab</p>
+        </div>
+      </div>
+
+      {/* User Info */}
+      <div className="mx-3 mt-4 rounded-xl bg-sidebar-accent p-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold text-sm">
+            {profile?.full_name?.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() || '?'}
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-sidebar-foreground truncate">
+              {profile?.full_name || 'User'}
+            </p>
+            <p className="text-xs text-sidebar-foreground/60 capitalize">
+              {isAdmin ? 'Admin' : isContentCreator ? 'Author' : isTeacher ? 'Teacher' : 'Learner'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <ScrollArea className="flex-1 px-3 py-4">
+        {/* Main Navigation */}
+        <nav className="space-y-1">
+          {learnerNavItems.map((item) => (
+            <NavLink key={item.href} item={item} />
+          ))}
+        </nav>
+
+        <Separator className="my-4 bg-sidebar-border" />
+
+        {/* Reference Section */}
+        <SectionHeader label="Reference" />
+        <nav className="space-y-1">
+          {referenceNavItems.map((item) => (
+            <NavLink key={item.href} item={item} />
+          ))}
+        </nav>
+
+        {/* Authoring Section - visible to admins and curriculum designers */}
+        {isContentCreator && (
+          <>
+            <Separator className="my-4 bg-sidebar-border" />
+            <SectionHeader label="Authoring" />
+            <nav className="space-y-1">
+              {authorNavItems.map((item) => (
+                <NavLink key={item.href} item={item} />
+              ))}
+            </nav>
+          </>
+        )}
+
+        {/* Teaching Section - visible to teachers, admins, curriculum designers */}
+        {(isTeacher || isContentCreator) && (
+          <>
+            <Separator className="my-4 bg-sidebar-border" />
+            <SectionHeader label="Teaching" />
+            <nav className="space-y-1">
+              {teacherNavItems.map((item) => (
+                <NavLink key={item.href} item={item} />
+              ))}
+            </nav>
+          </>
+        )}
+
+        {/* Admin Section */}
+        {isAdmin && (
+          <>
+            <Separator className="my-4 bg-sidebar-border" />
+            <SectionHeader label="Admin" />
+            <nav className="space-y-1">
+              {adminNavItems.map((item) => (
+                <NavLink key={item.href} item={item} />
+              ))}
+            </nav>
+          </>
+        )}
+      </ScrollArea>
+
+      {/* Bottom Section */}
+      <div className="border-t border-sidebar-border p-3 space-y-1">
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-3 px-3 text-sidebar-foreground/70 hover:text-destructive hover:bg-destructive/10"
+          onClick={handleSignOut}
+        >
+          <LogOut size={20} />
+          <span>Sign Out</span>
         </Button>
       </div>
     </aside>
-  )
+  );
 }
