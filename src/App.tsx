@@ -30,6 +30,12 @@ import PragmaticsManagerPage from "./pages/author/PragmaticsManagerPage";
 import AssetManagerPage from "./pages/author/AssetManagerPage";
 import TagManagerPage from "./pages/author/TagManagerPage";
 
+// Reference (Student)
+import VocabularyReferencePage from "./pages/reference/VocabularyReferencePage";
+import GrammarReferencePage from "./pages/reference/GrammarReferencePage";
+import PronunciationReferencePage from "./pages/reference/PronunciationReferencePage";
+import PragmaticsReferencePage from "./pages/reference/PragmaticsReferencePage";
+
 // Teach
 import TeachDashboardPage from "./pages/teach/TeachDashboardPage";
 import FeedbackQueuePage from "./pages/teach/FeedbackQueuePage";
@@ -55,6 +61,12 @@ const App = () => (
             <Route path="/course" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId" element={<ProtectedRoute><UnitPage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId/:lessonId" element={<ProtectedRoute><LessonPlayerPage /></ProtectedRoute>} />
+
+            {/* Reference */}
+            <Route path="/lexicon" element={<ProtectedRoute><VocabularyReferencePage /></ProtectedRoute>} />
+            <Route path="/grammar" element={<ProtectedRoute><GrammarReferencePage /></ProtectedRoute>} />
+            <Route path="/pronunciation" element={<ProtectedRoute><PronunciationReferencePage /></ProtectedRoute>} />
+            <Route path="/pragmatics" element={<ProtectedRoute><PragmaticsReferencePage /></ProtectedRoute>} />
 
             {/* Admin */}
             <Route path="/admin/users" element={<ProtectedRoute requiredRoles={['admin']}><UserManagementPage /></ProtectedRoute>} />
