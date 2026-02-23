@@ -139,3 +139,29 @@ Identity chunks, email symbols, professions, basic verbs
 - Feedback workspace (teacher section)
 - CSV import/export for lexicon
 - Real dashboard data (currently placeholder)
+
+---
+
+## Recent Feature Implementations
+
+### Publish/Unpublish Functionality (2026-02-23)
+Added comprehensive publish controls across all course builder pages to manage content visibility for students:
+
+- **Course Level**: Publish/unpublish entire courses from the Course Builder page
+- **Level Level**: Toggle visibility for individual CEFR levels (A0-C2) within courses
+- **Unit Level**: Publish/unpublish units from both the Level Detail page and Unit Editor page
+- **Lesson Level**: Control lesson visibility from both the Unit Editor and Lesson Editor pages
+
+**Implementation Details:**
+- All content types (courses, levels, units, lessons) have `is_published` boolean fields in the database
+- Publish buttons appear on hover for list items, and as prominent buttons in editor pages
+- Visual feedback with Eye/EyeOff icons and status badges (Published/Draft)
+- Toast notifications confirm publish state changes
+- RLS policies ensure only published content is visible to learner role users
+- Content creators (admin/curriculum_designer) can see all content regardless of publish status
+
+**User Experience:**
+- Draft content is hidden from students but visible to teachers and admins
+- Allows incremental content development without exposing incomplete work
+- Clear visual indicators show publish status throughout the interface
+- One-click toggle between published and draft states

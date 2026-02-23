@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Save, Plus, GripVertical, Trash2 } from 'lucide-react';
+import { ArrowLeft, Save, Plus, GripVertical, Trash2, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -79,6 +79,24 @@ export default function LessonEditorPage() {
     await supabase.from('lesson_stages').update({ [field]: value }).eq('id', stageId);
   };
 
+  const toggleLessonPublish = async () => {
+    if (!lesson) return;
+    const { error } = await supabase
+      .from('lessons')
+      .update({ is_published: !lesson.is_published })
+      .eq('id', lesson.id);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !lesson.is_published ? 'Published' : 'Unpublished', 
+        description: `Lesson ${!lesson.is_published ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      setLesson({ ...lesson, is_published: !lesson.is_published });
+    }
+  };
+
   if (loading) {
     return <AppLayout title="Lesson Editor"><div className="flex justify-center py-12"><div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" /></div></AppLayout>;
   }
@@ -95,10 +113,32 @@ export default function LessonEditorPage() {
             <ArrowLeft className="h-4 w-4" />
             Back to unit
           </Link>
-          <Button onClick={saveLesson} disabled={saving} className="bg-gradient-primary hover:opacity-90">
-            <Save className="h-4 w-4 mr-2" />
-            {saving ? 'Saving...' : 'Save'}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Badge variant={lesson.is_published ? 'default' : 'secondary'}>
+              {lesson.is_published ? 'Published' : 'Draft'}
+            </Badge>
+            <Button
+              variant={lesson.is_published ? 'outline' : 'default'}
+              size="sm"
+              onClick={toggleLessonPublish}
+            >
+              {lesson.is_published ? (
+                <>
+                  <EyeOff className="h-4 w-4 mr-2" />
+                  Unpublish
+                </>
+              ) : (
+                <>
+                  <Eye className="h-4 w-4 mr-2" />
+                  Publish
+                </>
+              )}
+            </Button>
+            <Button onClick={saveLesson} disabled={saving} className="bg-gradient-primary hover:opacity-90">
+              <Save className="h-4 w-4 mr-2" />
+              {saving ? 'Saving...' : 'Save'}
+            </Button>
+          </div>
         </div>
 
         {/* Lesson Meta */}

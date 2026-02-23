@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Plus, ChevronRight, GraduationCap, FolderOpen } from 'lucide-react';
+import { Plus, ChevronRight, GraduationCap, FolderOpen, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
@@ -94,6 +94,40 @@ export default function CourseBuilderPage() {
     fetchCourses();
   };
 
+  const toggleCoursePublish = async (courseId: string, currentStatus: boolean) => {
+    const { error } = await supabase
+      .from('courses')
+      .update({ is_published: !currentStatus })
+      .eq('id', courseId);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !currentStatus ? 'Published' : 'Unpublished', 
+        description: `Course ${!currentStatus ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      fetchCourses();
+    }
+  };
+
+  const toggleLevelPublish = async (levelId: string, currentStatus: boolean) => {
+    const { error } = await supabase
+      .from('levels')
+      .update({ is_published: !currentStatus })
+      .eq('id', levelId);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !currentStatus ? 'Published' : 'Unpublished', 
+        description: `Level ${!currentStatus ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      fetchCourses();
+    }
+  };
+
   return (
     <AppLayout title="Course Builder" subtitle="Create and manage your courses">
       <div className="p-6 space-y-6">
@@ -134,28 +168,69 @@ export default function CourseBuilderPage() {
                     <GraduationCap className="h-5 w-5" />
                     {course.title}
                   </CardTitle>
-                  <Badge variant={course.is_published ? 'default' : 'secondary'}>
-                    {course.is_published ? 'Published' : 'Draft'}
-                  </Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant={course.is_published ? 'default' : 'secondary'}>
+                      {course.is_published ? 'Published' : 'Draft'}
+                    </Badge>
+                    <Button
+                      variant={course.is_published ? 'outline' : 'default'}
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleCoursePublish(course.id, course.is_published);
+                      }}
+                    >
+                      {course.is_published ? (
+                        <>
+                          <EyeOff className="h-4 w-4 mr-2" />
+                          Unpublish
+                        </>
+                      ) : (
+                        <>
+                          <Eye className="h-4 w-4 mr-2" />
+                          Publish
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {course.levels.map((level) => (
-                    <Link key={level.id} to={`/author/levels/${level.id}`}>
-                      <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                        <CardContent className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <Badge variant="outline">{level.cefr_code}</Badge>
-                            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                          </div>
-                          <p className="font-medium text-sm">{level.title}</p>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {level.unit_count} units
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </Link>
+                    <div key={level.id} className="relative group">
+                      <Link to={`/author/levels/${level.id}`}>
+                        <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                          <CardContent className="p-4">
+                            <div className="flex items-center justify-between mb-2">
+                              <Badge variant="outline">{level.cefr_code}</Badge>
+                              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                            </div>
+                            <p className="font-medium text-sm">{level.title}</p>
+                            <div className="flex items-center justify-between mt-2">
+                              <p className="text-xs text-muted-foreground">
+                                {level.unit_count} units
+                              </p>
+                              <Badge variant={level.is_published ? 'default' : 'secondary'} className="text-xs">
+                                {level.is_published ? 'Published' : 'Draft'}
+                              </Badge>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleLevelPublish(level.id, level.is_published);
+                        }}
+                      >
+                        {level.is_published ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+                      </Button>
+                    </div>
                   ))}
                 </div>
               </CardContent>

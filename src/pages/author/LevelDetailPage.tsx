@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Plus, ChevronRight, ArrowLeft, GripVertical, Pencil } from 'lucide-react';
+import { Plus, ChevronRight, ArrowLeft, GripVertical, Pencil, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -64,6 +64,23 @@ export default function LevelDetailPage() {
     }
   };
 
+  const toggleUnitPublish = async (unitId: string, currentStatus: boolean) => {
+    const { error } = await supabase
+      .from('units')
+      .update({ is_published: !currentStatus })
+      .eq('id', unitId);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !currentStatus ? 'Published' : 'Unpublished', 
+        description: `Unit ${!currentStatus ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      fetchData();
+    }
+  };
+
   return (
     <AppLayout
       title={level ? `${level.cefr_code} – ${level.title}` : 'Level'}
@@ -104,25 +121,49 @@ export default function LevelDetailPage() {
         ) : (
           <div className="space-y-3">
             {units.map((unit, index) => (
-              <Link key={unit.id} to={`/author/units/${unit.id}`}>
-                <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <GripVertical className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium text-muted-foreground">Unit {index + 1}</span>
-                        <Badge variant={unit.is_published ? 'default' : 'secondary'} className="text-xs">
-                          {unit.is_published ? 'Published' : 'Draft'}
-                        </Badge>
+              <div key={unit.id} className="relative group">
+                <Link to={`/author/units/${unit.id}`}>
+                  <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                    <CardContent className="p-4 flex items-center gap-4">
+                      <GripVertical className="h-5 w-5 text-muted-foreground flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="text-sm font-medium text-muted-foreground">Unit {index + 1}</span>
+                          <Badge variant={unit.is_published ? 'default' : 'secondary'} className="text-xs">
+                            {unit.is_published ? 'Published' : 'Draft'}
+                          </Badge>
+                        </div>
+                        <h3 className="font-display font-semibold">{unit.title}</h3>
+                        {unit.theme && <p className="text-sm text-muted-foreground">{unit.theme}</p>}
                       </div>
-                      <h3 className="font-display font-semibold">{unit.title}</h3>
-                      {unit.theme && <p className="text-sm text-muted-foreground">{unit.theme}</p>}
-                    </div>
-                    <div className="text-sm text-muted-foreground">{unit.lesson_count} lessons</div>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground" />
-                  </CardContent>
-                </Card>
-              </Link>
+                      <div className="text-sm text-muted-foreground">{unit.lesson_count} lessons</div>
+                      <ChevronRight className="h-5 w-5 text-muted-foreground" />
+                    </CardContent>
+                  </Card>
+                </Link>
+                <Button
+                  variant={unit.is_published ? 'outline' : 'default'}
+                  size="sm"
+                  className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleUnitPublish(unit.id, unit.is_published);
+                  }}
+                >
+                  {unit.is_published ? (
+                    <>
+                      <EyeOff className="h-4 w-4 mr-2" />
+                      Unpublish
+                    </>
+                  ) : (
+                    <>
+                      <Eye className="h-4 w-4 mr-2" />
+                      Publish
+                    </>
+                  )}
+                </Button>
+              </div>
             ))}
           </div>
         )}

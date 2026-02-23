@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Save, Plus, GripVertical, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Save, Plus, GripVertical, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -74,6 +74,41 @@ export default function UnitEditorPage() {
     }
   };
 
+  const toggleUnitPublish = async () => {
+    if (!unit) return;
+    const { error } = await supabase
+      .from('units')
+      .update({ is_published: !unit.is_published })
+      .eq('id', unit.id);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !unit.is_published ? 'Published' : 'Unpublished', 
+        description: `Unit ${!unit.is_published ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      setUnit({ ...unit, is_published: !unit.is_published });
+    }
+  };
+
+  const toggleLessonPublish = async (lessonId: string, currentStatus: boolean) => {
+    const { error } = await supabase
+      .from('lessons')
+      .update({ is_published: !currentStatus })
+      .eq('id', lessonId);
+
+    if (error) {
+      toast({ title: 'Error', description: error.message, variant: 'destructive' });
+    } else {
+      toast({ 
+        title: !currentStatus ? 'Published' : 'Unpublished', 
+        description: `Lesson ${!currentStatus ? 'is now visible to students' : 'is now hidden from students'}.` 
+      });
+      fetchData();
+    }
+  };
+
   if (loading) {
     return (
       <AppLayout title="Unit Editor">
@@ -102,10 +137,32 @@ export default function UnitEditorPage() {
             <ArrowLeft className="h-4 w-4" />
             Back
           </Link>
-          <Button onClick={saveUnit} disabled={saving} className="bg-gradient-primary hover:opacity-90">
-            <Save className="h-4 w-4 mr-2" />
-            {saving ? 'Saving...' : 'Save'}
-          </Button>
+          <div className="flex items-center gap-2">
+            <Badge variant={unit.is_published ? 'default' : 'secondary'}>
+              {unit.is_published ? 'Published' : 'Draft'}
+            </Badge>
+            <Button
+              variant={unit.is_published ? 'outline' : 'default'}
+              size="sm"
+              onClick={toggleUnitPublish}
+            >
+              {unit.is_published ? (
+                <>
+                  <EyeOff className="h-4 w-4 mr-2" />
+                  Unpublish
+                </>
+              ) : (
+                <>
+                  <Eye className="h-4 w-4 mr-2" />
+                  Publish
+                </>
+              )}
+            </Button>
+            <Button onClick={saveUnit} disabled={saving} className="bg-gradient-primary hover:opacity-90">
+              <Save className="h-4 w-4 mr-2" />
+              {saving ? 'Saving...' : 'Save'}
+            </Button>
+          </div>
         </div>
 
         <Tabs defaultValue="overview" className="w-full">
@@ -210,20 +267,34 @@ export default function UnitEditorPage() {
                 ) : (
                   <div className="space-y-2">
                     {lessons.map((lesson, i) => (
-                      <Link key={lesson.id} to={`/author/lessons/${lesson.id}`}>
-                        <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                          <CardContent className="p-3 flex items-center gap-3">
-                            <GripVertical className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground w-8">#{i + 1}</span>
-                            <Badge variant="outline" className="text-xs capitalize">{lesson.lesson_type}</Badge>
-                            <span className="font-medium flex-1">{lesson.title}</span>
-                            <Badge variant={lesson.is_published ? 'default' : 'secondary'} className="text-xs">
-                              {lesson.is_published ? 'Published' : 'Draft'}
-                            </Badge>
-                            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-                          </CardContent>
-                        </Card>
-                      </Link>
+                      <div key={lesson.id} className="relative group">
+                        <Link to={`/author/lessons/${lesson.id}`}>
+                          <Card className="hover:shadow-md transition-shadow cursor-pointer">
+                            <CardContent className="p-3 flex items-center gap-3">
+                              <GripVertical className="h-4 w-4 text-muted-foreground" />
+                              <span className="text-sm text-muted-foreground w-8">#{i + 1}</span>
+                              <Badge variant="outline" className="text-xs capitalize">{lesson.lesson_type}</Badge>
+                              <span className="font-medium flex-1">{lesson.title}</span>
+                              <Badge variant={lesson.is_published ? 'default' : 'secondary'} className="text-xs">
+                                {lesson.is_published ? 'Published' : 'Draft'}
+                              </Badge>
+                              <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                            </CardContent>
+                          </Card>
+                        </Link>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="absolute top-2 right-8 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            toggleLessonPublish(lesson.id, lesson.is_published);
+                          }}
+                        >
+                          {lesson.is_published ? <EyeOff className="h-3 w-3" /> : <Eye className="h-3 w-3" />}
+                        </Button>
+                      </div>
                     ))}
                   </div>
                 )}
