@@ -165,3 +165,10 @@ Added comprehensive publish controls across all course builder pages to manage c
 - Allows incremental content development without exposing incomplete work
 - Clear visual indicators show publish status throughout the interface
 - One-click toggle between published and draft states
+
+**Student-Facing Pages Updated:**
+- CoursePage now queries and displays only published levels with unit counts
+- New LevelPage created to show published units within a level
+- UnitPage updated to show only published lessons
+- Proper routing added for student navigation: /course → /course/level/:levelId → /course/:level/:unitId
+- Empty states guide students when no content is published yet

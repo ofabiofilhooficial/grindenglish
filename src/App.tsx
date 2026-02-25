@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
 import CoursePage from "./pages/CoursePage";
+import LevelPage from "./pages/LevelPage";
 import UnitPage from "./pages/UnitPage";
 import LessonPlayerPage from "./pages/LessonPlayerPage";
 import NotFound from "./pages/NotFound";
@@ -59,6 +60,7 @@ const App = () => (
             {/* Learner (authenticated) */}
             <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
             <Route path="/course" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
+            <Route path="/course/level/:levelId" element={<ProtectedRoute><LevelPage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId" element={<ProtectedRoute><UnitPage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId/:lessonId" element={<ProtectedRoute><LessonPlayerPage /></ProtectedRoute>} />
 

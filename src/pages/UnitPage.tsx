@@ -41,19 +41,22 @@ export default function UnitPage() {
       if (!unitId) return;
       const cleanId = unitId.startsWith('unit-') ? unitId : unitId;
       
-      // Try to fetch by UUID first, otherwise show empty
+      // Fetch unit (only published for students)
       const { data } = await supabase
         .from('units')
-        .select('id, title, theme, flagship_task, outcomes, sort_order')
+        .select('id, title, theme, flagship_task, outcomes, sort_order, is_published')
         .eq('id', cleanId)
+        .eq('is_published', true)
         .single();
 
       if (data) {
         setUnit(data);
+        // Fetch only published lessons
         const { data: lessonData } = await supabase
           .from('lessons')
           .select('id, title, lesson_type, sort_order, is_published')
           .eq('unit_id', data.id)
+          .eq('is_published', true)
           .order('sort_order');
         setLessons(lessonData || []);
       }

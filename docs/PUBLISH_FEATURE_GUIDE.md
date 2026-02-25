@@ -58,6 +58,22 @@ To unpublish any content, simply click the **Unpublish** button (or eye-off icon
 - Content creators and teachers can always see all content regardless of publish status
 - Unpublishing content immediately hides it from students without deleting any data
 
+## Student View
+When students log in and navigate to their course:
+1. They see only published CEFR levels on the Course page
+2. Clicking a level shows only published units within that level
+3. Clicking a unit shows only published lessons within that unit
+4. Unpublished content appears as "locked" or simply doesn't appear in the list
+
+## Testing the Feature
+To verify the publish feature is working:
+1. As an admin/curriculum designer, publish a course, level, unit, and lesson
+2. Log in as a student (learner role)
+3. Navigate to /course and verify you can see the published level
+4. Click into the level and verify you can see the published unit
+5. Click into the unit and verify you can see the published lesson
+6. As admin, unpublish any item in the chain and verify it disappears from the student view
+
 ## Database Fields
 All content types have an `is_published` boolean field:
 - `courses.is_published`
