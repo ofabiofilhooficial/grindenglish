@@ -106,11 +106,19 @@
 ### Lessons (15)
 Covering: listening, vocabulary, pronunciation, grammar, speaking, writing, review
 
-### Grammar Chapters (4)
-- Be vs Have: The Identity Verb
-- Subject Pronouns & Verb Agreement
-- Articles: A/An with Professions
-- Prepositions of Origin: From
+### Grammar Chapters (12)
+- A0.G.01. Sentence Basics
+- A0.G.02. The Verb be
+- A0.G.03. Subject Pronouns & Possessive Adjectives
+- A0.G.04. Articles I
+- A0.G.05. Plurals & This/That/These/Those
+- A0.G.06. Imperatives
+- A0.G.07. There is/are
+- A0.G.08. Basic Prepositions of Place
+- A0.G.09. Basic Questions
+- A0.G.10. Can
+- A0.G.11. Have
+- A0.G.12. Simple Connectors
 
 ### Lexicon Entries (15)
 Identity chunks, email symbols, professions, basic verbs
