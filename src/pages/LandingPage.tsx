@@ -1,7 +1,14 @@
-import { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { supabase } from '@/integrations/supabase/client';
+import { lovable } from '@/integrations/lovable/index';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Headphones, 
   Target, 
@@ -9,12 +16,48 @@ import {
   ArrowRight,
   Shield,
   Play,
-  Globe
+  Globe,
+  Sparkles
 } from 'lucide-react';
 
 export default function LandingPage() {
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [lang, setLang] = useState<'en' | 'pt'>('en');
+  const [authOpen, setAuthOpen] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [authLoading, setAuthLoading] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      const timer = setTimeout(() => setAuthOpen(true), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, user]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthLoading(true);
+    if (isSignup) {
+      const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: fullName }, emailRedirectTo: window.location.origin } });
+      if (error) toast({ title: 'Signup failed', description: error.message, variant: 'destructive' });
+      else { toast({ title: 'Check your email', description: 'We sent you a confirmation link.' }); setAuthOpen(false); }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) toast({ title: 'Sign in failed', description: error.message, variant: 'destructive' });
+      else navigate('/dashboard');
+    }
+    setAuthLoading(false);
+  };
+
+  const handleGoogle = async () => {
+    const { error } = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
+    if (error) toast({ title: 'Google sign in failed', description: error.message, variant: 'destructive' });
+  };
 
   if (!loading && user) {
     return <Navigate to="/dashboard" replace />;
