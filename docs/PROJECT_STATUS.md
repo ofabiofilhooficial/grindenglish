@@ -43,6 +43,8 @@
 | `pragmatics_items` | Phrases within packs |
 | `assets` | Uploaded media files |
 | `tags` / `taggings` | Polymorphic tag system |
+| `progress_events` | User activity event log |
+| `learner_progress` | Aggregated user progress stats |
 
 ---
 
@@ -141,16 +143,72 @@ Identity chunks, email symbols, professions, basic verbs
 ## What's Not Yet Built
 - Lesson stages (interactive content within lessons)
 - B2+ course content
-- Student progress tracking / SRS system
+- SRS system (spaced repetition)
 - File upload to storage (asset manager)
 - Cohort management (teacher section)
 - Feedback workspace (teacher section)
 - CSV import/export for lexicon
-- Real dashboard data (currently placeholder)
+- Dedicated Progress page with detailed analytics
+- Study time tracking (automatic timer)
+- Words learned counter (vocabulary exercise integration)
+- Achievement/badge system
 
 ---
 
 ## Recent Feature Implementations
+
+### Progress Tracking System (2026-03-05)
+Implemented comprehensive user activity tracking and streak counter system:
+
+**Database Schema:**
+- `progress_events` table logs all user activity (page views, content interactions)
+- `learner_progress` table stores aggregated stats per user (streaks, time, words learned)
+- Automatic streak calculation with consecutive day logic
+- Database functions: `log_activity_event()` and `update_user_streak()`
+
+**Activity Tracking:**
+- Tracks 11 event types: login, dashboard_view, lesson_start, lesson_complete, grammar_view, vocab_view, pronunciation_view, pragmatics_view, course_view, level_view, unit_view
+- Automatic page view tracking via `usePageViewTracker` hook
+- Custom event logging via `useActivityTracker` hook
+- Real-time progress updates with Supabase subscriptions
+
+**Dashboard Integration:**
+- Live streak counter (current and longest streak)
+- Total study time display (formatted as hours/minutes)
+- Words learned counter (ready for vocabulary exercise integration)
+- SRS retention placeholder (for future spaced repetition system)
+- Automatic activity logging on dashboard visit
+
+**Streak Logic:**
+- First activity starts streak at 1 day
+- Consecutive daily visits increment the streak
+- Missing a day resets streak to 1
+- Longest streak is tracked separately
+- Updates happen automatically on any tracked activity
+
+**Content Tracking:**
+- Grammar chapter views tracked with chapter details
+- Vocabulary entry views tracked with word details
+- Pronunciation and pragmatics views tracked
+- Course navigation tracked (course, level, unit pages)
+
+**Security:**
+- Row Level Security (RLS) on all progress tables
+- Users can only view/modify their own progress
+- Content creators can view all progress for analytics
+- Automatic progress record creation on first activity
+
+**Documentation:**
+- Complete guide in `docs/PROGRESS_TRACKING_GUIDE.md`
+- API reference for hooks and database functions
+- Migration file: `supabase/migrations/20260305000000_create_progress_tracking.sql`
+
+**Future Enhancements:**
+- Automatic study time tracking with session timers
+- Words learned counter integration with vocabulary exercises
+- Dedicated Progress page with charts and detailed analytics
+- Achievement/badge system for milestones
+- Weekly/monthly progress reports
 
 ### Publish/Unpublish Functionality (2026-02-23)
 Added comprehensive publish controls across all course builder pages to manage content visibility for students:

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { useAuth } from '@/hooks/useAuth';
+import { useProgress } from '@/hooks/useProgress';
+import { usePageViewTracker } from '@/hooks/useActivityTracker';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LevelBadge } from '@/components/ui/level-badge';
@@ -21,14 +23,26 @@ import { supabase } from '@/integrations/supabase/client';
 
 export default function DashboardPage() {
   const { profile, isContentCreator, isAdmin } = useAuth();
+  const { progress, loading: progressLoading } = useProgress();
   const firstName = profile?.full_name?.split(' ')[0] || 'there';
   const [courseCount, setCourseCount] = useState(0);
+
+  // Track dashboard view
+  usePageViewTracker('dashboard_view');
 
   useEffect(() => {
     supabase.from('courses').select('id', { count: 'exact', head: true }).then(({ count }) => {
       setCourseCount(count || 0);
     });
   }, []);
+
+  // Format study time
+  const formatStudyTime = (minutes: number) => {
+    if (minutes < 60) return `${minutes}m`;
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
+  };
 
   return (
     <AppLayout title="Dashboard" subtitle={`Welcome back, ${firstName}!`}>
@@ -71,7 +85,7 @@ export default function DashboardPage() {
           </div>
         </Card>
 
-        {/* Quick Stats (placeholder zeros) */}
+        {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Card>
             <CardContent className="p-4 flex items-center gap-4">
@@ -79,7 +93,9 @@ export default function DashboardPage() {
                 <Flame className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold">0</p>
+                <p className="text-2xl font-bold">
+                  {progressLoading ? '...' : progress?.currentStreak || 0}
+                </p>
                 <p className="text-sm text-muted-foreground">Day streak</p>
               </div>
             </CardContent>
@@ -90,7 +106,9 @@ export default function DashboardPage() {
                 <Clock className="h-6 w-6 text-accent-foreground" />
               </div>
               <div>
-                <p className="text-2xl font-bold">0h</p>
+                <p className="text-2xl font-bold">
+                  {progressLoading ? '...' : formatStudyTime(progress?.totalStudyTimeMinutes || 0)}
+                </p>
                 <p className="text-sm text-muted-foreground">Total time</p>
               </div>
             </CardContent>
@@ -101,7 +119,9 @@ export default function DashboardPage() {
                 <Target className="h-6 w-6 text-secondary-foreground" />
               </div>
               <div>
-                <p className="text-2xl font-bold">0</p>
+                <p className="text-2xl font-bold">
+                  {progressLoading ? '...' : progress?.wordsLearned || 0}
+                </p>
                 <p className="text-sm text-muted-foreground">Words learned</p>
               </div>
             </CardContent>

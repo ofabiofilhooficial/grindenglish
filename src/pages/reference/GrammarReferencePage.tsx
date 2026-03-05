@@ -9,6 +9,7 @@ import { Search, Languages, AlertTriangle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { usePageViewTracker, useActivityTracker } from '@/hooks/useActivityTracker';
 
 export default function GrammarReferencePage() {
   const [chapters, setChapters] = useState<any[]>([]);
@@ -16,6 +17,20 @@ export default function GrammarReferencePage() {
   const [search, setSearch] = useState('');
   const [levelFilter, setLevelFilter] = useState('all');
   const [selected, setSelected] = useState<any>(null);
+  const { logActivity } = useActivityTracker();
+
+  // Track page view
+  usePageViewTracker('grammar_view');
+
+  // Track when a chapter is opened
+  const handleChapterClick = (chapter: any) => {
+    setSelected(chapter);
+    logActivity('grammar_view', { 
+      chapter_id: chapter.id, 
+      chapter_code: chapter.chapter_code,
+      chapter_title: chapter.title 
+    });
+  };
 
   useEffect(() => {
     const fetch = async () => {
@@ -60,7 +75,7 @@ export default function GrammarReferencePage() {
         ) : (
           <div className="space-y-2">
             {filtered.map((c) => (
-              <Card key={c.id} className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setSelected(c)}>
+              <Card key={c.id} className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleChapterClick(c)}>
                 <CardContent className="p-4 flex items-center gap-4">
                   <Badge variant="outline">{c.cefr_level}</Badge>
                   <Badge variant="secondary" className="text-xs font-mono">{c.chapter_code}</Badge>

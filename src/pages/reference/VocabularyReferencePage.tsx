@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Search, BookOpen, Volume2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { usePageViewTracker, useActivityTracker } from '@/hooks/useActivityTracker';
 
 export default function VocabularyReferencePage() {
   const [entries, setEntries] = useState<any[]>([]);
@@ -14,6 +15,20 @@ export default function VocabularyReferencePage() {
   const [search, setSearch] = useState('');
   const [levelFilter, setLevelFilter] = useState('all');
   const [selected, setSelected] = useState<any>(null);
+  const { logActivity } = useActivityTracker();
+
+  // Track page view
+  usePageViewTracker('vocab_view');
+
+  // Track when a word is opened
+  const handleWordClick = (entry: any) => {
+    setSelected(entry);
+    logActivity('vocab_view', { 
+      entry_id: entry.id, 
+      headword: entry.headword,
+      cefr_level: entry.cefr_receptive || entry.cefr_productive 
+    });
+  };
 
   useEffect(() => {
     const fetch = async () => {
@@ -58,7 +73,7 @@ export default function VocabularyReferencePage() {
         ) : (
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((e) => (
-              <Card key={e.id} className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => setSelected(e)}>
+              <Card key={e.id} className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => handleWordClick(e)}>
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between">
                     <div>
