@@ -6,6 +6,7 @@ import { usePageViewTracker } from '@/hooks/useActivityTracker';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LevelBadge } from '@/components/ui/level-badge';
+import { SRSReviewQueue } from '@/components/srs/SRSReviewQueue';
 import { 
   Play, 
   Clock, 
@@ -84,6 +85,9 @@ export default function DashboardPage() {
             </div>
           </div>
         </Card>
+
+        {/* SRS Review Queue */}
+        <SRSReviewQueue />
 
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

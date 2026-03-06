@@ -8,6 +8,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Search, BookOpen, Volume2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { usePageViewTracker, useActivityTracker } from '@/hooks/useActivityTracker';
+import { useSRS } from '@/hooks/useSRS';
+import { SRSReviewModal } from '@/components/srs/SRSReviewModal';
 
 export default function VocabularyReferencePage() {
   const [entries, setEntries] = useState<any[]>([]);
@@ -15,7 +17,10 @@ export default function VocabularyReferencePage() {
   const [search, setSearch] = useState('');
   const [levelFilter, setLevelFilter] = useState('all');
   const [selected, setSelected] = useState<any>(null);
+  const [showSRSModal, setShowSRSModal] = useState(false);
+  const [currentCardId, setCurrentCardId] = useState<string | null>(null);
   const { logActivity } = useActivityTracker();
+  const { getOrCreateCard, needsReview } = useSRS();
 
   // Track page view
   usePageViewTracker('vocab_view');
@@ -28,6 +33,35 @@ export default function VocabularyReferencePage() {
       headword: entry.headword,
       cefr_level: entry.cefr_receptive || entry.cefr_productive 
     });
+  };
+
+  // Handle closing the definition dialog
+  const handleCloseDefinition = async () => {
+    if (!selected) return;
+
+    // Check if this word needs review
+    const shouldReview = await needsReview(selected.id);
+
+    if (shouldReview) {
+      // Get or create SRS card
+      const cardId = await getOrCreateCard(selected.id);
+      if (cardId) {
+        setCurrentCardId(cardId);
+        setShowSRSModal(true);
+        // Don't close the definition yet - wait for SRS modal
+        return;
+      }
+    }
+
+    // If no review needed or card creation failed, just close
+    setSelected(null);
+  };
+
+  // Handle SRS review completion
+  const handleSRSComplete = () => {
+    setShowSRSModal(false);
+    setSelected(null);
+    setCurrentCardId(null);
   };
 
   useEffect(() => {
@@ -90,7 +124,7 @@ export default function VocabularyReferencePage() {
           </div>
         )}
 
-        <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
+        <Dialog open={!!selected} onOpenChange={(open) => !open && handleCloseDefinition()}>
           <DialogContent className="max-w-lg">
             {selected && (
               <>
@@ -125,6 +159,17 @@ export default function VocabularyReferencePage() {
             )}
           </DialogContent>
         </Dialog>
+
+        {/* SRS Review Modal */}
+        {selected && currentCardId && (
+          <SRSReviewModal
+            open={showSRSModal}
+            onOpenChange={setShowSRSModal}
+            cardId={currentCardId}
+            wordHeadword={selected.headword}
+            onReviewComplete={handleSRSComplete}
+          />
+        )}
       </div>
     </AppLayout>
   );

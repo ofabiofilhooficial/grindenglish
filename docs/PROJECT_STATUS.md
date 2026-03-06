@@ -45,6 +45,7 @@
 | `tags` / `taggings` | Polymorphic tag system |
 | `progress_events` | User activity event log |
 | `learner_progress` | Aggregated user progress stats |
+| `srs_cards` | Spaced repetition vocabulary cards |
 
 ---
 
@@ -143,19 +144,82 @@ Identity chunks, email symbols, professions, basic verbs
 ## What's Not Yet Built
 - Lesson stages (interactive content within lessons)
 - B2+ course content
-- SRS system (spaced repetition)
 - File upload to storage (asset manager)
 - Cohort management (teacher section)
 - Feedback workspace (teacher section)
 - CSV import/export for lexicon
 - Dedicated Progress page with detailed analytics
 - Study time tracking (automatic timer)
-- Words learned counter (vocabulary exercise integration)
 - Achievement/badge system
+- SRS statistics and retention graphs
+- Audio pronunciation in SRS reviews
 
 ---
 
 ## Recent Feature Implementations
+
+### SRS (Spaced Repetition System) MVP (2026-03-06)
+Implemented a complete vocabulary learning system using spaced repetition:
+
+**Database Schema:**
+- `srs_cards` table tracks individual word progress per user
+- SM-2 algorithm implementation for optimal review scheduling
+- Automatic `words_learned` counter integration
+- Database functions: `get_or_create_srs_card()`, `update_srs_card()`, `get_due_cards_count()`
+
+**SM-2 Algorithm:**
+- Simplified SuperMemo 2 algorithm for review scheduling
+- Four rating levels: Forgot (0), Hard (3), Good (4), Easy (5)
+- Dynamic intervals: 1 day → 6 days → exponential growth
+- Ease factor adjustment based on performance (1.3 to 3.0+)
+- Automatic reset on forgotten words
+
+**Metacognitive Assessment:**
+- Bilingual modal (English/Portuguese) for A0/A1 learners
+- Appears when closing vocabulary definitions
+- Only triggers for new words or due reviews
+- Four color-coded rating buttons with emoji indicators
+- Toast confirmation on successful review
+
+**Daily Review Queue:**
+- Dashboard component showing due word count
+- Bilingual call-to-action card
+- Full-screen review session with progress tracking
+- Loops through all due words automatically
+- Shows word details, definition, examples, collocations
+- Completion celebration screen
+
+**Vocabulary Integration:**
+- Automatic SRS card creation on first word view
+- Contextual review trigger when closing definitions
+- Seamless integration with existing vocabulary reference page
+- No disruption to browsing experience
+
+**Progress Tracking:**
+- Words learned counter automatically increments
+- Tracks first successful recall (repetitions 0 → 1+)
+- Database trigger for automatic updates
+- Displayed on dashboard with other metrics
+
+**Security:**
+- Row Level Security on all SRS cards
+- Users can only access their own cards
+- Content creators can view all for analytics
+- Automatic user_id validation
+
+**Documentation:**
+- Complete guide in `docs/SRS_SYSTEM_GUIDE.md`
+- SM-2 algorithm explanation
+- Component API reference
+- Testing procedures
+- Migration file: `supabase/migrations/20260306000000_create_srs_system.sql`
+
+**User Experience:**
+- Non-intrusive review prompts
+- Clear visual feedback
+- Bilingual support for beginners
+- Motivating progress indicators
+- Simple, intuitive interface
 
 ### Progress Tracking System (2026-03-05)
 Implemented comprehensive user activity tracking and streak counter system:

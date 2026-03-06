@@ -24,6 +24,10 @@ Welcome to the GrindEnglish documentation! This folder contains comprehensive gu
 - **[PUBLISH_FEATURE_GUIDE.md](./PUBLISH_FEATURE_GUIDE.md)** - How to use the publish/unpublish functionality
 - **[PUBLISH_FIX_SUMMARY.md](./PUBLISH_FIX_SUMMARY.md)** - Technical details of the publishing system implementation
 
+#### SRS (Spaced Repetition System)
+- **[SRS_SYSTEM_GUIDE.md](./SRS_SYSTEM_GUIDE.md)** - Complete guide to the vocabulary SRS system
+- **[SRS_IMPLEMENTATION_SUMMARY.md](./SRS_IMPLEMENTATION_SUMMARY.md)** - Implementation details and technical decisions
+
 ## Feature Documentation
 
 ### Progress Tracking System
@@ -41,6 +45,21 @@ The progress tracking system monitors user activity and maintains engagement met
 - [Quick Reference](./PROGRESS_TRACKING_QUICK_REF.md) - Code snippets and common patterns
 - [Complete Guide](./PROGRESS_TRACKING_GUIDE.md) - Full documentation
 - [Implementation Details](./PROGRESS_TRACKING_IMPLEMENTATION.md) - Technical overview
+
+### SRS (Spaced Repetition System)
+
+The SRS system helps students retain vocabulary through scientifically-proven spaced repetition.
+
+**Key Features:**
+- SM-2 algorithm for optimal review scheduling
+- Bilingual assessment modal (EN/PT)
+- Daily review queue on dashboard
+- Automatic words learned tracking
+- Four rating levels (Forgot, Hard, Good, Easy)
+
+**Quick Links:**
+- [Complete Guide](./SRS_SYSTEM_GUIDE.md) - Full documentation
+- [Implementation Details](./SRS_IMPLEMENTATION_SUMMARY.md) - Technical overview
 
 ### Publishing System
 
@@ -70,6 +89,7 @@ The database uses PostgreSQL with Supabase for authentication and real-time feat
 - `grammar_chapters` - Grammar reference
 - `progress_events` - Activity logging
 - `learner_progress` - Aggregated progress stats
+- `srs_cards` - Spaced repetition vocabulary cards
 
 **Migrations:**
 - Located in `supabase/migrations/`
@@ -168,15 +188,16 @@ See [PROJECT_STATUS.md](./PROJECT_STATUS.md) for complete tech stack.
 
 ### In Progress
 - Study time tracking with session timers
-- Words learned counter integration
 - Dedicated Progress page with analytics
+- SRS statistics and retention graphs
 
 ### Planned
-- SRS (Spaced Repetition System)
 - Achievement/badge system
 - Teacher analytics dashboard
 - Cohort management
 - Feedback workspace
+- Audio pronunciation in SRS reviews
+- Bulk vocabulary import
 
 See [PROJECT_STATUS.md](./PROJECT_STATUS.md) for complete roadmap.
 
