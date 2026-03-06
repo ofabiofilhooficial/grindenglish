@@ -328,7 +328,7 @@ export default function CohortDetailPage() {
                       </TableCell>
                       <TableCell>
                         {a.status === 'completed' ? (
-                          <Badge className="bg-green-100 text-green-800"><CheckCircle className="h-3 w-3 mr-1" /> Completed</Badge>
+                          <Badge variant="default"><CheckCircle className="h-3 w-3 mr-1" /> Completed</Badge>
                         ) : (
                           <Badge variant="secondary"><Clock className="h-3 w-3 mr-1" /> {a.status}</Badge>
                         )}
