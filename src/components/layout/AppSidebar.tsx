@@ -112,13 +112,9 @@ export function AppSidebar({ className }: AppSidebarProps) {
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
         <img 
-          src="/icon.svg" 
+          src="/icon.png" 
           alt="Grind English" 
           className="h-10 w-10"
-          onError={(e) => {
-            // Fallback to PNG if SVG not found
-            e.currentTarget.src = '/icon.png';
-          }}
         />
         <div>
           <h1 className="font-display font-bold text-lg text-sidebar-foreground uppercase tracking-wide">Grind English</h1>

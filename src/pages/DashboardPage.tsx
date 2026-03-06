@@ -50,32 +50,34 @@ export default function DashboardPage() {
       <div className="p-6 space-y-6">
         {/* Welcome Card */}
         <Card className="overflow-hidden">
-          <div className="bg-gradient-to-r from-primary to-primary/80 p-8 text-primary-foreground">
+          <div className="bg-grind-crimson p-8 text-grind-offwhite">
             <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
-                <Sparkles className="h-7 w-7" />
-              </div>
+              <img 
+                src="/icon.png" 
+                alt="Grind English" 
+                className="h-14 w-14"
+              />
               <div>
-                <h2 className="font-display text-2xl font-bold mb-2">
-                  Welcome to English Mastery Lab
+                <h2 className="font-display text-2xl font-bold mb-2 uppercase tracking-wide">
+                  Grind English
                 </h2>
-                <p className="text-primary-foreground/80 max-w-xl">
+                <p className="text-grind-offwhite/90 max-w-xl">
                   {courseCount > 0
-                    ? 'Your learning journey awaits. Head to your course to continue where you left off.'
+                    ? 'Show up daily. Improve weekly. Continue your learning journey.'
                     : isContentCreator
-                      ? 'No courses have been created yet. Head to the Course Builder to start creating content.'
-                      : 'No courses are available yet. Check back soon — your teachers are preparing content for you.'}
+                      ? 'No courses created yet. Head to Course Builder to start.'
+                      : 'No courses available yet. Check back soon.'}
                 </p>
                 <div className="mt-4">
                   {courseCount > 0 ? (
                     <Link to="/course">
-                      <Button variant="secondary" className="gap-2">
+                      <Button variant="secondary" className="gap-2 bg-grind-navy text-grind-offwhite hover:bg-grind-navy/90">
                         Go to Course <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
                   ) : isContentCreator ? (
                     <Link to="/author/courses">
-                      <Button variant="secondary" className="gap-2">
+                      <Button variant="secondary" className="gap-2 bg-grind-navy text-grind-offwhite hover:bg-grind-navy/90">
                         Open Course Builder <ArrowRight className="h-4 w-4" />
                       </Button>
                     </Link>
