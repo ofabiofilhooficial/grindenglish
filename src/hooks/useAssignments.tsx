@@ -59,7 +59,7 @@ export function useAssignments() {
         return;
       }
 
-      setAssignments(data || []);
+      setAssignments((data as Assignment[]) || []);
     } catch (err) {
       console.error('Error fetching assignments:', err);
     } finally {
@@ -102,7 +102,7 @@ export function useAssignments() {
         }
 
         await fetchAssignments();
-        return data;
+        return data as Assignment;
       } catch (err) {
         console.error('Error creating assignment:', err);
         return null;
@@ -181,7 +181,7 @@ export function useAssignments() {
           return [];
         }
 
-        return data || [];
+        return (data as Assignment[]) || [];
       } catch (err) {
         console.error('Error fetching cohort assignments:', err);
         return [];
