@@ -27,6 +27,7 @@ import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import { useCohorts } from '@/hooks/useCohorts';
+import { BecomeTeacherButton } from '@/components/dev/BecomeTeacherButton';
 import { UsersRound, Plus, Users, Calendar } from 'lucide-react';
 
 export default function TeachDashboardPage() {
@@ -80,7 +81,9 @@ export default function TeachDashboardPage() {
               Create and manage student groups for personalized instruction
             </p>
           </div>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <div className="flex items-center gap-2">
+            <BecomeTeacherButton />
+            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
@@ -128,7 +131,7 @@ export default function TeachDashboardPage() {
                 </Button>
               </DialogFooter>
             </DialogContent>
-          </Dialog>
+          </div>
         </div>
 
         {/* Cohorts List */}
