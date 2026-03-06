@@ -39,6 +39,7 @@ import PragmaticsReferencePage from "./pages/reference/PragmaticsReferencePage";
 
 // Teach
 import TeachDashboardPage from "./pages/teach/TeachDashboardPage";
+import CohortDetailPage from "./pages/teach/CohortDetailPage";
 import FeedbackQueuePage from "./pages/teach/FeedbackQueuePage";
 import StudentAnalyticsPage from "./pages/teach/StudentAnalyticsPage";
 
@@ -88,6 +89,7 @@ const App = () => (
 
             {/* Teach */}
             <Route path="/teach/dashboard" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><TeachDashboardPage /></ProtectedRoute>} />
+            <Route path="/teach/cohorts/:cohortId" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><CohortDetailPage /></ProtectedRoute>} />
             <Route path="/teach/feedback" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><FeedbackQueuePage /></ProtectedRoute>} />
             <Route path="/teach/analytics" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><StudentAnalyticsPage /></ProtectedRoute>} />
 

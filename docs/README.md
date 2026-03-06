@@ -28,6 +28,9 @@ Welcome to the GrindEnglish documentation! This folder contains comprehensive gu
 - **[SRS_SYSTEM_GUIDE.md](./SRS_SYSTEM_GUIDE.md)** - Complete guide to the vocabulary SRS system
 - **[SRS_IMPLEMENTATION_SUMMARY.md](./SRS_IMPLEMENTATION_SUMMARY.md)** - Implementation details and technical decisions
 
+#### Cohort Management System
+- **[COHORT_MANAGEMENT_GUIDE.md](./COHORT_MANAGEMENT_GUIDE.md)** - Complete guide to the teacher cohort management system
+
 ## Feature Documentation
 
 ### Progress Tracking System
@@ -61,6 +64,20 @@ The SRS system helps students retain vocabulary through scientifically-proven sp
 - [Complete Guide](./SRS_SYSTEM_GUIDE.md) - Full documentation
 - [Implementation Details](./SRS_IMPLEMENTATION_SUMMARY.md) - Technical overview
 
+### Cohort Management System
+
+The cohort management system enables teachers to group students, track progress, assign content, and manage vocabulary learning.
+
+**Key Features:**
+- Create and manage student cohorts (1-on-1 or small groups)
+- Real-time progress tracking for all students
+- Assign grammar chapters with due dates
+- Live class vocabulary injection to SRS
+- Bulk operations for efficiency
+
+**Quick Links:**
+- [Complete Guide](./COHORT_MANAGEMENT_GUIDE.md) - Full documentation
+
 ### Publishing System
 
 The publishing system controls content visibility for students.
@@ -90,6 +107,9 @@ The database uses PostgreSQL with Supabase for authentication and real-time feat
 - `progress_events` - Activity logging
 - `learner_progress` - Aggregated progress stats
 - `srs_cards` - Spaced repetition vocabulary cards
+- `cohorts` - Teacher-managed student groups
+- `cohort_members` - Student-cohort relationships
+- `assignments` - Content assignments to students/cohorts
 
 **Migrations:**
 - Located in `supabase/migrations/`
@@ -194,7 +214,6 @@ See [PROJECT_STATUS.md](./PROJECT_STATUS.md) for complete tech stack.
 ### Planned
 - Achievement/badge system
 - Teacher analytics dashboard
-- Cohort management
 - Feedback workspace
 - Audio pronunciation in SRS reviews
 - Bulk vocabulary import
