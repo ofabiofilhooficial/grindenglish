@@ -13,7 +13,8 @@ export type ActivityEventType =
   | 'pragmatics_view'
   | 'course_view'
   | 'level_view'
-  | 'unit_view';
+  | 'unit_view'
+  | 'progress_view';
 
 export function useActivityTracker() {
   const { user } = useAuth();
