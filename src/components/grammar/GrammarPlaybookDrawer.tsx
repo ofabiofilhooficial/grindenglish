@@ -1,12 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertTriangle, CheckCircle2, XCircle, ArrowUpCircle, Link2, Lightbulb, BookOpen, MessageSquare, Languages, Target } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { InteractiveTask } from '@/types/course';
 
 interface GrammarChapterData {
@@ -39,56 +38,19 @@ interface Section {
 }
 
 export function GrammarPlaybookDrawer({ chapter, open, onOpenChange }: GrammarPlaybookDrawerProps) {
-  const [activeSection, setActiveSection] = useState<string>('');
-  const contentRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-
   const parsedMicroPractice = typeof chapter?.micro_practice === 'string' ? JSON.parse(chapter.micro_practice || '[]') : chapter?.micro_practice || [];
   const parsedCrossLinks = typeof chapter?.cross_links === 'string' ? JSON.parse(chapter.cross_links || '[]') : chapter?.cross_links || [];
 
   const sections: Section[] = [];
-  if (chapter?.diagnostic_hook) sections.push({ id: 'diagnostic', title: 'Diagnostic Hook', icon: <Lightbulb className="h-4 w-4" />, content: chapter.diagnostic_hook });
+  if (chapter?.diagnostic_hook) sections.push({ id: 'diagnostic', title: 'Diagnostic', icon: <Lightbulb className="h-4 w-4" />, content: chapter.diagnostic_hook });
   if (chapter?.meaning_content) sections.push({ id: 'meaning', title: 'Meaning', icon: <BookOpen className="h-4 w-4" />, content: chapter.meaning_content });
-  if (chapter?.form_content) sections.push({ id: 'form', title: 'Form (Structure)', icon: <Target className="h-4 w-4" />, content: chapter.form_content });
-  if (chapter?.use_content) sections.push({ id: 'use', title: 'Use (Context)', icon: <MessageSquare className="h-4 w-4" />, content: chapter.use_content });
-  if (chapter?.contrast_notes) sections.push({ id: 'contrast', title: 'L1 Contrast (pt-BR)', icon: <Languages className="h-4 w-4" />, content: chapter.contrast_notes });
+  if (chapter?.form_content) sections.push({ id: 'form', title: 'Form', icon: <Target className="h-4 w-4" />, content: chapter.form_content });
+  if (chapter?.use_content) sections.push({ id: 'use', title: 'Use', icon: <MessageSquare className="h-4 w-4" />, content: chapter.use_content });
+  if (chapter?.contrast_notes) sections.push({ id: 'contrast', title: 'L1 Contrast', icon: <Languages className="h-4 w-4" />, content: chapter.contrast_notes });
   if (chapter?.common_errors) sections.push({ id: 'errors', title: 'Common Errors', icon: <AlertTriangle className="h-4 w-4" />, content: chapter.common_errors });
   if (chapter?.task_upgrades) sections.push({ id: 'upgrades', title: 'Upgrades', icon: <ArrowUpCircle className="h-4 w-4" />, content: chapter.task_upgrades });
-  if (parsedMicroPractice.length > 0) sections.push({ id: 'practice', title: 'Micro-Practice', icon: <CheckCircle2 className="h-4 w-4" />, content: parsedMicroPractice });
-  if (parsedCrossLinks.length > 0) sections.push({ id: 'links', title: 'Links / Next Steps', icon: <Link2 className="h-4 w-4" />, content: parsedCrossLinks });
-
-  useEffect(() => {
-    if (!open || sections.length === 0) return;
-    const handleScroll = () => {
-      const scrollContainer = scrollAreaRef.current?.querySelector('[data-radix-scroll-area-viewport]');
-      if (!scrollContainer) return;
-      let currentSection = sections[0].id;
-      let maxVisibility = 0;
-      sections.forEach(section => {
-        const element = contentRefs.current[section.id];
-        if (!element) return;
-        const rect = element.getBoundingClientRect();
-        const containerRect = scrollContainer.getBoundingClientRect();
-        const visibleTop = Math.max(rect.top, containerRect.top);
-        const visibleBottom = Math.min(rect.bottom, containerRect.bottom);
-        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-        if (visibleHeight > maxVisibility) {
-          maxVisibility = visibleHeight;
-          currentSection = section.id;
-        }
-      });
-      setActiveSection(currentSection);
-    };
-    const scrollContainer = scrollAreaRef.current?.querySelector('[data-radix-scroll-area-viewport]');
-    scrollContainer?.addEventListener('scroll', handleScroll);
-    if (sections.length > 0) setActiveSection(sections[0].id);
-    return () => scrollContainer?.removeEventListener('scroll', handleScroll);
-  }, [open, sections.length]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = contentRefs.current[sectionId];
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  if (parsedMicroPractice.length > 0) sections.push({ id: 'practice', title: 'Practice', icon: <CheckCircle2 className="h-4 w-4" />, content: parsedMicroPractice });
+  if (parsedCrossLinks.length > 0) sections.push({ id: 'links', title: 'Links', icon: <Link2 className="h-4 w-4" />, content: parsedCrossLinks });
 
   if (!chapter) return null;
 
@@ -106,29 +68,33 @@ export function GrammarPlaybookDrawer({ chapter, open, onOpenChange }: GrammarPl
             </div>
           </div>
         </SheetHeader>
-        <div className="flex flex-1 overflow-hidden">
-          <nav className="w-56 border-r bg-muted/30 p-4 overflow-y-auto">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Contents</p>
-            <div className="space-y-1">
+        
+        <Tabs defaultValue={sections[0]?.id} className="flex-1 flex flex-col">
+          <div className="border-b px-6 bg-muted/30">
+            <TabsList className="h-12 bg-transparent w-full justify-start rounded-none border-b-0">
               {sections.map((section) => (
-                <Button key={section.id} variant="ghost" size="sm" className={cn("w-full justify-start text-left font-normal", activeSection === section.id && "bg-accent text-accent-foreground")} onClick={() => scrollToSection(section.id)}>
+                <TabsTrigger 
+                  key={section.id} 
+                  value={section.id}
+                  className="data-[state=active]:bg-transparent data-[state=active]:border-b-2 data-[state=active]:border-[#0B1630] rounded-none px-4"
+                >
                   <span className="mr-2">{section.icon}</span>
-                  <span className="text-sm">{section.title}</span>
-                </Button>
+                  <span className="text-sm font-medium">{section.title}</span>
+                </TabsTrigger>
               ))}
-            </div>
-          </nav>
-          <ScrollArea ref={scrollAreaRef} className="flex-1">
-            <div className="p-6 space-y-8 max-w-3xl">
-              {sections.map((section, index) => (
-                <div key={section.id} ref={(el) => (contentRefs.current[section.id] = el)} className="scroll-mt-6">
+            </TabsList>
+          </div>
+          
+          <ScrollArea className="flex-1">
+            <div className="p-6">
+              {sections.map((section) => (
+                <TabsContent key={section.id} value={section.id} className="mt-0">
                   <SectionRenderer section={section} />
-                  {index < sections.length - 1 && <Separator className="mt-8" />}
-                </div>
+                </TabsContent>
               ))}
             </div>
           </ScrollArea>
-        </div>
+        </Tabs>
       </SheetContent>
     </Sheet>
   );
@@ -136,11 +102,7 @@ export function GrammarPlaybookDrawer({ chapter, open, onOpenChange }: GrammarPl
 
 function SectionRenderer({ section }: { section: Section }) {
   return (
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <div className="text-[#0B1630]">{section.icon}</div>
-        <h3 className="text-lg font-display font-semibold uppercase tracking-wide text-[#0B1630]">{section.title}</h3>
-      </div>
+    <div className="space-y-4 max-w-3xl">
       {section.id === 'diagnostic' && typeof section.content === 'string' && <DiagnosticHookBlock content={section.content} />}
       {section.id === 'meaning' && typeof section.content === 'string' && <MeaningBlock content={section.content} />}
       {section.id === 'form' && typeof section.content === 'string' && <FormBlock content={section.content} />}
