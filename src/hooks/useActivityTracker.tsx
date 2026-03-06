@@ -21,14 +21,12 @@ export function useActivityTracker() {
   const logActivity = useCallback(
     async (eventType: ActivityEventType, eventData: Record<string, any> = {}) => {
       if (!user) return;
-
       try {
-        const { data, error } = await supabase.rpc('log_activity_event', {
+        const { error } = await supabase.rpc('log_activity_event' as any, {
           _user_id: user.id,
           _event_type: eventType,
           _event_data: eventData,
         });
-
         if (error) {
           console.error('Failed to log activity:', error);
         }
@@ -42,10 +40,8 @@ export function useActivityTracker() {
   return { logActivity };
 }
 
-// Hook to automatically track page views
 export function usePageViewTracker(eventType: ActivityEventType, eventData?: Record<string, any>) {
   const { logActivity } = useActivityTracker();
-
   useEffect(() => {
     logActivity(eventType, eventData);
   }, [eventType, logActivity]);
