@@ -35,37 +35,41 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
 
   const fetchLinkedAssets = async () => {
     setLoading(true);
-    const { data, error } = await supabase
-      .from('lesson_assets' as any)
-      .select(`
-        *,
-        grammar_chapters:asset_id (
-          id,
-          chapter_code,
-          title,
-          cefr_level,
-          meaning_content,
-          form_content,
-          use_content,
-          contrast_notes,
-          common_errors
-        ),
-        lexicon_entries:asset_id (
-          id,
-          headword,
-          pos,
-          definition_simple,
-          definition_teacher,
-          examples,
-          ipa,
-          usage_notes
-        )
-      `)
-      .eq('lesson_id', lessonId)
-      .order('order_index');
+    try {
+      const { data, error } = await supabase
+        .from('lesson_assets' as any)
+        .select(`
+          *,
+          grammar_chapters:asset_id (
+            id,
+            chapter_code,
+            title,
+            cefr_level,
+            meaning_content,
+            form_content,
+            use_content,
+            contrast_notes,
+            common_errors
+          ),
+          lexicon_entries:asset_id (
+            id,
+            headword,
+            pos,
+            definition_simple,
+            definition_teacher,
+            examples,
+            ipa,
+            usage_notes
+          )
+        `)
+        .eq('lesson_id', lessonId)
+        .order('order_index');
 
-    if (data) {
-      setAssets(data);
+      if (data && !error) {
+        setAssets(data);
+      }
+    } catch (error) {
+      console.error('Error fetching linked assets:', error);
     }
     setLoading(false);
   };

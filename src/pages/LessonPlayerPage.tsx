@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { LinkedAssetViewer } from '@/components/lesson/LinkedAssetViewer';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   ArrowLeft,
   ArrowRight,
@@ -70,14 +71,73 @@ const comprehensionQuestions = [
 
 export default function LessonPlayerPage() {
   const { level, unitId, lessonId } = useParams();
-  const [currentStage, setCurrentStage] = useState(2);
+  const [lesson, setLesson] = useState<any>(null);
+  const [stages, setStages] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [currentStage, setCurrentStage] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showTranscript, setShowTranscript] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
 
-  const completedStages = lessonStages.filter(s => s.status === 'complete').length;
-  const progress = Math.round((completedStages / lessonStages.length) * 100);
+  useEffect(() => {
+    const fetchLesson = async () => {
+      if (!lessonId) return;
+      
+      setLoading(true);
+      const [lessonRes, stagesRes] = await Promise.all([
+        supabase
+          .from('lessons')
+          .select('*, units!inner(title, levels!inner(cefr_level))')
+          .eq('id', lessonId)
+          .eq('is_published', true)
+          .single(),
+        supabase
+          .from('lesson_stages')
+          .select('*')
+          .eq('lesson_id', lessonId)
+          .order('sort_order')
+      ]);
+
+      if (lessonRes.data) {
+        setLesson(lessonRes.data);
+      }
+      if (stagesRes.data) {
+        setStages(stagesRes.data);
+      }
+      setLoading(false);
+    };
+
+    fetchLesson();
+  }, [lessonId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  if (!lesson) {
+    return (
+      <AppLayout>
+        <div className="p-6 space-y-6">
+          <Link to={`/course/${level}/${unitId}`} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Unit
+          </Link>
+          <Card className="p-12 text-center">
+            <h3 className="font-display text-xl font-bold mb-2">Lesson Not Found</h3>
+            <p className="text-muted-foreground">This lesson doesn't exist or hasn't been published yet.</p>
+          </Card>
+        </div>
+      </AppLayout>
+    );
+  }
+
+  const completedStages = stages.filter((s, i) => i < currentStage).length;
+  const progress = stages.length > 0 ? Math.round((completedStages / stages.length) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -93,14 +153,16 @@ export default function LessonPlayerPage() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <LevelBadge level={(level?.toUpperCase() || 'B1') as any} size="sm" />
-            <span className="text-sm font-medium">Listening: A Traveler's Story</span>
+            {lesson.units?.levels?.cefr_level && (
+              <LevelBadge level={lesson.units.levels.cefr_level as any} size="sm" />
+            )}
+            <span className="text-sm font-medium">{lesson.title}</span>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4" />
-              <span>18 min left</span>
+              <span>{stages.length} stages</span>
             </div>
             <Progress value={progress} className="w-24 h-2" />
           </div>
@@ -112,165 +174,106 @@ export default function LessonPlayerPage() {
         <aside className="hidden lg:block w-72 border-r border-border bg-secondary/30 min-h-[calc(100vh-3.5rem)]">
           <div className="p-4">
             <h3 className="font-display font-semibold mb-4">Lesson Stages</h3>
-            <div className="space-y-1">
-              {lessonStages.map((stage, index) => (
-                <button
-                  key={stage.id}
-                  onClick={() => stage.status !== 'locked' && setCurrentStage(index)}
-                  disabled={stage.status === 'locked'}
-                  className={cn(
-                    "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all",
-                    stage.status === 'current' && "bg-primary/10 text-primary",
-                    stage.status === 'complete' && "text-muted-foreground hover:bg-secondary",
-                    stage.status === 'locked' && "text-muted-foreground/50 cursor-not-allowed"
-                  )}
-                >
-                  <div className={cn(
-                    "flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium",
-                    stage.status === 'complete' && "bg-success text-white",
-                    stage.status === 'current' && "bg-primary text-white",
-                    stage.status === 'locked' && "bg-muted text-muted-foreground"
-                  )}>
-                    {stage.status === 'complete' ? (
-                      <CheckCircle2 className="h-4 w-4" />
-                    ) : (
-                      index + 1
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium truncate">{stage.name}</p>
-                    <p className="text-xs text-muted-foreground">{stage.duration} min</p>
-                  </div>
-                </button>
-              ))}
-            </div>
+            {stages.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center py-8">No stages defined yet</p>
+            ) : (
+              <div className="space-y-1">
+                {stages.map((stage, index) => {
+                  const status = index < currentStage ? 'complete' : index === currentStage ? 'current' : 'locked';
+                  return (
+                    <button
+                      key={stage.id}
+                      onClick={() => status !== 'locked' && setCurrentStage(index)}
+                      disabled={status === 'locked'}
+                      className={cn(
+                        "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all",
+                        status === 'current' && "bg-primary/10 text-primary",
+                        status === 'complete' && "text-muted-foreground hover:bg-secondary",
+                        status === 'locked' && "text-muted-foreground/50 cursor-not-allowed"
+                      )}
+                    >
+                      <div className={cn(
+                        "flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium",
+                        status === 'complete' && "bg-success text-white",
+                        status === 'current' && "bg-primary text-white",
+                        status === 'locked' && "bg-muted text-muted-foreground"
+                      )}>
+                        {status === 'complete' ? (
+                          <CheckCircle2 className="h-4 w-4" />
+                        ) : (
+                          index + 1
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{stage.title}</p>
+                        {stage.timing_minutes && (
+                          <p className="text-xs text-muted-foreground">{stage.timing_minutes} min</p>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </aside>
 
         {/* Main Content */}
         <main className="flex-1 p-6 max-w-4xl mx-auto">
           {/* Stage Header */}
-          <div className="mb-6">
-            <Badge variant="outline" className="mb-2">Stage 3 of 8</Badge>
-            <h1 className="font-display text-2xl font-bold mb-2">Listening: Maya's Adventure</h1>
-            <p className="text-muted-foreground">
-              Listen to Maya describe her memorable trip and answer the comprehension questions.
-            </p>
-          </div>
-
-          {/* Learning Goals */}
-          <Card className="mb-6 bg-primary/5 border-primary/20">
-            <CardContent className="p-4 flex items-start gap-3">
-              <Target className="h-5 w-5 text-primary mt-0.5" />
-              <div>
-                <p className="font-medium text-sm">Learning Goal</p>
-                <p className="text-sm text-muted-foreground">
-                  Understand main ideas and specific details in a personal narrative about travel.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Audio Player */}
-          <Card className="mb-6">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-4 mb-4">
-                <Button 
-                  size="lg" 
-                  className={cn(
-                    "h-14 w-14 rounded-full",
-                    isPlaying ? "bg-primary" : "bg-gradient-primary"
-                  )}
-                  onClick={() => setIsPlaying(!isPlaying)}
-                >
-                  {isPlaying ? (
-                    <Pause className="h-6 w-6" />
-                  ) : (
-                    <Play className="h-6 w-6 ml-0.5" />
-                  )}
-                </Button>
-                <div className="flex-1">
-                  <Progress value={35} className="h-2 mb-2" />
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <span>1:24</span>
-                    <span>3:45</span>
-                  </div>
-                </div>
-                <Button variant="ghost" size="icon">
-                  <Volume2 className="h-5 w-5" />
-                </Button>
-                <Button variant="ghost" size="icon">
-                  <RotateCcw className="h-5 w-5" />
-                </Button>
+          {stages.length > 0 && stages[currentStage] && (
+            <>
+              <div className="mb-6">
+                <Badge variant="outline" className="mb-2">Stage {currentStage + 1} of {stages.length}</Badge>
+                <h1 className="font-display text-2xl font-bold mb-2">{stages[currentStage].title}</h1>
+                {stages[currentStage].instructions && (
+                  <p className="text-muted-foreground">
+                    {stages[currentStage].instructions}
+                  </p>
+                )}
               </div>
 
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => setShowTranscript(!showTranscript)}
-              >
-                {showTranscript ? 'Hide' : 'Show'} Transcript
-              </Button>
-
-              {showTranscript && (
-                <div className="mt-4 p-4 bg-secondary/50 rounded-lg text-sm leading-relaxed">
-                  <p className="mb-3">
-                    <strong>Maya:</strong> "So, last summer I went on this trip to the Scottish Highlands that I'll never forget. 
-                    I'd been planning it for months, you know, looking at hiking trails and booking cozy little B&Bs..."
-                  </p>
-                  <p className="mb-3">
-                    "The first few days were absolutely perfect. Clear skies, stunning views of the lochs. 
-                    But then, on day three, everything changed. I was hiking up Ben Nevis when the weather 
-                    turned completely—I mean, one minute it was sunny, the next I couldn't see five meters ahead..."
-                  </p>
-                  <p className="text-muted-foreground italic">
-                    [Transcript continues...]
-                  </p>
-                </div>
+              {/* Learning Goals */}
+              {lesson.goal && (
+                <Card className="mb-6 bg-primary/5 border-primary/20">
+                  <CardContent className="p-4 flex items-start gap-3">
+                    <Target className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium text-sm">Learning Goal</p>
+                      <p className="text-sm text-muted-foreground">
+                        {lesson.goal}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
               )}
-            </CardContent>
-          </Card>
 
-          {/* Comprehension Questions */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="font-display text-lg">Comprehension Check</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {comprehensionQuestions.map((q, index) => (
-                <div key={q.id} className="space-y-3">
-                  <p className="font-medium">{index + 1}. {q.question}</p>
-                  <RadioGroup 
-                    value={answers[q.id]?.toString()} 
-                    onValueChange={(v) => setAnswers({...answers, [q.id]: parseInt(v)})}
-                  >
-                    {q.options.map((option, optIndex) => (
-                      <div key={optIndex} className="flex items-center space-x-3 p-3 rounded-lg hover:bg-secondary/50 transition-colors">
-                        <RadioGroupItem value={optIndex.toString()} id={`q${q.id}-opt${optIndex}`} />
-                        <Label htmlFor={`q${q.id}-opt${optIndex}`} className="flex-1 cursor-pointer">
-                          {option}
-                        </Label>
-                      </div>
-                    ))}
-                  </RadioGroup>
-                </div>
-              ))}
-            </CardContent>
-          </Card>
+              {/* Stage Content */}
+              <Card className="mb-6">
+                <CardContent className="p-6">
+                  {stages[currentStage].content && typeof stages[currentStage].content === 'object' ? (
+                    <div className="prose prose-sm max-w-none">
+                      <p className="text-muted-foreground">
+                        Stage content will be displayed here based on the content type.
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-center py-8">
+                      No content defined for this stage yet.
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </>
+          )}
 
-          {/* Tip Card */}
-          <Card className="mb-6 bg-accent/10 border-accent/30">
-            <CardContent className="p-4 flex items-start gap-3">
-              <Lightbulb className="h-5 w-5 text-accent mt-0.5" />
-              <div>
-                <p className="font-medium text-sm">Listening Tip</p>
-                <p className="text-sm text-muted-foreground">
-                  Don't worry about understanding every word. Focus on the main ideas first, 
-                  then listen again for specific details.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
+          {stages.length === 0 && (
+            <Card className="mb-6">
+              <CardContent className="p-12 text-center">
+                <p className="text-muted-foreground">This lesson doesn't have any stages defined yet.</p>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Linked Assets */}
           {lessonId && (
@@ -281,12 +284,20 @@ export default function LessonPlayerPage() {
 
           {/* Navigation */}
           <div className="flex items-center justify-between pt-4 border-t border-border">
-            <Button variant="outline" disabled={currentStage === 0}>
+            <Button 
+              variant="outline" 
+              disabled={currentStage === 0}
+              onClick={() => setCurrentStage(Math.max(0, currentStage - 1))}
+            >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Previous
             </Button>
-            <Button className="bg-gradient-primary hover:opacity-90">
-              Check Answers
+            <Button 
+              className="bg-gradient-primary hover:opacity-90"
+              disabled={currentStage >= stages.length - 1}
+              onClick={() => setCurrentStage(Math.min(stages.length - 1, currentStage + 1))}
+            >
+              {currentStage >= stages.length - 1 ? 'Complete Lesson' : 'Next Stage'}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>

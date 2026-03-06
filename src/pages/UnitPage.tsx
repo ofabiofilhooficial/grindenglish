@@ -140,13 +140,20 @@ export default function UnitPage() {
                 ) : (
                   <div className="space-y-2">
                     {lessons.map((lesson, index) => (
-                      <div key={lesson.id} className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50">
+                      <Link
+                        key={lesson.id}
+                        to={`/course/${level}/${unitId}/${lesson.id}`}
+                        className="flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors cursor-pointer group"
+                      >
                         <span className="text-sm font-mono text-muted-foreground w-6">{index + 1}</span>
                         <div className="flex-1">
-                          <p className="font-medium">{lesson.title}</p>
+                          <p className="font-medium group-hover:text-primary transition-colors">{lesson.title}</p>
                           <p className="text-sm text-muted-foreground capitalize">{lesson.lesson_type}</p>
                         </div>
-                      </div>
+                        <Badge variant="outline" className="group-hover:border-primary transition-colors">
+                          Start
+                        </Badge>
+                      </Link>
                     ))}
                   </div>
                 )}
