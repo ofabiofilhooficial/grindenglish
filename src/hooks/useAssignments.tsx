@@ -181,7 +181,7 @@ export function useAssignments() {
           return [];
         }
 
-        return data || [];
+        return (data as Assignment[]) || [];
       } catch (err) {
         console.error('Error fetching cohort assignments:', err);
         return [];
