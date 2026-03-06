@@ -46,9 +46,6 @@
 | `progress_events` | User activity event log |
 | `learner_progress` | Aggregated user progress stats |
 | `srs_cards` | Spaced repetition vocabulary cards |
-| `cohorts` | Teacher-managed student groups |
-| `cohort_members` | Student-cohort relationships |
-| `assignments` | Content assignments to students/cohorts |
 
 ---
 
@@ -92,8 +89,7 @@
 - `/author/tags` — Tag manager
 
 ### Teacher (Protected)
-- `/teach/dashboard` — Cohort dashboard (list all cohorts)
-- `/teach/cohorts/:cohortId` — Cohort detail (progress, assignments, live class)
+- `/teach/dashboard` — Cohort dashboard
 - `/teach/feedback` — Feedback queue
 - `/teach/analytics` — Student analytics
 
@@ -149,6 +145,7 @@ Identity chunks, email symbols, professions, basic verbs
 - Lesson stages (interactive content within lessons)
 - B2+ course content
 - File upload to storage (asset manager)
+- Cohort management (teacher section)
 - Feedback workspace (teacher section)
 - CSV import/export for lexicon
 - Dedicated Progress page with detailed analytics
@@ -223,104 +220,6 @@ Implemented a complete vocabulary learning system using spaced repetition:
 - Bilingual support for beginners
 - Motivating progress indicators
 - Simple, intuitive interface
-
-### Cohort Management & Assignment System (2026-03-07)
-Implemented complete teacher workflow for grouping students, tracking progress, and managing assignments:
-
-**Database Schema:**
-- `cohorts` table for teacher-managed student groups
-- `cohort_members` junction table for student-cohort relationships
-- `assignments` table for content assignments (grammar, vocabulary, lessons, units)
-- Helper functions: `is_teacher()`, `get_teacher_students()`, `get_cohort_progress()`, `teacher_add_words_to_srs()`, `get_student_assignments()`
-- Enhanced RLS policies allow teachers to view/manage their students' SRS cards and progress
-
-**Cohort Management:**
-- Create cohorts with name and description (e.g., "João Private", "Maria & Ana B1")
-- Add/remove students from cohorts
-- View cohort member count and status
-- Edit cohort details or delete cohorts
-- Support for 1-on-1 or small group (2-on-1) teaching
-
-**Progress Tracking:**
-- Real-time view of all students in a cohort
-- Per-student metrics: current streak, words learned, lessons completed, last activity date
-- Pending and completed assignment counts
-- Leverages existing `learner_progress` table
-- Automatic updates via Supabase subscriptions
-
-**Assignment System:**
-- Assign grammar chapters to entire cohorts or individual students
-- Set optional due dates and notes
-- Track assignment status: pending, in_progress, completed
-- Students can view and update their assignments
-- Auto-completion timestamp when status changes to completed
-- Support for multiple content types (grammar, vocabulary, lesson, unit)
-
-**Live Class SRS Trigger:**
-- Search vocabulary from A1 Master Lexicon
-- Select multiple words covered in live class
-- Bulk add words to all students' SRS queues
-- Words appear in students' daily review queue
-- Uses existing `get_or_create_srs_card()` function
-- Enables teacher-initiated vocabulary review based on class performance
-
-**Teacher Dashboard:**
-- List all active cohorts with member counts
-- Create new cohorts via dialog
-- Navigate to cohort detail pages
-- View cohort status and creation dates
-- Clean, professional UI with shadcn/ui components
-
-**Cohort Detail Page:**
-- Three-tab interface: Progress, Assignments, Live Class
-- Progress tab: student list with metrics and actions
-- Assignments tab: create/view/delete assignments
-- Live Class tab: vocabulary search and SRS injection
-- Edit cohort details or delete cohort
-- Back navigation to dashboard
-
-**Custom Hooks:**
-- `useCohorts()`: Manages cohort CRUD operations and member management
-- `useAssignments()`: Handles assignment creation, updates, and queries
-- Both hooks provide loading states and error handling
-- Automatic data refresh after mutations
-
-**Security:**
-- Row Level Security on all cohort tables
-- Teachers can only access their own cohorts and students
-- Students can view their cohorts and assignments
-- Students can update assignment status but not other fields
-- Admins have full visibility for oversight
-
-**Integration:**
-- Seamlessly integrates with existing SRS system
-- Uses existing progress tracking infrastructure
-- Compatible with current authentication and role system
-- Extends teacher role capabilities
-
-**Documentation:**
-- Complete guide in `docs/COHORT_MANAGEMENT_GUIDE.md`
-- Database schema reference
-- Usage workflows and examples
-- Deployment checklist
-- Troubleshooting guide
-- Migration file: `supabase/migrations/20260307000000_create_cohort_management.sql`
-
-**User Experience:**
-- Intuitive three-tab layout for different teacher tasks
-- Real-time progress updates
-- Clear visual feedback with icons and badges
-- Bilingual support (EN/PT) for Brazilian market
-- Responsive design with loading states and error handling
-
-**Future Enhancements:**
-- Pacing calendars for scheduled content delivery
-- Bulk assignment operations
-- Detailed student analytics with charts
-- Assignment templates
-- Cohort cloning
-- Parent/guardian access
-- Automated reminders for due assignments
 
 ### Progress Tracking System (2026-03-05)
 Implemented comprehensive user activity tracking and streak counter system:
