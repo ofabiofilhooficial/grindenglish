@@ -4,12 +4,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Search, Languages, AlertTriangle } from 'lucide-react';
+import { Search, Languages } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
-import { Separator } from '@/components/ui/separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { usePageViewTracker, useActivityTracker } from '@/hooks/useActivityTracker';
+import { GrammarPlaybookDrawer } from '@/components/grammar/GrammarPlaybookDrawer';
 
 export default function GrammarReferencePage() {
   const [chapters, setChapters] = useState<any[]>([]);
@@ -86,54 +84,11 @@ export default function GrammarReferencePage() {
           </div>
         )}
 
-        <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-            {selected && (
-              <>
-                <DialogHeader>
-                  <DialogTitle className="font-display">{selected.title}</DialogTitle>
-                  <div className="flex gap-2 mt-1">
-                    <Badge variant="outline">{selected.cefr_level}</Badge>
-                    <Badge variant="secondary" className="font-mono text-xs">{selected.chapter_code}</Badge>
-                  </div>
-                </DialogHeader>
-                <Tabs defaultValue="form" className="mt-4">
-                  <TabsList className="w-full">
-                    <TabsTrigger value="form" className="flex-1">Form</TabsTrigger>
-                    <TabsTrigger value="meaning" className="flex-1">Meaning</TabsTrigger>
-                    <TabsTrigger value="use" className="flex-1">Use</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="form" className="mt-4">
-                    <pre className="whitespace-pre-wrap text-sm text-foreground bg-muted rounded-lg p-4">{selected.form_content || 'No content yet.'}</pre>
-                  </TabsContent>
-                  <TabsContent value="meaning" className="mt-4">
-                    <p className="text-sm text-foreground whitespace-pre-wrap">{selected.meaning_content || 'No content yet.'}</p>
-                  </TabsContent>
-                  <TabsContent value="use" className="mt-4">
-                    <p className="text-sm text-foreground whitespace-pre-wrap">{selected.use_content || 'No content yet.'}</p>
-                  </TabsContent>
-                </Tabs>
-                {selected.common_errors && (
-                  <>
-                    <Separator className="my-4" />
-                    <div>
-                      <p className="text-sm font-medium text-foreground flex items-center gap-2 mb-2">
-                        <AlertTriangle className="h-4 w-4 text-warning" /> Common Errors
-                      </p>
-                      <pre className="whitespace-pre-wrap text-sm text-destructive/80 bg-destructive/5 rounded-lg p-4">{selected.common_errors}</pre>
-                    </div>
-                  </>
-                )}
-                {selected.contrast_notes && (
-                  <div className="mt-4">
-                    <p className="text-sm font-medium text-foreground mb-2">L1 Contrast (Portuguese)</p>
-                    <pre className="whitespace-pre-wrap text-sm text-muted-foreground bg-muted rounded-lg p-4">{selected.contrast_notes}</pre>
-                  </div>
-                )}
-              </>
-            )}
-          </DialogContent>
-        </Dialog>
+        <GrammarPlaybookDrawer
+          chapter={selected}
+          open={!!selected}
+          onOpenChange={(open) => !open && setSelected(null)}
+        />
       </div>
     </AppLayout>
   );

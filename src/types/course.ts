@@ -246,14 +246,18 @@ export interface GrammarChapter {
   id: string; // e.g., "B1.G.01"
   cefrLevel: CEFRLevel;
   title: string;
-  form: string;
-  meaning: string;
-  use: string;
-  contrast: string;
-  commonErrors: string[];
-  microPractice: InteractiveTask[];
-  taskUpgrades: string[];
-  crossLinks: string[]; // Other chapter IDs
+  
+  // The 9-Section Pedagogical Sequence (all optional for graceful degradation)
+  diagnosticHook?: string; // Optional. A brief scenario or "Notice the Gap" challenge
+  meaning: string; // Core concept explained simply
+  form: string; // The syntax/structure
+  use: string; // Pragmatic application in corporate/professional environment
+  contrast: string; // L1 Contrast (pt-BR) - explicit comparison to Brazilian Portuguese
+  commonErrors: string[]; // "Don't say X, Say Y" format
+  taskUpgrades?: string; // Basic vs. Professional phrases (side-by-side comparison)
+  microPractice: InteractiveTask[]; // Small interactive block or short controlled drill
+  crossLinks: string[]; // Prerequisites and upcoming chapters (B1.G.16, etc.)
+  
   order: number;
 }
 
