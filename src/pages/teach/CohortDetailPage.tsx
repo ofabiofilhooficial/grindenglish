@@ -95,11 +95,27 @@ export default function CohortDetailPage() {
 
   // Fetch all learners for add-member dialog
   const loadLearners = useCallback(async () => {
-    const { data } = await supabase.rpc('get_teacher_students' as any, { _teacher_id: user?.id });
-    // Also get all profiles for adding new students
-    const { data: profiles } = await supabase.from('profiles').select('id, full_name');
+    // Get all users with 'learner' role
+    const { data: learnerRoles } = await supabase
+      .from('user_roles')
+      .select('user_id')
+      .eq('role', 'learner');
+    
+    if (!learnerRoles || learnerRoles.length === 0) {
+      setAllLearners([]);
+      return;
+    }
+
+    const learnerIds = learnerRoles.map(r => r.user_id);
+    
+    // Get profiles for these learners
+    const { data: profiles } = await supabase
+      .from('profiles')
+      .select('id, full_name')
+      .in('id', learnerIds);
+    
     setAllLearners((profiles || []) as any[]);
-  }, [user]);
+  }, []);
 
   useEffect(() => { if (addStudentOpen) loadLearners(); }, [addStudentOpen, loadLearners]);
 
@@ -132,10 +148,15 @@ export default function CohortDetailPage() {
 
   const handleAddMember = async (studentId: string) => {
     if (!cohortId) return;
+    console.log('Adding student:', studentId, 'to cohort:', cohortId);
     const ok = await addMember(cohortId, studentId);
     if (ok) {
+      console.log('Student added successfully, reloading cohort...');
       setAddStudentOpen(false);
-      loadCohort();
+      setLearnerSearch('');
+      await loadCohort();
+    } else {
+      console.error('Failed to add student');
     }
   };
 
@@ -185,10 +206,12 @@ export default function CohortDetailPage() {
     }
   };
 
-  const filteredLearners = allLearners.filter(l =>
-    !members.some(m => m.student_id === l.id) &&
-    (l.full_name || '').toLowerCase().includes(learnerSearch.toLowerCase())
-  );
+  const filteredLearners = allLearners.filter(l => {
+    const isAlreadyMember = members.some(m => m.student_id === l.id);
+    const matchesSearch = (l.full_name || '').toLowerCase().includes(learnerSearch.toLowerCase());
+    console.log(`Student ${l.full_name} (${l.id}): isAlreadyMember=${isAlreadyMember}, matchesSearch=${matchesSearch}`);
+    return !isAlreadyMember && matchesSearch;
+  });
 
   if (loading) {
     return (

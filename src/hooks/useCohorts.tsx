@@ -70,10 +70,38 @@ export function useCohorts() {
 
   const addMember = useCallback(async (cohortId: string, studentId: string) => {
     try {
-      const { error } = await supabase
+      console.log('Inserting cohort member:', { cohortId, studentId });
+      
+      // Check if already exists
+      const { data: existing } = await supabase
         .from('cohort_members')
-        .insert({ cohort_id: cohortId, student_id: studentId });
-      if (error) throw error;
+        .select('id')
+        .eq('cohort_id', cohortId)
+        .eq('student_id', studentId)
+        .single();
+      
+      if (existing) {
+        console.log('Student already in cohort');
+        toast({ title: 'Already added', description: 'This student is already in the cohort.', variant: 'default' });
+        return true; // Return true so the dialog closes
+      }
+
+      const { data, error } = await supabase
+        .from('cohort_members')
+        .insert({ cohort_id: cohortId, student_id: studentId })
+        .select();
+      
+      if (error) {
+        console.error('Insert error:', error);
+        // Check if it's a duplicate key error
+        if (error.code === '23505') {
+          toast({ title: 'Already added', description: 'This student is already in the cohort.' });
+          return true;
+        }
+        throw error;
+      }
+      
+      console.log('Insert successful:', data);
       toast({ title: 'Student added' });
       await fetchCohorts();
       return true;
@@ -117,15 +145,42 @@ export function useCohorts() {
 
   const fetchMembers = useCallback(async (cohortId: string): Promise<CohortMember[]> => {
     try {
-      const { data, error } = await supabase
+      // First get the member IDs
+      const { data: memberData, error: memberError } = await supabase
         .from('cohort_members')
-        .select('student_id, profiles:student_id(full_name, avatar_url)' as any)
+        .select('student_id')
         .eq('cohort_id', cohortId);
-      if (error) throw error;
-      return (data || []).map((m: any) => ({
-        student_id: m.student_id,
-        full_name: m.profiles?.full_name || null,
-        avatar_url: m.profiles?.avatar_url || null,
+      
+      if (memberError) {
+        console.error('Error fetching member IDs:', memberError);
+        throw memberError;
+      }
+
+      if (!memberData || memberData.length === 0) {
+        console.log('No members found for cohort:', cohortId);
+        return [];
+      }
+
+      const studentIds = memberData.map(m => m.student_id);
+      console.log('Found student IDs:', studentIds);
+
+      // Then get the profiles for those IDs
+      const { data: profileData, error: profileError } = await supabase
+        .from('profiles')
+        .select('id, full_name, avatar_url')
+        .in('id', studentIds);
+
+      if (profileError) {
+        console.error('Error fetching profiles:', profileError);
+        throw profileError;
+      }
+
+      console.log('Found profiles:', profileData);
+
+      return (profileData || []).map((p: any) => ({
+        student_id: p.id,
+        full_name: p.full_name || null,
+        avatar_url: p.avatar_url || null,
       }));
     } catch (err) {
       console.error('Error fetching members:', err);
