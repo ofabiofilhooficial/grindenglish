@@ -131,6 +131,7 @@ export default function TeachDashboardPage() {
                 </Button>
               </DialogFooter>
             </DialogContent>
+            </Dialog>
           </div>
         </div>
 
