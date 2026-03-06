@@ -41,6 +41,7 @@ import PragmaticsReferencePage from "./pages/reference/PragmaticsReferencePage";
 import TeachDashboardPage from "./pages/teach/TeachDashboardPage";
 import FeedbackQueuePage from "./pages/teach/FeedbackQueuePage";
 import StudentAnalyticsPage from "./pages/teach/StudentAnalyticsPage";
+import CohortDetailPage from "./pages/teach/CohortDetailPage";
 
 const queryClient = new QueryClient();
 
