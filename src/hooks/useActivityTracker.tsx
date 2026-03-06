@@ -7,6 +7,7 @@ export type ActivityEventType =
   | 'dashboard_view'
   | 'lesson_start'
   | 'lesson_complete'
+  | 'lesson_asset_viewed'
   | 'grammar_view'
   | 'vocab_view'
   | 'pronunciation_view'
@@ -38,7 +39,20 @@ export function useActivityTracker() {
     [user]
   );
 
-  return { logActivity };
+  const trackAssetView = useCallback(
+    async (lessonId: string, assetId: string, assetType: 'grammar' | 'vocabulary' | 'pronunciation' | 'pragmatics', duration?: number) => {
+      await logActivity('lesson_asset_viewed', {
+        lesson_id: lessonId,
+        asset_id: assetId,
+        asset_type: assetType,
+        duration: duration || 0,
+        timestamp: new Date().toISOString(),
+      });
+    },
+    [logActivity]
+  );
+
+  return { logActivity, trackAssetView };
 }
 
 export function usePageViewTracker(eventType: ActivityEventType, eventData?: Record<string, any>) {

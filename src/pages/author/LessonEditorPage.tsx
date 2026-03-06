@@ -11,6 +11,8 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Save, Plus, GripVertical, Trash2, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { AssetSelector } from '@/components/author/AssetSelector';
+import { LessonAsset } from '@/types/course';
 
 const STAGE_TYPES = [
   'warm_up', 'lead_in', 'input', 'comprehension', 'noticing',
@@ -22,18 +24,21 @@ export default function LessonEditorPage() {
   const { toast } = useToast();
   const [lesson, setLesson] = useState<any>(null);
   const [stages, setStages] = useState<any[]>([]);
+  const [linkedAssets, setLinkedAssets] = useState<LessonAsset[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
   const fetchData = async () => {
     if (!lessonId) return;
     setLoading(true);
-    const [lessonRes, stagesRes] = await Promise.all([
+    const [lessonRes, stagesRes, assetsRes] = await Promise.all([
       supabase.from('lessons').select('*').eq('id', lessonId).single(),
       supabase.from('lesson_stages').select('*').eq('lesson_id', lessonId).order('sort_order'),
+      supabase.from('lesson_assets' as any).select('*').eq('lesson_id', lessonId).order('order_index'),
     ]);
     if (lessonRes.data) setLesson(lessonRes.data);
     if (stagesRes.data) setStages(stagesRes.data);
+    if (assetsRes.data) setLinkedAssets(assetsRes.data as LessonAsset[]);
     setLoading(false);
   };
 
@@ -243,6 +248,15 @@ export default function LessonEditorPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Asset Selector */}
+        {lessonId && (
+          <AssetSelector
+            lessonId={lessonId}
+            linkedAssets={linkedAssets}
+            onAssetsChange={fetchData}
+          />
+        )}
       </div>
     </AppLayout>
   );

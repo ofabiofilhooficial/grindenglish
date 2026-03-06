@@ -135,6 +135,20 @@ export interface Lesson {
   order: number;
   estimatedMinutes: number;
   status: 'draft' | 'published';
+  assets?: LessonAsset[]; // Linked grammar chapters, vocabulary, etc.
+}
+
+export interface LessonAsset {
+  id: string;
+  lessonId: string;
+  assetType: 'grammar' | 'vocabulary' | 'pronunciation' | 'pragmatics';
+  assetId: string; // UUID of the grammar_chapter or lexicon_entry
+  orderIndex: number;
+  isRequired: boolean;
+  contextNote?: string;
+  // Populated data (when fetched with joins)
+  grammarChapter?: GrammarChapter;
+  lexiconEntry?: LexiconEntry;
 }
 
 export interface LessonStage {

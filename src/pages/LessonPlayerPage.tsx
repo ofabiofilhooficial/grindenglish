@@ -11,6 +11,7 @@ import { Separator } from '@/components/ui/separator';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { LinkedAssetViewer } from '@/components/lesson/LinkedAssetViewer';
 import { 
   ArrowLeft,
   ArrowRight,
@@ -270,6 +271,13 @@ export default function LessonPlayerPage() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Linked Assets */}
+          {lessonId && (
+            <div className="mb-6">
+              <LinkedAssetViewer lessonId={lessonId} />
+            </div>
+          )}
 
           {/* Navigation */}
           <div className="flex items-center justify-between pt-4 border-t border-border">
