@@ -187,10 +187,15 @@ export default function LandingPage() {
       <Dialog open={authOpen} onOpenChange={setAuthOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader className="text-center items-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary mb-2">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <DialogTitle className="font-display text-xl">{isSignup ? (lang === 'pt' ? 'Crie sua conta' : 'Create your account') : (lang === 'pt' ? 'Bem-vindo de volta' : 'Welcome back')}</DialogTitle>
+            <img 
+              src="/icon.svg" 
+              alt="Grind English" 
+              className="h-12 w-12 mb-2"
+              onError={(e) => {
+                e.currentTarget.src = '/icon.png';
+              }}
+            />
+            <DialogTitle className="font-display text-xl uppercase tracking-wide">{isSignup ? (lang === 'pt' ? 'Crie sua conta' : 'Create your account') : (lang === 'pt' ? 'Bem-vindo de volta' : 'Welcome back')}</DialogTitle>
             <DialogDescription>{isSignup ? (lang === 'pt' ? 'Comece sua jornada agora' : 'Start your journey now') : (lang === 'pt' ? 'Entre para continuar' : 'Sign in to continue')}</DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="space-y-3">

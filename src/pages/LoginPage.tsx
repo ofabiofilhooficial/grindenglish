@@ -54,11 +54,16 @@ export default function LoginPage() {
             Back to home
           </Link>
           <Link to="/" className="flex items-center justify-center gap-2 mb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-primary shadow-lg">
-              <Sparkles className="h-6 w-6 text-white" />
-            </div>
+            <img 
+              src="/logo-stacked.svg" 
+              alt="Grind English" 
+              className="h-24"
+              onError={(e) => {
+                e.currentTarget.src = '/logo-stacked.png';
+              }}
+            />
           </Link>
-          <h1 className="font-display text-2xl font-bold">Welcome back</h1>
+          <h1 className="font-display text-2xl font-bold uppercase tracking-wide">Welcome back</h1>
           <p className="text-muted-foreground mt-1">Sign in to continue your learning journey</p>
         </div>
 

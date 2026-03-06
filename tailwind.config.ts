@@ -14,10 +14,16 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Roboto Condensed', 'system-ui', 'sans-serif'],
+        display: ['Oswald', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        // Grind English Brand Colors
+        'grind-navy': '#0B1630',
+        'grind-crimson': '#D61F3A',
+        'grind-offwhite': '#F3EBDD',
+        'grind-gold': '#D6A74A',
+        
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

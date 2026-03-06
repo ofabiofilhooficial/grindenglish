@@ -111,12 +111,17 @@ export function AppSidebar({ className }: AppSidebarProps) {
     )}>
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary shadow-lg">
-          <Sparkles className="h-5 w-5 text-white" />
-        </div>
+        <img 
+          src="/icon.svg" 
+          alt="Grind English" 
+          className="h-10 w-10"
+          onError={(e) => {
+            // Fallback to PNG if SVG not found
+            e.currentTarget.src = '/icon.png';
+          }}
+        />
         <div>
-          <h1 className="font-display font-bold text-lg text-sidebar-foreground">English Mastery</h1>
-          <p className="text-xs text-sidebar-foreground/60">Lab</p>
+          <h1 className="font-display font-bold text-lg text-sidebar-foreground uppercase tracking-wide">Grind English</h1>
         </div>
       </div>
 

@@ -1,51 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Roboto+Condensed:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* 
- * English Mastery Lab Design System
- * A sophisticated educational platform with deep teal/navy palette
- * Warm amber accents for engagement and progress
+ * Grind English Design System
+ * A disciplined, modern English learning platform
+ * Deep Navy (#0B1630), Crimson (#D61F3A), Off-White (#F3EBDD)
  */
 
 @layer base {
   :root {
-    /* Core Brand Colors */
-    --background: 210 25% 98%;
-    --foreground: 215 25% 15%;
+    /* Grind English Brand Colors */
+    --background: 210 60% 97%; /* Off-White base */
+    --foreground: 220 65% 10%; /* Deep Navy */
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card: 40 35% 95%; /* Slightly warmer off-white */
+    --card-foreground: 220 65% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover: 40 35% 95%;
+    --popover-foreground: 220 65% 10%;
 
-    /* Primary: Deep Teal - Trust & Learning */
-    --primary: 185 65% 28%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: Deep Navy */
+    --primary: 220 65% 10%;
+    --primary-foreground: 40 35% 95%;
 
-    /* Secondary: Soft Slate */
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 25% 25%;
+    /* Secondary: Lighter Navy */
+    --secondary: 220 40% 20%;
+    --secondary-foreground: 40 35% 95%;
 
     /* Muted: Subtle grays */
-    --muted: 210 15% 92%;
-    --muted-foreground: 215 15% 50%;
+    --muted: 220 20% 85%;
+    --muted-foreground: 220 30% 40%;
 
-    /* Accent: Warm Amber - Engagement & Progress */
-    --accent: 38 92% 55%;
-    --accent-foreground: 215 25% 15%;
+    /* Accent: Crimson - Energy & Action */
+    --accent: 352 75% 48%;
+    --accent-foreground: 40 35% 95%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 185 65% 28%;
+    --border: 220 20% 80%;
+    --input: 220 20% 80%;
+    --ring: 352 75% 48%;
 
-    --radius: 0.625rem;
+    --radius: 0.375rem; /* Sharper, more disciplined */
 
     /* CEFR Level Colors */
     --level-a0: 280 60% 65%;
@@ -70,75 +70,58 @@
     --success: 145 65% 42%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 55%;
-    --warning-foreground: 215 25% 15%;
+    --warning-foreground: 220 65% 10%;
     --info: 200 75% 50%;
     --info-foreground: 0 0% 100%;
 
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(185 65% 28%), hsl(200 70% 35%));
-    --gradient-accent: linear-gradient(135deg, hsl(38 92% 55%), hsl(25 90% 52%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 30% 12%), hsl(185 50% 18%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 25% 98%));
-    --gradient-level-a: linear-gradient(135deg, hsl(280 60% 65%), hsl(260 55% 60%));
-    --gradient-level-b: linear-gradient(135deg, hsl(185 65% 45%), hsl(160 60% 42%));
-    --gradient-level-c: linear-gradient(135deg, hsl(38 85% 50%), hsl(15 75% 50%));
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.08), 0 2px 4px -2px hsl(215 25% 15% / 0.05);
-    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -4px hsl(215 25% 15% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(215 25% 15% / 0.12), 0 8px 10px -6px hsl(215 25% 15% / 0.05);
-    --shadow-glow: 0 0 20px hsl(185 65% 28% / 0.25);
-    --shadow-accent-glow: 0 0 20px hsl(38 92% 55% / 0.35);
-
     /* Sidebar */
-    --sidebar-background: 215 25% 12%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 185 65% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 25% 18%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 215 20% 20%;
-    --sidebar-ring: 185 65% 50%;
+    --sidebar-background: 220 65% 10%;
+    --sidebar-foreground: 40 35% 95%;
+    --sidebar-primary: 352 75% 48%;
+    --sidebar-primary-foreground: 40 35% 95%;
+    --sidebar-accent: 220 50% 15%;
+    --sidebar-accent-foreground: 40 35% 95%;
+    --sidebar-border: 220 40% 20%;
+    --sidebar-ring: 352 75% 48%;
   }
 
   .dark {
-    --background: 215 30% 8%;
-    --foreground: 210 20% 95%;
+    --background: 220 65% 10%; /* Deep Navy */
+    --foreground: 40 35% 95%; /* Off-White */
 
-    --card: 215 28% 12%;
-    --card-foreground: 210 20% 95%;
+    --card: 220 60% 12%;
+    --card-foreground: 40 35% 95%;
 
-    --popover: 215 28% 12%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 220 60% 12%;
+    --popover-foreground: 40 35% 95%;
 
-    --primary: 185 60% 50%;
-    --primary-foreground: 215 30% 8%;
+    --primary: 352 75% 48%; /* Crimson in dark mode */
+    --primary-foreground: 40 35% 95%;
 
-    --secondary: 215 25% 18%;
-    --secondary-foreground: 210 20% 90%;
+    --secondary: 220 50% 18%;
+    --secondary-foreground: 40 35% 95%;
 
-    --muted: 215 25% 18%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 220 40% 20%;
+    --muted-foreground: 220 20% 65%;
 
-    --accent: 38 92% 55%;
-    --accent-foreground: 215 30% 8%;
+    --accent: 352 75% 48%;
+    --accent-foreground: 40 35% 95%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 20%;
-    --input: 215 25% 20%;
-    --ring: 185 60% 50%;
+    --border: 220 40% 25%;
+    --input: 220 40% 25%;
+    --ring: 352 75% 48%;
 
-    --sidebar-background: 215 30% 6%;
-    --sidebar-foreground: 210 20% 90%;
-    --sidebar-primary: 185 60% 50%;
-    --sidebar-primary-foreground: 215 30% 8%;
-    --sidebar-accent: 215 28% 12%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 215 25% 15%;
-    --sidebar-ring: 185 60% 50%;
+    --sidebar-background: 220 70% 8%;
+    --sidebar-foreground: 40 35% 95%;
+    --sidebar-primary: 352 75% 48%;
+    --sidebar-primary-foreground: 40 35% 95%;
+    --sidebar-accent: 220 60% 12%;
+    --sidebar-accent-foreground: 40 35% 95%;
+    --sidebar-border: 220 50% 15%;
+    --sidebar-ring: 352 75% 48%;
   }
 }
 
@@ -153,8 +136,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-    @apply tracking-tight;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    @apply tracking-wide uppercase;
   }
 
   /* Custom scrollbar */
@@ -168,7 +151,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted-foreground/20 rounded-full;
+    @apply bg-muted-foreground/20;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -177,63 +160,45 @@
 }
 
 @layer utilities {
-  .text-gradient-primary {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Grind English brand utilities - flat, solid colors only */
+  .bg-grind-navy {
+    background-color: #0B1630;
   }
 
-  .text-gradient-accent {
-    background: var(--gradient-accent);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .bg-grind-crimson {
+    background-color: #D61F3A;
   }
 
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
+  .bg-grind-offwhite {
+    background-color: #F3EBDD;
   }
 
-  .bg-gradient-accent {
-    background: var(--gradient-accent);
+  .text-grind-navy {
+    color: #0B1630;
   }
 
-  .bg-gradient-hero {
-    background: var(--gradient-hero);
+  .text-grind-crimson {
+    color: #D61F3A;
   }
 
-  .bg-gradient-card {
-    background: var(--gradient-card);
+  .text-grind-offwhite {
+    color: #F3EBDD;
   }
 
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
+  .border-grind-navy {
+    border-color: #0B1630;
   }
 
-  .shadow-accent-glow {
-    box-shadow: var(--shadow-accent-glow);
+  .border-grind-crimson {
+    border-color: #D61F3A;
   }
 
+  /* Remove all gradients - use solid colors */
   .glass {
-    @apply bg-white/80 backdrop-blur-xl border border-white/20;
+    @apply bg-card/95 backdrop-blur-sm border border-border;
   }
 
   .glass-dark {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10;
-  }
-
-  /* Animation utilities */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    @apply bg-card/90 backdrop-blur-sm border border-border;
   }
 }
