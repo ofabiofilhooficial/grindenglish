@@ -27,27 +27,26 @@ export function useProgress() {
     const fetchProgress = async () => {
       try {
         const { data, error } = await supabase
-          .from('learner_progress')
+          .from('learner_progress' as any)
           .select('*')
           .eq('user_id', user.id)
           .single();
 
         if (error && error.code !== 'PGRST116') {
-          // PGRST116 = no rows returned
           console.error('Error fetching progress:', error);
           setProgress(null);
         } else if (data) {
+          const d = data as any;
           setProgress({
-            currentStreak: data.current_streak,
-            longestStreak: data.longest_streak,
-            lastActivityDate: data.last_activity_date,
-            totalStudyTimeMinutes: data.total_study_time_minutes,
-            wordsLearned: data.words_learned,
-            grammarChaptersViewed: data.grammar_chapters_viewed,
-            lessonsCompleted: data.lessons_completed,
+            currentStreak: d.current_streak,
+            longestStreak: d.longest_streak,
+            lastActivityDate: d.last_activity_date,
+            totalStudyTimeMinutes: d.total_study_time_minutes,
+            wordsLearned: d.words_learned,
+            grammarChaptersViewed: d.grammar_chapters_viewed,
+            lessonsCompleted: d.lessons_completed,
           });
         } else {
-          // No progress record yet - return defaults
           setProgress({
             currentStreak: 0,
             longestStreak: 0,
@@ -68,7 +67,6 @@ export function useProgress() {
 
     fetchProgress();
 
-    // Subscribe to changes
     const channel = supabase
       .channel('learner_progress_changes')
       .on(
