@@ -91,6 +91,7 @@ const App = () => (
             <Route path="/teach/dashboard" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><TeachDashboardPage /></ProtectedRoute>} />
             <Route path="/teach/feedback" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><FeedbackQueuePage /></ProtectedRoute>} />
             <Route path="/teach/analytics" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><StudentAnalyticsPage /></ProtectedRoute>} />
+            <Route path="/teach/cohort/:cohortId" element={<ProtectedRoute requiredRoles={['admin', 'curriculum_designer', 'teacher']}><CohortDetailPage /></ProtectedRoute>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

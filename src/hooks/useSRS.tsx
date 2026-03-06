@@ -83,7 +83,7 @@ export function useSRS() {
           console.error('Error fetching card:', error);
           return null;
         }
-        return data as SRSCard | null;
+        return data as unknown as SRSCard | null;
       } catch (err) {
         console.error('Error fetching card:', err);
         return null;
