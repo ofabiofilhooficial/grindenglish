@@ -59,7 +59,7 @@ export function useAssignments() {
         return;
       }
 
-      setAssignments(data || []);
+      setAssignments((data as Assignment[]) || []);
     } catch (err) {
       console.error('Error fetching assignments:', err);
     } finally {
