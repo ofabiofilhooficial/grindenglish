@@ -47,6 +47,121 @@ export type Database = {
         }
         Relationships: []
       }
+      assignments: {
+        Row: {
+          assigned_at: string
+          cohort_id: string | null
+          completed_at: string | null
+          content_id: string
+          content_type: string
+          created_at: string
+          due_date: string | null
+          id: string
+          notes: string | null
+          status: string
+          student_id: string | null
+          teacher_id: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_at?: string
+          cohort_id?: string | null
+          completed_at?: string | null
+          content_id: string
+          content_type: string
+          created_at?: string
+          due_date?: string | null
+          id?: string
+          notes?: string | null
+          status?: string
+          student_id?: string | null
+          teacher_id: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_at?: string
+          cohort_id?: string | null
+          completed_at?: string | null
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          due_date?: string | null
+          id?: string
+          notes?: string | null
+          status?: string
+          student_id?: string | null
+          teacher_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assignments_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "cohorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cohort_members: {
+        Row: {
+          cohort_id: string
+          id: string
+          joined_at: string
+          student_id: string
+        }
+        Insert: {
+          cohort_id: string
+          id?: string
+          joined_at?: string
+          student_id: string
+        }
+        Update: {
+          cohort_id?: string
+          id?: string
+          joined_at?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cohort_members_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "cohorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cohorts: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          name: string
+          teacher_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          teacher_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          teacher_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       courses: {
         Row: {
           created_at: string
@@ -128,6 +243,48 @@ export type Database = {
           title?: string
           updated_at?: string
           use_content?: string | null
+        }
+        Relationships: []
+      }
+      learner_progress: {
+        Row: {
+          created_at: string
+          current_streak: number
+          grammar_chapters_viewed: number
+          id: string
+          last_activity_date: string | null
+          lessons_completed: number
+          longest_streak: number
+          total_study_time_minutes: number
+          updated_at: string
+          user_id: string
+          words_learned: number
+        }
+        Insert: {
+          created_at?: string
+          current_streak?: number
+          grammar_chapters_viewed?: number
+          id?: string
+          last_activity_date?: string | null
+          lessons_completed?: number
+          longest_streak?: number
+          total_study_time_minutes?: number
+          updated_at?: string
+          user_id: string
+          words_learned?: number
+        }
+        Update: {
+          created_at?: string
+          current_streak?: number
+          grammar_chapters_viewed?: number
+          id?: string
+          last_activity_date?: string | null
+          lessons_completed?: number
+          longest_streak?: number
+          total_study_time_minutes?: number
+          updated_at?: string
+          user_id?: string
+          words_learned?: number
         }
         Relationships: []
       }
@@ -439,6 +596,30 @@ export type Database = {
         }
         Relationships: []
       }
+      progress_events: {
+        Row: {
+          created_at: string
+          event_data: Json | null
+          event_type: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       pronunciation_scripts: {
         Row: {
           audio_asset_id: string | null
@@ -491,6 +672,53 @@ export type Database = {
             columns: ["audio_asset_id"]
             isOneToOne: false
             referencedRelation: "assets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      srs_cards: {
+        Row: {
+          created_at: string
+          ease_factor: number
+          id: string
+          interval: number
+          last_reviewed_at: string | null
+          next_review_date: string
+          repetitions: number
+          updated_at: string
+          user_id: string
+          word_id: string
+        }
+        Insert: {
+          created_at?: string
+          ease_factor?: number
+          id?: string
+          interval?: number
+          last_reviewed_at?: string | null
+          next_review_date?: string
+          repetitions?: number
+          updated_at?: string
+          user_id: string
+          word_id: string
+        }
+        Update: {
+          created_at?: string
+          ease_factor?: number
+          id?: string
+          interval?: number
+          last_reviewed_at?: string | null
+          next_review_date?: string
+          repetitions?: number
+          updated_at?: string
+          user_id?: string
+          word_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "srs_cards_word_id_fkey"
+            columns: ["word_id"]
+            isOneToOne: false
+            referencedRelation: "lexicon_entries"
             referencedColumns: ["id"]
           },
         ]
@@ -630,6 +858,47 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_cohort_progress: {
+        Args: { _cohort_id: string }
+        Returns: {
+          completed_assignments: number
+          current_streak: number
+          full_name: string
+          last_activity_date: string
+          lessons_completed: number
+          pending_assignments: number
+          student_id: string
+          words_learned: number
+        }[]
+      }
+      get_due_cards_count: { Args: { _user_id: string }; Returns: number }
+      get_or_create_srs_card: {
+        Args: { _user_id: string; _word_id: string }
+        Returns: string
+      }
+      get_student_assignments: {
+        Args: { _student_id: string }
+        Returns: {
+          assigned_at: string
+          cohort_name: string
+          content_id: string
+          content_type: string
+          due_date: string
+          id: string
+          notes: string
+          status: string
+          teacher_name: string
+        }[]
+      }
+      get_teacher_students: {
+        Args: { _teacher_id: string }
+        Returns: {
+          avatar_url: string
+          cohort_count: number
+          full_name: string
+          student_id: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -638,6 +907,34 @@ export type Database = {
         Returns: boolean
       }
       is_content_creator: { Args: { _user_id: string }; Returns: boolean }
+      is_teacher: { Args: { _user_id: string }; Returns: boolean }
+      log_activity_event: {
+        Args: { _event_data?: Json; _event_type: string; _user_id: string }
+        Returns: string
+      }
+      teacher_add_words_to_srs: {
+        Args: {
+          _student_ids: string[]
+          _teacher_id: string
+          _word_ids: string[]
+        }
+        Returns: {
+          card_id: string
+          student_id: string
+          success: boolean
+          word_id: string
+        }[]
+      }
+      update_srs_card: {
+        Args: { _card_id: string; _user_rating: number }
+        Returns: {
+          new_ease_factor: number
+          new_interval: number
+          new_next_review_date: string
+          new_repetitions: number
+        }[]
+      }
+      update_user_streak: { Args: { _user_id: string }; Returns: undefined }
     }
     Enums: {
       app_role: "admin" | "curriculum_designer" | "teacher" | "learner"
