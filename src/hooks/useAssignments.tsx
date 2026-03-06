@@ -102,7 +102,7 @@ export function useAssignments() {
         }
 
         await fetchAssignments();
-        return data;
+        return data as Assignment;
       } catch (err) {
         console.error('Error creating assignment:', err);
         return null;
