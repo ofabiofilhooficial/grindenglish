@@ -85,26 +85,54 @@ export default function LessonPlayerPage() {
       if (!lessonId) return;
       
       setLoading(true);
-      const [lessonRes, stagesRes] = await Promise.all([
-        supabase
+      
+      try {
+        // Fetch lesson data
+        const { data: lessonData, error: lessonError } = await supabase
           .from('lessons')
-          .select('*, units!inner(title, levels!inner(cefr_level))')
-          .eq('id', lessonId)
-          .eq('is_published', true)
-          .single(),
-        supabase
-          .from('lesson_stages')
           .select('*')
-          .eq('lesson_id', lessonId)
-          .order('sort_order')
-      ]);
+          .eq('id', lessonId)
+          .single();
+        
+        console.log('Lesson query result:', { lessonData, lessonError });
 
-      if (lessonRes.data) {
-        setLesson(lessonRes.data);
+        if (lessonError) {
+          console.error('Error fetching lesson:', lessonError);
+        }
+
+        if (lessonData) {
+          // Fetch unit data separately
+          const { data: unitData } = await supabase
+            .from('units')
+            .select('title, level_id, levels!inner(cefr_level)')
+            .eq('id', lessonData.unit_id)
+            .single();
+          
+          console.log('Unit data:', unitData);
+
+          // Combine the data
+          setLesson({
+            ...lessonData,
+            units: unitData
+          });
+
+          // Fetch stages
+          const { data: stagesData, error: stagesError } = await supabase
+            .from('lesson_stages')
+            .select('*')
+            .eq('lesson_id', lessonId)
+            .order('sort_order');
+
+          console.log('Stages query result:', { stagesData, stagesError });
+
+          if (stagesData) {
+            setStages(stagesData);
+          }
+        }
+      } catch (error) {
+        console.error('Error in fetchLesson:', error);
       }
-      if (stagesRes.data) {
-        setStages(stagesRes.data);
-      }
+      
       setLoading(false);
     };
 
@@ -129,7 +157,15 @@ export default function LessonPlayerPage() {
           </Link>
           <Card className="p-12 text-center">
             <h3 className="font-display text-xl font-bold mb-2">Lesson Not Found</h3>
-            <p className="text-muted-foreground">This lesson doesn't exist or hasn't been published yet.</p>
+            <p className="text-muted-foreground mb-4">
+              This lesson doesn't exist or there was an error loading it.
+            </p>
+            <p className="text-xs text-muted-foreground font-mono">
+              Lesson ID: {lessonId}
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Check the browser console for more details.
+            </p>
           </Card>
         </div>
       </AppLayout>
