@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle2, XCircle, AlertCircle, ArrowRight } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface VocabularyItem {
   id: string;
@@ -18,13 +19,68 @@ interface VocabularyPracticeProps {
   items: VocabularyItem[];
   onComplete: () => void;
   lessonId: string;
+  stageId: string;
 }
 
-export function VocabularyPractice({ items, onComplete, lessonId }: VocabularyPracticeProps) {
+export function VocabularyPractice({ items, onComplete, lessonId, stageId }: VocabularyPracticeProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [results, setResults] = useState<Record<string, 'correct' | 'incorrect' | null>>({});
   const [allCorrect, setAllCorrect] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  // Load saved answers on mount
+  useEffect(() => {
+    loadSavedAnswers();
+  }, [stageId]);
+
+  const loadSavedAnswers = async () => {
+    try {
+      const { data, error } = await supabase.rpc('get_vocabulary_answers' as any, {
+        _stage_id: stageId
+      }) as any;
+
+      if (error) {
+        console.error('Error loading saved answers:', error);
+      } else if (data && Array.isArray(data) && data.length > 0) {
+        const savedAnswers: Record<string, string> = {};
+        const savedResults: Record<string, 'correct' | 'incorrect' | null> = {};
+        const savedChecked: Record<string, boolean> = {};
+
+        data.forEach((item: any) => {
+          savedAnswers[item.item_id] = item.answer;
+          savedResults[item.item_id] = item.is_correct ? 'correct' : null;
+          savedChecked[item.item_id] = item.is_correct;
+        });
+
+        setAnswers(savedAnswers);
+        setResults(savedResults);
+        setChecked(savedChecked);
+
+        // Check if all are correct
+        const allRight = items.every(i => savedResults[i.id] === 'correct');
+        setAllCorrect(allRight);
+      }
+    } catch (error) {
+      console.error('Error in loadSavedAnswers:', error);
+    }
+    setLoading(false);
+  };
+
+  const saveAnswer = async (itemId: string, answer: string, isCorrect: boolean) => {
+    try {
+      await supabase.rpc('save_vocabulary_answer' as any, {
+        _lesson_id: lessonId,
+        _stage_id: stageId,
+        _item_id: itemId,
+        _answer: answer,
+        _is_correct: isCorrect
+      });
+    } catch (error) {
+      console.error('Error saving answer:', error);
+    }
+  };
 
   const handleAnswerChange = (itemId: string, value: string) => {
     setAnswers(prev => ({ ...prev, [itemId]: value }));
@@ -44,6 +100,9 @@ export function VocabularyPractice({ items, onComplete, lessonId }: VocabularyPr
     setResults(prev => ({ ...prev, [item.id]: isCorrect ? 'correct' : 'incorrect' }));
     setChecked(prev => ({ ...prev, [item.id]: true }));
 
+    // Save answer to database
+    await saveAnswer(item.id, answers[item.id], isCorrect);
+
     // Track in SRS system
     try {
       const { data: { user } } = await supabase.auth.getUser();
@@ -60,7 +119,7 @@ export function VocabularyPractice({ items, onComplete, lessonId }: VocabularyPr
         // Record the attempt in SRS
         const quality = isCorrect ? 5 : 2; // 5 = perfect recall, 2 = incorrect but remembered
         
-        await supabase.rpc('record_srs_review', {
+        await supabase.rpc('record_srs_review' as any, {
           _user_id: user.id,
           _item_id: lexiconEntry.id,
           _item_type: 'vocabulary',
@@ -81,11 +140,23 @@ export function VocabularyPractice({ items, onComplete, lessonId }: VocabularyPr
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     if (allCorrect) {
-      onComplete();
+      // Call the completion callback which will mark the stage as complete
+      await onComplete();
     }
   };
+
+  if (loading) {
+    return (
+      <Card>
+        <CardContent className="p-6 text-center">
+          <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin mx-auto" />
+          <p className="text-sm text-muted-foreground mt-2">Loading your progress...</p>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card>

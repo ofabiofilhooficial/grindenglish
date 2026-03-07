@@ -24,7 +24,7 @@ export function StageContentViewer({ stage, lessonId, onStageComplete }: StageCo
   const content = stage.content || {};
 
   // Special handling for Stage 0 (Retrieval) - Interactive vocabulary practice
-  if (stage.stage_type === 'warm_up' && content.prompts && lessonId) {
+  if (stage.stage_type === 'warm_up' && content.prompts && lessonId && stage.id) {
     const vocabularyItems = [
       { id: '1', prompt: 'Oi', expected: ['hi', 'hello'], headword: 'hi' },
       { id: '2', prompt: 'Bom dia', expected: ['good morning'], headword: 'good morning' },
@@ -47,6 +47,7 @@ export function StageContentViewer({ stage, lessonId, onStageComplete }: StageCo
           items={vocabularyItems}
           onComplete={onStageComplete || (() => {})}
           lessonId={lessonId}
+          stageId={stage.id}
         />
 
         {content.student_action && (
