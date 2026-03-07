@@ -48,6 +48,7 @@ export function AssetSelector({ lessonId, unitId, stageId, linkedAssets, onAsset
         .from('lexicon_entries')
         .select('*')
         .eq('is_published', true)
+        .order('headword')
         .order('headword'),
     ]);
 
@@ -144,31 +145,54 @@ export function AssetSelector({ lessonId, unitId, stageId, linkedAssets, onAsset
           <div className="mb-4 space-y-2">
             <Label className="text-xs font-medium">Currently Linked</Label>
             <div className="space-y-1">
-              {linkedAssets.map((asset) => (
-                <div
-                  key={asset.id}
-                  className={`flex items-center justify-between bg-secondary/50 rounded-lg ${compact ? 'p-1.5' : 'p-2'}`}
-                >
-                  <div className="flex items-center gap-2">
-                    {asset.assetType === 'grammar' ? (
-                      <BookOpen className="h-3 w-3 text-primary" />
-                    ) : (
-                      <Languages className="h-3 w-3 text-accent" />
-                    )}
-                    <span className="text-xs font-medium">
-                      {asset.assetType === 'grammar' ? 'Grammar' : 'Vocabulary'}
-                    </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-6 w-6"
-                    onClick={() => unlinkAsset(asset.id)}
+              {linkedAssets.map((asset) => {
+                // Find the actual asset data
+                let assetTitle = 'Loading...';
+                let assetCode = '';
+                
+                if (asset.assetType === 'grammar') {
+                  const grammarAsset = grammarChapters.find(g => g.id === asset.assetId);
+                  if (grammarAsset) {
+                    assetTitle = grammarAsset.title;
+                    assetCode = grammarAsset.chapter_code;
+                  }
+                } else if (asset.assetType === 'vocabulary') {
+                  const vocabAsset = lexiconEntries.find(l => l.id === asset.assetId);
+                  if (vocabAsset) {
+                    assetTitle = vocabAsset.headword;
+                    assetCode = vocabAsset.pos || '';
+                  }
+                }
+                
+                return (
+                  <div
+                    key={asset.id}
+                    className={`flex items-center justify-between bg-secondary/50 rounded-lg ${compact ? 'p-1.5' : 'p-2'}`}
                   >
-                    <X className="h-3 w-3" />
-                  </Button>
-                </div>
-              ))}
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      {asset.assetType === 'grammar' ? (
+                        <BookOpen className="h-3 w-3 text-primary flex-shrink-0" />
+                      ) : (
+                        <Languages className="h-3 w-3 text-accent flex-shrink-0" />
+                      )}
+                      <div className="flex flex-col min-w-0 flex-1">
+                        <span className="text-xs font-medium truncate">{assetTitle}</span>
+                        {assetCode && (
+                          <span className="text-[10px] text-muted-foreground">{assetCode}</span>
+                        )}
+                      </div>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-6 w-6 flex-shrink-0"
+                      onClick={() => unlinkAsset(asset.id)}
+                    >
+                      <X className="h-3 w-3" />
+                    </Button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

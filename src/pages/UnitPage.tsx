@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LevelBadge } from '@/components/ui/level-badge';
 import { Badge } from '@/components/ui/badge';
+import { UnitAssetViewer } from '@/components/lesson/UnitAssetViewer';
 import { 
   ArrowLeft,
   BookOpen,
@@ -175,6 +176,11 @@ export default function UnitPage() {
                 </p>
               </CardContent>
             </Card>
+
+            {/* Unit-level learning resources */}
+            <div className="mt-4">
+              <UnitAssetViewer unitId={unit.id} />
+            </div>
           </div>
         </div>
       </div>

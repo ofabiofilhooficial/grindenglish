@@ -27,32 +27,10 @@ export function StageAssetViewer({ lessonId, stageId, onAssetViewed }: StageAsse
   const fetchStageAssets = async () => {
     setLoading(true);
     try {
+      // Use the new view that properly joins asset data
       const { data, error } = await supabase
-        .from('lesson_assets' as any)
-        .select(`
-          *,
-          grammar_chapters:asset_id (
-            id,
-            chapter_code,
-            title,
-            cefr_level,
-            meaning_content,
-            form_content,
-            use_content,
-            contrast_notes,
-            common_errors
-          ),
-          lexicon_entries:asset_id (
-            id,
-            headword,
-            pos,
-            definition_simple,
-            definition_teacher,
-            examples,
-            ipa,
-            usage_notes
-          )
-        `)
+        .from('lesson_assets_with_content' as any)
+        .select('*')
         .eq('lesson_id', lessonId)
         .eq('stage_id', stageId)
         .order('order_index');
