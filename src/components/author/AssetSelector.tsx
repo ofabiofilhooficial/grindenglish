@@ -14,11 +14,13 @@ import { LessonAsset } from '@/types/course';
 
 interface AssetSelectorProps {
   lessonId: string;
+  stageId?: string; // Optional: if provided, assets are linked to this stage
   linkedAssets: LessonAsset[];
   onAssetsChange: () => void;
+  compact?: boolean; // Optional: compact mode for inline display
 }
 
-export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetSelectorProps) {
+export function AssetSelector({ lessonId, stageId, linkedAssets, onAssetsChange, compact = false }: AssetSelectorProps) {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [grammarChapters, setGrammarChapters] = useState<any[]>([]);
@@ -62,6 +64,7 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
   ) => {
     const { error } = await supabase.from('lesson_assets' as any).insert({
       lesson_id: lessonId,
+      stage_id: stageId || null, // Link to stage if provided
       asset_type: assetType,
       asset_id: assetId,
       is_required: isRequired,
@@ -75,7 +78,7 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
         variant: 'destructive',
       });
     } else {
-      toast({ title: 'Asset linked successfully' });
+      toast({ title: `Asset linked to ${stageId ? 'stage' : 'lesson'}` });
       onAssetsChange();
     }
   };
@@ -109,46 +112,46 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
   );
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="font-display text-lg flex items-center gap-2">
-          <BookOpen className="h-5 w-5" />
-          Linked Reference Content
+    <Card className={compact ? 'border-dashed' : ''}>
+      <CardHeader className={compact ? 'p-3' : ''}>
+        <CardTitle className={`font-display flex items-center gap-2 ${compact ? 'text-sm' : 'text-lg'}`}>
+          <BookOpen className={compact ? 'h-4 w-4' : 'h-5 w-5'} />
+          {compact ? 'Stage Resources' : 'Linked Reference Content'}
         </CardTitle>
-        <p className="text-sm text-muted-foreground">
-          Link grammar chapters and vocabulary that students should access during this lesson
-        </p>
+        {!compact && (
+          <p className="text-sm text-muted-foreground">
+            Link grammar chapters and vocabulary that students should access during this lesson
+          </p>
+        )}
       </CardHeader>
-      <CardContent>
+      <CardContent className={compact ? 'p-3 pt-0' : ''}>
         {/* Currently Linked Assets */}
         {linkedAssets.length > 0 && (
           <div className="mb-4 space-y-2">
-            <Label className="text-sm font-medium">Currently Linked</Label>
-            <div className="space-y-2">
+            <Label className="text-xs font-medium">Currently Linked</Label>
+            <div className="space-y-1">
               {linkedAssets.map((asset) => (
                 <div
                   key={asset.id}
-                  className="flex items-center justify-between p-2 bg-secondary/50 rounded-lg"
+                  className={`flex items-center justify-between bg-secondary/50 rounded-lg ${compact ? 'p-1.5' : 'p-2'}`}
                 >
                   <div className="flex items-center gap-2">
                     {asset.assetType === 'grammar' ? (
-                      <BookOpen className="h-4 w-4 text-primary" />
+                      <BookOpen className="h-3 w-3 text-primary" />
                     ) : (
-                      <Languages className="h-4 w-4 text-accent" />
+                      <Languages className="h-3 w-3 text-accent" />
                     )}
-                    <span className="text-sm font-medium">
+                    <span className="text-xs font-medium">
                       {asset.assetType === 'grammar' ? 'Grammar' : 'Vocabulary'}
                     </span>
-                    <Badge variant={asset.isRequired ? 'default' : 'secondary'} className="text-xs">
-                      {asset.isRequired ? 'Required' : 'Optional'}
-                    </Badge>
                   </div>
                   <Button
                     variant="ghost"
                     size="icon"
+                    className="h-6 w-6"
                     onClick={() => unlinkAsset(asset.id)}
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-3 w-3" />
                   </Button>
                 </div>
               ))}
@@ -157,31 +160,31 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
         )}
 
         {/* Search */}
-        <div className="relative mb-4">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <div className="relative mb-3">
+          <Search className={`absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground ${compact ? 'h-3 w-3' : 'h-4 w-4'}`} />
           <Input
-            placeholder="Search grammar chapters or vocabulary..."
+            placeholder="Search resources..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9"
+            className={`pl-9 ${compact ? 'h-8 text-xs' : ''}`}
           />
         </div>
 
         {/* Asset Browser */}
         <Tabs defaultValue="grammar">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="grammar">
-              <BookOpen className="h-4 w-4 mr-2" />
+          <TabsList className={`grid w-full grid-cols-2 ${compact ? 'h-8' : ''}`}>
+            <TabsTrigger value="grammar" className={compact ? 'text-xs py-1' : ''}>
+              <BookOpen className={`mr-2 ${compact ? 'h-3 w-3' : 'h-4 w-4'}`} />
               Grammar
             </TabsTrigger>
-            <TabsTrigger value="vocabulary">
-              <Languages className="h-4 w-4 mr-2" />
+            <TabsTrigger value="vocabulary" className={compact ? 'text-xs py-1' : ''}>
+              <Languages className={`mr-2 ${compact ? 'h-3 w-3' : 'h-4 w-4'}`} />
               Vocabulary
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="grammar">
-            <ScrollArea className="h-[300px] pr-4">
+            <ScrollArea className={compact ? 'h-[200px] pr-2' : 'h-[300px] pr-4'}>
               {loading ? (
                 <div className="flex justify-center py-8">
                   <div className="h-6 w-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
@@ -197,7 +200,7 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                     return (
                       <div
                         key={chapter.id}
-                        className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-secondary/50 transition-colors"
+                        className={`flex items-center justify-between border border-border rounded-lg hover:bg-secondary/50 transition-colors ${compact ? 'p-2' : 'p-3'}`}
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
@@ -208,12 +211,12 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                               {chapter.cefr_level}
                             </Badge>
                           </div>
-                          <p className="text-sm font-medium truncate">
+                          <p className={`font-medium truncate ${compact ? 'text-xs' : 'text-sm'}`}>
                             {chapter.title}
                           </p>
                         </div>
                         <Button
-                          size="sm"
+                          size={compact ? 'sm' : 'sm'}
                           variant={linked ? 'secondary' : 'default'}
                           onClick={() =>
                             linked
@@ -221,12 +224,13 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                               : linkAsset('grammar', chapter.id)
                           }
                           disabled={linked}
+                          className={compact ? 'h-7 text-xs' : ''}
                         >
                           {linked ? (
                             'Linked'
                           ) : (
                             <>
-                              <Plus className="h-4 w-4 mr-1" />
+                              <Plus className={`mr-1 ${compact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                               Link
                             </>
                           )}
@@ -240,7 +244,7 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
           </TabsContent>
 
           <TabsContent value="vocabulary">
-            <ScrollArea className="h-[300px] pr-4">
+            <ScrollArea className={compact ? 'h-[200px] pr-2' : 'h-[300px] pr-4'}>
               {loading ? (
                 <div className="flex justify-center py-8">
                   <div className="h-6 w-6 rounded-full border-2 border-primary border-t-transparent animate-spin" />
@@ -256,11 +260,11 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                     return (
                       <div
                         key={entry.id}
-                        className="flex items-center justify-between p-3 border border-border rounded-lg hover:bg-secondary/50 transition-colors"
+                        className={`flex items-center justify-between border border-border rounded-lg hover:bg-secondary/50 transition-colors ${compact ? 'p-2' : 'p-3'}`}
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <p className="text-sm font-medium">{entry.headword}</p>
+                            <p className={`font-medium ${compact ? 'text-xs' : 'text-sm'}`}>{entry.headword}</p>
                             {entry.pos && (
                               <Badge variant="outline" className="text-xs">
                                 {entry.pos}
@@ -272,7 +276,7 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                           </p>
                         </div>
                         <Button
-                          size="sm"
+                          size={compact ? 'sm' : 'sm'}
                           variant={linked ? 'secondary' : 'default'}
                           onClick={() =>
                             linked
@@ -280,12 +284,13 @@ export function AssetSelector({ lessonId, linkedAssets, onAssetsChange }: AssetS
                               : linkAsset('vocabulary', entry.id)
                           }
                           disabled={linked}
+                          className={compact ? 'h-7 text-xs' : ''}
                         >
                           {linked ? (
                             'Linked'
                           ) : (
                             <>
-                              <Plus className="h-4 w-4 mr-1" />
+                              <Plus className={`mr-1 ${compact ? 'h-3 w-3' : 'h-4 w-4'}`} />
                               Link
                             </>
                           )}

@@ -141,6 +141,7 @@ export interface Lesson {
 export interface LessonAsset {
   id: string;
   lessonId: string;
+  stageId?: string; // Optional: if provided, asset is linked to a specific stage
   assetType: 'grammar' | 'vocabulary' | 'pronunciation' | 'pragmatics';
   assetId: string; // UUID of the grammar_chapter or lexicon_entry
   orderIndex: number;

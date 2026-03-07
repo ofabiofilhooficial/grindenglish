@@ -12,6 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { LinkedAssetViewer } from '@/components/lesson/LinkedAssetViewer';
+import { StageAssetViewer } from '@/components/lesson/StageAssetViewer';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   ArrowLeft,
@@ -287,11 +288,11 @@ export default function LessonPlayerPage() {
               {/* Stage Content */}
               <Card className="mb-6">
                 <CardContent className="p-6">
-                  {stages[currentStage].content && typeof stages[currentStage].content === 'object' ? (
+                  {stages[currentStage].instructions ? (
                     <div className="prose prose-sm max-w-none">
-                      <p className="text-muted-foreground">
-                        Stage content will be displayed here based on the content type.
-                      </p>
+                      <div className="whitespace-pre-wrap text-foreground">
+                        {stages[currentStage].instructions}
+                      </div>
                     </div>
                   ) : (
                     <p className="text-muted-foreground text-center py-8">
@@ -300,6 +301,16 @@ export default function LessonPlayerPage() {
                   )}
                 </CardContent>
               </Card>
+
+              {/* Stage-Specific Assets */}
+              {stages[currentStage].id && (
+                <div className="mb-6">
+                  <StageAssetViewer 
+                    lessonId={lessonId!} 
+                    stageId={stages[currentStage].id}
+                  />
+                </div>
+              )}
             </>
           )}
 
@@ -311,7 +322,7 @@ export default function LessonPlayerPage() {
             </Card>
           )}
 
-          {/* Linked Assets */}
+          {/* Lesson-Level Assets (shown at bottom for reference) */}
           {lessonId && (
             <div className="mb-6">
               <LinkedAssetViewer lessonId={lessonId} />

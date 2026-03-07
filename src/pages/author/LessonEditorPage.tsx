@@ -15,8 +15,17 @@ import { AssetSelector } from '@/components/author/AssetSelector';
 import { LessonAsset } from '@/types/course';
 
 const STAGE_TYPES = [
-  'warm_up', 'lead_in', 'input', 'comprehension', 'noticing',
-  'practice', 'communicative_use', 'feedback', 'assignment', 'reflection'
+  { value: 'warm_up', label: 'Warm-up' },
+  { value: 'lead_in', label: 'Lead-in' },
+  { value: 'input', label: 'Input' },
+  { value: 'comprehension', label: 'Comprehension' },
+  { value: 'noticing', label: 'Noticing' },
+  { value: 'practice', label: 'Practice' },
+  { value: 'communicative_use', label: 'Communicative Use' },
+  { value: 'feedback', label: 'Feedback' },
+  { value: 'assignment', label: 'Assignment' },
+  { value: 'reflection', label: 'Reflection' },
+  { value: 'custom', label: 'Custom Stage' },
 ];
 
 export default function LessonEditorPage() {
@@ -66,10 +75,15 @@ export default function LessonEditorPage() {
 
   const addStage = async (stageType: string) => {
     if (!lessonId) return;
+    
+    const stageTitle = stageType === 'custom' 
+      ? 'Custom Stage' 
+      : STAGE_TYPES.find(t => t.value === stageType)?.label || stageType;
+    
     await supabase.from('lesson_stages').insert({
       lesson_id: lessonId,
       stage_type: stageType,
-      title: stageType.replace(/_/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase()),
+      title: stageTitle,
       sort_order: stages.length,
     });
     fetchData();
@@ -189,7 +203,7 @@ export default function LessonEditorPage() {
                 </SelectTrigger>
                 <SelectContent>
                   {STAGE_TYPES.map((t) => (
-                    <SelectItem key={t} value={t}>{t.replace(/_/g, ' ')}</SelectItem>
+                    <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -213,6 +227,7 @@ export default function LessonEditorPage() {
                           }}
                           onBlur={() => updateStage(stage.id, 'title', stages[i].title)}
                           className="flex-1"
+                          placeholder="Stage title..."
                         />
                         <Input
                           type="number"
@@ -230,17 +245,34 @@ export default function LessonEditorPage() {
                           <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       </div>
-                      <Textarea
-                        value={stage.instructions || ''}
-                        onChange={(e) => {
-                          const updated = [...stages];
-                          updated[i] = { ...stage, instructions: e.target.value };
-                          setStages(updated);
-                        }}
-                        onBlur={() => updateStage(stage.id, 'instructions', stages[i].instructions)}
-                        placeholder="Instructions for this stage..."
-                        rows={2}
-                      />
+                      
+                      <div className="space-y-2">
+                        <Label className="text-xs text-muted-foreground">Instructions / Description</Label>
+                        <Textarea
+                          value={stage.instructions || ''}
+                          onChange={(e) => {
+                            const updated = [...stages];
+                            updated[i] = { ...stage, instructions: e.target.value };
+                            setStages(updated);
+                          }}
+                          onBlur={() => updateStage(stage.id, 'instructions', stages[i].instructions)}
+                          placeholder="What should students do in this stage? Add instructions, descriptions, or any text content..."
+                          rows={3}
+                          className="resize-y"
+                        />
+                      </div>
+
+                      {stage.id && lessonId && (
+                        <div className="pt-3 border-t border-border">
+                          <AssetSelector
+                            lessonId={lessonId}
+                            stageId={stage.id}
+                            linkedAssets={linkedAssets.filter(a => a.stage_id === stage.id)}
+                            onAssetsChange={fetchData}
+                            compact
+                          />
+                        </div>
+                      )}
                     </CardContent>
                   </Card>
                 ))}
@@ -249,11 +281,11 @@ export default function LessonEditorPage() {
           </CardContent>
         </Card>
 
-        {/* Asset Selector */}
+        {/* Asset Selector for Lesson-Level Assets */}
         {lessonId && (
           <AssetSelector
             lessonId={lessonId}
-            linkedAssets={linkedAssets}
+            linkedAssets={linkedAssets.filter(a => !a.stage_id)}
             onAssetsChange={fetchData}
           />
         )}

@@ -63,6 +63,7 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
           )
         `)
         .eq('lesson_id', lessonId)
+        .is('stage_id', null) // Only fetch lesson-level assets (not stage-specific)
         .order('order_index');
 
       if (data && !error) {
@@ -133,10 +134,10 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
       <CardHeader>
         <CardTitle className="font-display text-lg flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-accent" />
-          Reference Materials
+          Additional Reference Materials
         </CardTitle>
         <p className="text-sm text-muted-foreground">
-          Grammar and vocabulary resources for this lesson
+          General resources for this lesson (available across all stages)
         </p>
       </CardHeader>
       <CardContent className="space-y-3">
