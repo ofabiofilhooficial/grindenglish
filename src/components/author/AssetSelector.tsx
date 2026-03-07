@@ -13,19 +13,24 @@ import { useToast } from '@/hooks/use-toast';
 import { LessonAsset } from '@/types/course';
 
 interface AssetSelectorProps {
-  lessonId: string;
+  lessonId?: string; // Optional: for lesson-level assets
+  unitId?: string; // Optional: for unit-level assets
   stageId?: string; // Optional: if provided, assets are linked to this stage
   linkedAssets: LessonAsset[];
   onAssetsChange: () => void;
   compact?: boolean; // Optional: compact mode for inline display
 }
 
-export function AssetSelector({ lessonId, stageId, linkedAssets, onAssetsChange, compact = false }: AssetSelectorProps) {
+export function AssetSelector({ lessonId, unitId, stageId, linkedAssets, onAssetsChange, compact = false }: AssetSelectorProps) {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [grammarChapters, setGrammarChapters] = useState<any[]>([]);
   const [lexiconEntries, setLexiconEntries] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const tableName = unitId ? 'unit_assets' : 'lesson_assets';
+  const idField = unitId ? 'unit_id' : 'lesson_id';
+  const idValue = unitId || lessonId;
 
   useEffect(() => {
     fetchAssets();
@@ -62,14 +67,22 @@ export function AssetSelector({ lessonId, stageId, linkedAssets, onAssetsChange,
     assetId: string,
     isRequired: boolean = true
   ) => {
-    const { error } = await supabase.from('lesson_assets' as any).insert({
-      lesson_id: lessonId,
-      stage_id: stageId || null, // Link to stage if provided
+    if (!idValue) return;
+    
+    const insertData: any = {
+      [idField]: idValue,
       asset_type: assetType,
       asset_id: assetId,
       is_required: isRequired,
       order_index: linkedAssets.length,
-    });
+    };
+    
+    // Only add stage_id for lesson assets
+    if (lessonId && stageId) {
+      insertData.stage_id = stageId;
+    }
+    
+    const { error } = await supabase.from(tableName as any).insert(insertData);
 
     if (error) {
       toast({
@@ -78,14 +91,15 @@ export function AssetSelector({ lessonId, stageId, linkedAssets, onAssetsChange,
         variant: 'destructive',
       });
     } else {
-      toast({ title: `Asset linked to ${stageId ? 'stage' : 'lesson'}` });
+      const context = unitId ? 'unit' : stageId ? 'stage' : 'lesson';
+      toast({ title: `Asset linked to ${context}` });
       onAssetsChange();
     }
   };
 
   const unlinkAsset = async (assetLinkId: string) => {
     const { error } = await supabase
-      .from('lesson_assets' as any)
+      .from(tableName as any)
       .delete()
       .eq('id', assetLinkId);
 

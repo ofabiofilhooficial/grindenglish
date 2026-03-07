@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ArrowLeft, Save, Plus, GripVertical, ChevronRight, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { AssetSelector } from '@/components/author/AssetSelector';
 
 export default function UnitEditorPage() {
   const { unitId } = useParams<{ unitId: string }>();
@@ -20,18 +21,21 @@ export default function UnitEditorPage() {
   const [saving, setSaving] = useState(false);
   const [unit, setUnit] = useState<any>(null);
   const [lessons, setLessons] = useState<any[]>([]);
+  const [unitAssets, setUnitAssets] = useState<any[]>([]);
   const [newLessonTitle, setNewLessonTitle] = useState('');
   const [newLessonType, setNewLessonType] = useState('listening');
 
   const fetchData = async () => {
     if (!unitId) return;
     setLoading(true);
-    const [unitRes, lessonsRes] = await Promise.all([
+    const [unitRes, lessonsRes, assetsRes] = await Promise.all([
       supabase.from('units').select('*').eq('id', unitId).single(),
       supabase.from('lessons').select('*').eq('unit_id', unitId).order('sort_order'),
+      supabase.from('unit_assets' as any).select('*').eq('unit_id', unitId).order('order_index'),
     ]);
     if (unitRes.data) setUnit(unitRes.data);
     if (lessonsRes.data) setLessons(lessonsRes.data);
+    if (assetsRes.data) setUnitAssets(assetsRes.data);
     setLoading(false);
   };
 
@@ -233,8 +237,21 @@ export default function UnitEditorPage() {
 
           <TabsContent value="targets" className="space-y-4 mt-4">
             <Card>
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground">Link vocabulary, grammar chapters, pronunciation targets, and pragmatics packs to this unit. Create content in the respective managers first, then link them here.</p>
+              <CardHeader>
+                <CardTitle className="font-display text-lg">Unit Learning Targets</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Link grammar chapters and vocabulary that students should study before starting the lessons in this unit.
+                  These resources will be available in the unit overview for pre-study.
+                </p>
+              </CardHeader>
+              <CardContent>
+                {unitId && (
+                  <AssetSelector
+                    unitId={unitId}
+                    linkedAssets={unitAssets}
+                    onAssetsChange={fetchData}
+                  />
+                )}
               </CardContent>
             </Card>
           </TabsContent>
