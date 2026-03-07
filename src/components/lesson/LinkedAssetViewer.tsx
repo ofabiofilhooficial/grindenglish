@@ -69,14 +69,14 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
   };
 
   const markAssetAsViewed = async (assetId: string) => {
-    const asset = assets.find((a) => a.asset_id === assetId);
+    const asset = assets.find((a) => a.id === assetId); // Use a.id not a.asset_id
     if (!asset || viewedAssets.has(assetId)) return;
 
     const viewTimer = viewTimers.current.get(assetId);
     const duration = viewTimer ? Math.floor((Date.now() - viewTimer.start) / 1000) : 0;
 
     // Track the view
-    await trackAssetView(lessonId, assetId, asset.asset_type, duration);
+    await trackAssetView(lessonId, asset.asset_id, asset.asset_type, duration);
 
     // Update local state
     setViewedAssets((prev) => new Set(prev).add(assetId));
@@ -121,9 +121,12 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
       <CardContent className="space-y-3">
         {assets.map((asset) => {
           const isGrammar = asset.asset_type === 'grammar';
-          const content = isGrammar ? asset.grammar_chapters : asset.lexicon_entries;
-          const isExpanded = expandedAsset === asset.asset_id;
-          const isViewed = viewedAssets.has(asset.asset_id);
+          // The view returns grammar_chapter and lexicon_entry as JSONB objects
+          const content = isGrammar ? asset.grammar_chapter : asset.lexicon_entry;
+          const isExpanded = expandedAsset === asset.id; // Use asset.id not asset.asset_id
+          const isViewed = viewedAssets.has(asset.id);
+
+          if (!content) return null; // Skip if no content
 
           return (
             <Card
@@ -137,7 +140,7 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
               <CardContent className="p-4">
                 <div
                   className="flex items-center justify-between cursor-pointer"
-                  onClick={() => handleAssetExpand(asset.asset_id)}
+                  onClick={() => handleAssetExpand(asset.id)}
                 >
                   <div className="flex items-center gap-3 flex-1">
                     {isGrammar ? (
@@ -148,14 +151,14 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <p className="text-sm font-medium truncate">
-                          {isGrammar ? content?.title : content?.headword}
+                          {isGrammar ? content.title : content.headword}
                         </p>
-                        {isGrammar && content?.chapter_code && (
+                        {isGrammar && content.chapter_code && (
                           <Badge variant="outline" className="text-xs">
                             {content.chapter_code}
                           </Badge>
                         )}
-                        {!isGrammar && content?.pos && (
+                        {!isGrammar && content.pos && (
                           <Badge variant="outline" className="text-xs">
                             {content.pos}
                           </Badge>
@@ -190,7 +193,7 @@ export function LinkedAssetViewer({ lessonId, onAssetViewed }: LinkedAssetViewer
                         {content.meaning_content && (
                           <div>
                             <h4 className="font-medium text-sm mb-2">Meaning</h4>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
                               {content.meaning_content}
                             </p>
                           </div>

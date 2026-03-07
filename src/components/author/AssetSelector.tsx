@@ -147,17 +147,21 @@ export function AssetSelector({ lessonId, unitId, stageId, linkedAssets, onAsset
             <div className="space-y-1">
               {linkedAssets.map((asset) => {
                 // Find the actual asset data
+                // Handle both camelCase (TypeScript) and snake_case (database)
+                const assetType = asset.assetType || asset.asset_type;
+                const assetId = asset.assetId || asset.asset_id;
+                
                 let assetTitle = 'Loading...';
                 let assetCode = '';
                 
-                if (asset.assetType === 'grammar') {
-                  const grammarAsset = grammarChapters.find(g => g.id === asset.assetId);
+                if (assetType === 'grammar') {
+                  const grammarAsset = grammarChapters.find(g => g.id === assetId);
                   if (grammarAsset) {
                     assetTitle = grammarAsset.title;
                     assetCode = grammarAsset.chapter_code;
                   }
-                } else if (asset.assetType === 'vocabulary') {
-                  const vocabAsset = lexiconEntries.find(l => l.id === asset.assetId);
+                } else if (assetType === 'vocabulary') {
+                  const vocabAsset = lexiconEntries.find(l => l.id === assetId);
                   if (vocabAsset) {
                     assetTitle = vocabAsset.headword;
                     assetCode = vocabAsset.pos || '';
@@ -170,7 +174,7 @@ export function AssetSelector({ lessonId, unitId, stageId, linkedAssets, onAsset
                     className={`flex items-center justify-between bg-secondary/50 rounded-lg ${compact ? 'p-1.5' : 'p-2'}`}
                   >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
-                      {asset.assetType === 'grammar' ? (
+                      {assetType === 'grammar' ? (
                         <BookOpen className="h-3 w-3 text-primary flex-shrink-0" />
                       ) : (
                         <Languages className="h-3 w-3 text-accent flex-shrink-0" />

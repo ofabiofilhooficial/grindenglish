@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { VocabularyPractice } from './VocabularyPractice';
 import { 
   Target, 
   Lightbulb, 
@@ -15,10 +16,50 @@ import {
 
 interface StageContentViewerProps {
   stage: any; // The lesson_stage object with content JSONB
+  lessonId?: string;
+  onStageComplete?: () => void;
 }
 
-export function StageContentViewer({ stage }: StageContentViewerProps) {
+export function StageContentViewer({ stage, lessonId, onStageComplete }: StageContentViewerProps) {
   const content = stage.content || {};
+
+  // Special handling for Stage 0 (Retrieval) - Interactive vocabulary practice
+  if (stage.stage_type === 'warm_up' && content.prompts && lessonId) {
+    const vocabularyItems = [
+      { id: '1', prompt: 'Oi', expected: ['hi', 'hello'], headword: 'hi' },
+      { id: '2', prompt: 'Bom dia', expected: ['good morning'], headword: 'good morning' },
+      { id: '3', prompt: 'Boa tarde', expected: ['good afternoon'], headword: 'good afternoon' },
+    ];
+
+    return (
+      <div className="space-y-4">
+        {content.objective && (
+          <Alert className="border-primary/20 bg-primary/5">
+            <Target className="h-4 w-4 text-primary" />
+            <AlertDescription className="text-sm">
+              <span className="font-semibold">Objective: </span>
+              {content.objective}
+            </AlertDescription>
+          </Alert>
+        )}
+
+        <VocabularyPractice 
+          items={vocabularyItems}
+          onComplete={onStageComplete || (() => {})}
+          lessonId={lessonId}
+        />
+
+        {content.student_action && (
+          <Alert>
+            <Lightbulb className="h-4 w-4" />
+            <AlertDescription className="text-sm">
+              {content.student_action}
+            </AlertDescription>
+          </Alert>
+        )}
+      </div>
+    );
+  }
 
   // If no structured content, show instructions only
   if (!content || Object.keys(content).length === 0) {
@@ -392,8 +433,8 @@ export function StageContentViewer({ stage }: StageContentViewerProps) {
         </CardContent>
       </Card>
 
-      {/* Teacher Notes (only show for teachers/authors) */}
-      {content.teacher_notes && (
+      {/* Teacher Notes - Hidden from students */}
+      {false && content.teacher_notes && (
         <Alert className="border-muted bg-muted/30">
           <AlertDescription className="text-xs text-muted-foreground">
             <span className="font-semibold">Teacher Notes: </span>

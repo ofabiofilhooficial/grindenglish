@@ -56,10 +56,10 @@ export function StageAssetViewer({ lessonId, stageId, onAssetViewed }: StageAsse
   };
 
   const markAssetAsViewed = async (assetId: string) => {
-    const asset = assets.find((a) => a.asset_id === assetId);
+    const asset = assets.find((a) => a.id === assetId); // Use a.id
     if (!asset || viewedAssets.has(assetId)) return;
 
-    await trackAssetView(lessonId, assetId, asset.asset_type, 3);
+    await trackAssetView(lessonId, asset.asset_id, asset.asset_type, 3);
     setViewedAssets((prev) => new Set(prev).add(assetId));
     onAssetViewed?.(assetId);
   };
@@ -84,9 +84,12 @@ export function StageAssetViewer({ lessonId, stageId, onAssetViewed }: StageAsse
       </div>
       {assets.map((asset) => {
         const isGrammar = asset.asset_type === 'grammar';
-        const content = isGrammar ? asset.grammar_chapters : asset.lexicon_entries;
-        const isExpanded = expandedAsset === asset.asset_id;
-        const isViewed = viewedAssets.has(asset.asset_id);
+        // The view returns grammar_chapter and lexicon_entry as JSONB objects
+        const content = isGrammar ? asset.grammar_chapter : asset.lexicon_entry;
+        const isExpanded = expandedAsset === asset.id; // Use asset.id
+        const isViewed = viewedAssets.has(asset.id);
+
+        if (!content) return null;
 
         return (
           <Card
@@ -100,7 +103,7 @@ export function StageAssetViewer({ lessonId, stageId, onAssetViewed }: StageAsse
             <CardContent className="p-3">
               <div
                 className="flex items-center justify-between cursor-pointer"
-                onClick={() => handleAssetExpand(asset.asset_id)}
+                onClick={() => handleAssetExpand(asset.id)}
               >
                 <div className="flex items-center gap-2 flex-1">
                   {isGrammar ? (

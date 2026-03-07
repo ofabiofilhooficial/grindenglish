@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { LinkedAssetViewer } from '@/components/lesson/LinkedAssetViewer';
 import { StageAssetViewer } from '@/components/lesson/StageAssetViewer';
 import { StageContentViewer } from '@/components/lesson/StageContentViewer';
+import { useStageCompletion } from '@/hooks/useStageCompletion';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   ArrowLeft,
@@ -16,6 +17,7 @@ import {
   CheckCircle2,
   Clock,
   Target,
+  Lock,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -67,6 +69,41 @@ export default function LessonPlayerPage() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [showTranscript, setShowTranscript] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  
+  // Stage completion tracking
+  const { completedStages, completeStage, isStageComplete, getCompletionCount } = useStageCompletion(lessonId);
+
+  // Calculate stage status based on completion
+  const getStageStatus = (index: number): StageStatus => {
+    if (!stages[index]) return 'locked';
+    
+    // Check if stage is complete
+    if (isStageComplete(stages[index].id)) return 'complete';
+    
+    // First stage is always available
+    if (index === 0) return 'current';
+    
+    // Other stages unlock when previous stage is complete
+    if (index > 0 && isStageComplete(stages[index - 1].id)) {
+      return 'current';
+    }
+    
+    return 'locked';
+  };
+
+  // Handle stage completion
+  const handleCompleteStage = async () => {
+    if (!stages[currentStage]) return;
+    
+    const success = await completeStage(stages[currentStage].id);
+    
+    if (success) {
+      // Move to next stage if available
+      if (currentStage < stages.length - 1) {
+        setCurrentStage(currentStage + 1);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -160,8 +197,8 @@ export default function LessonPlayerPage() {
     );
   }
 
-  const completedStages = stages.filter((s, i) => i < currentStage).length;
-  const progress = stages.length > 0 ? Math.round((completedStages / stages.length) * 100) : 0;
+  const completedCount = getCompletionCount();
+  const progress = stages.length > 0 ? Math.round((completedCount / stages.length) * 100) : 0;
 
   return (
     <div className="min-h-screen bg-background">
@@ -203,11 +240,16 @@ export default function LessonPlayerPage() {
             ) : (
               <div className="space-y-1">
                 {stages.map((stage, index) => {
-                  const status = index < currentStage ? 'complete' : index === currentStage ? 'current' : 'locked';
+                  const status = getStageStatus(index);
                   return (
                     <button
                       key={stage.id}
-                      onClick={() => status !== 'locked' && setCurrentStage(index)}
+                      onClick={() => {
+                        const stageStatus = getStageStatus(index);
+                        if (stageStatus !== 'locked') {
+                          setCurrentStage(index);
+                        }
+                      }}
                       disabled={status === 'locked'}
                       className={cn(
                         "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all",
@@ -224,6 +266,8 @@ export default function LessonPlayerPage() {
                       )}>
                         {status === 'complete' ? (
                           <CheckCircle2 className="h-4 w-4" />
+                        ) : status === 'locked' ? (
+                          <Lock className="h-3 w-3" />
                         ) : (
                           index + 1
                         )}
@@ -274,7 +318,11 @@ export default function LessonPlayerPage() {
 
               {/* Stage Content - Using new StageContentViewer */}
               <div className="mb-6">
-                <StageContentViewer stage={stages[currentStage]} />
+                <StageContentViewer 
+                  stage={stages[currentStage]} 
+                  lessonId={lessonId}
+                  onStageComplete={handleCompleteStage}
+                />
               </div>
 
               {/* Stage-Specific Assets */}
@@ -314,14 +362,44 @@ export default function LessonPlayerPage() {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Previous
             </Button>
-            <Button 
-              className="bg-gradient-primary hover:opacity-90"
-              disabled={currentStage >= stages.length - 1}
-              onClick={() => setCurrentStage(Math.min(stages.length - 1, currentStage + 1))}
-            >
-              {currentStage >= stages.length - 1 ? 'Complete Lesson' : 'Next Stage'}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            
+            <div className="flex items-center gap-2">
+              {/* Show complete button if stage not yet complete */}
+              {stages[currentStage] && !isStageComplete(stages[currentStage]?.id) && (
+                <Button 
+                  onClick={handleCompleteStage}
+                  className="bg-gradient-primary hover:opacity-90"
+                >
+                  <CheckCircle2 className="mr-2 h-4 w-4" />
+                  Complete Stage
+                </Button>
+              )}
+              
+              {/* Show next button if current stage is complete */}
+              {stages[currentStage] && isStageComplete(stages[currentStage]?.id) && currentStage < stages.length - 1 && (
+                <Button 
+                  onClick={() => setCurrentStage(currentStage + 1)}
+                  className="bg-gradient-primary hover:opacity-90"
+                >
+                  Next Stage
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              )}
+              
+              {/* Show finish button on last stage if complete */}
+              {stages[currentStage] && isStageComplete(stages[currentStage]?.id) && currentStage === stages.length - 1 && (
+                <Button 
+                  onClick={() => {
+                    // Navigate back to unit
+                    window.location.href = `/course/${level}/${unitId}`;
+                  }}
+                  className="bg-gradient-primary hover:opacity-90"
+                >
+                  <CheckCircle2 className="mr-2 h-4 w-4" />
+                  Finish Lesson
+                </Button>
+              )}
+            </div>
           </div>
         </main>
       </div>
