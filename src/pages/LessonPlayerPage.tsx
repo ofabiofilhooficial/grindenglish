@@ -1,34 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { LevelBadge } from '@/components/ui/level-badge';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
 import { LinkedAssetViewer } from '@/components/lesson/LinkedAssetViewer';
 import { StageAssetViewer } from '@/components/lesson/StageAssetViewer';
+import { StageContentViewer } from '@/components/lesson/StageContentViewer';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   ArrowLeft,
   ArrowRight,
-  Play,
-  Pause,
-  Volume2,
   CheckCircle2,
-  Circle,
-  Lightbulb,
-  ChevronRight,
   Clock,
   Target,
-  RotateCcw,
-  Mic,
-  Square
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -271,12 +258,12 @@ export default function LessonPlayerPage() {
               </div>
 
               {/* Learning Goals */}
-              {lesson.goal && (
+              {lesson.goal && currentStage === 0 && (
                 <Card className="mb-6 bg-primary/5 border-primary/20">
                   <CardContent className="p-4 flex items-start gap-3">
                     <Target className="h-5 w-5 text-primary mt-0.5" />
                     <div>
-                      <p className="font-medium text-sm">Learning Goal</p>
+                      <p className="font-medium text-sm">Lesson Goal</p>
                       <p className="text-sm text-muted-foreground">
                         {lesson.goal}
                       </p>
@@ -285,22 +272,10 @@ export default function LessonPlayerPage() {
                 </Card>
               )}
 
-              {/* Stage Content */}
-              <Card className="mb-6">
-                <CardContent className="p-6">
-                  {stages[currentStage].instructions ? (
-                    <div className="prose prose-sm max-w-none">
-                      <div className="whitespace-pre-wrap text-foreground">
-                        {stages[currentStage].instructions}
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="text-muted-foreground text-center py-8">
-                      No content defined for this stage yet.
-                    </p>
-                  )}
-                </CardContent>
-              </Card>
+              {/* Stage Content - Using new StageContentViewer */}
+              <div className="mb-6">
+                <StageContentViewer stage={stages[currentStage]} />
+              </div>
 
               {/* Stage-Specific Assets */}
               {stages[currentStage].id && (
