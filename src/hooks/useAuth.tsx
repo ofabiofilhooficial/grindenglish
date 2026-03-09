@@ -22,6 +22,9 @@ interface AuthContextType {
   isTeacher: boolean;
   isAdmin: boolean;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithLinkedIn: () => Promise<void>;
+  signInWithGitHub: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,8 +88,61 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setRoles([]);
   };
 
+  const signInWithGoogle = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    
+    if (error) {
+      throw error;
+    }
+  };
+
+  const signInWithLinkedIn = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'linkedin_oidc',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    
+    if (error) {
+      throw error;
+    }
+  };
+
+  const signInWithGitHub = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    
+    if (error) {
+      throw error;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, session, profile, roles, loading, hasRole, isContentCreator, isTeacher, isAdmin, signOut }}>
+    <AuthContext.Provider value={{ 
+      user, 
+      session, 
+      profile, 
+      roles, 
+      loading, 
+      hasRole, 
+      isContentCreator, 
+      isTeacher, 
+      isAdmin, 
+      signOut,
+      signInWithGoogle,
+      signInWithLinkedIn,
+      signInWithGitHub,
+    }}>
       {children}
     </AuthContext.Provider>
   );
