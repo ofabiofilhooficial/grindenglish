@@ -16,6 +16,7 @@ import UnitPage from "./pages/UnitPage";
 import LessonPlayerPage from "./pages/LessonPlayerPage";
 import NotFound from "./pages/NotFound";
 import ProgressDashboardPage from "./pages/ProgressDashboardPage";
+import SettingsPage from "./pages/SettingsPage";
 
 // Admin
 import UserManagementPage from "./pages/admin/UserManagementPage";
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/course/:level/:unitId" element={<ProtectedRoute><UnitPage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId/:lessonId" element={<ProtectedRoute><LessonPlayerPage /></ProtectedRoute>} />
             <Route path="/progress" element={<ProtectedRoute><ProgressDashboardPage /></ProtectedRoute>} />
+            <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
 
             {/* Reference */}
             <Route path="/lexicon" element={<ProtectedRoute><VocabularyReferencePage /></ProtectedRoute>} />

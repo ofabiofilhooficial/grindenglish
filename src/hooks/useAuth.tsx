@@ -25,6 +25,7 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<void>;
   signInWithLinkedIn: () => Promise<void>;
   signInWithGitHub: () => Promise<void>;
+  refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -127,6 +128,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const refreshProfile = async () => {
+    if (user?.id) {
+      await fetchUserData(user.id);
+    }
+  };
+
   return (
     <AuthContext.Provider value={{ 
       user, 
@@ -142,6 +149,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       signInWithGoogle,
       signInWithLinkedIn,
       signInWithGitHub,
+      refreshProfile,
     }}>
       {children}
     </AuthContext.Provider>
