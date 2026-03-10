@@ -137,7 +137,7 @@ export default function AdminSettingsPage() {
               </div>
               <div>
                 <p className="text-muted-foreground">Backend</p>
-                <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30">Lovable Cloud</Badge>
+                <Badge variant="outline" className="bg-primary/10 text-primary border-primary/30">Supabase</Badge>
               </div>
               <div>
                 <p className="text-muted-foreground">Database</p>
