@@ -1,0 +1,578 @@
+[
+  {
+    "headword": "a",
+    "cefr_receptive": "A0",
+    "ipa": "ə",
+    "definition_simple": "one (used before a noun)"
+  },
+  {
+    "headword": "an",
+    "cefr_receptive": "A0",
+    "ipa": "ən",
+    "definition_simple": "one (used before a noun that starts with a vowel sound)"
+  },
+  {
+    "headword": "area",
+    "cefr_receptive": "A1",
+    "ipa": "ˈeəriə",
+    "definition_simple": "a region or space"
+  },
+  {
+    "headword": "attention",
+    "cefr_receptive": "A1",
+    "ipa": "əˈtenʃən",
+    "definition_simple": "focus or notice"
+  },
+  {
+    "headword": "available",
+    "cefr_receptive": "A1",
+    "ipa": "əˈveɪləbəl",
+    "definition_simple": "able to be used or obtained"
+  },
+  {
+    "headword": "card",
+    "cefr_receptive": "A1",
+    "ipa": "kɑːrd",
+    "definition_simple": "a piece of stiff paper"
+  },
+  {
+    "headword": "chair",
+    "cefr_receptive": "A0",
+    "ipa": "tʃeər",
+    "definition_simple": "a seat with a back for one person"
+  },
+  {
+    "headword": "check",
+    "cefr_receptive": "A1",
+    "ipa": "tʃek",
+    "definition_simple": "to look at something to verify"
+  },
+  {
+    "headword": "choice",
+    "cefr_receptive": "A1",
+    "ipa": "tʃɔɪs",
+    "definition_simple": "an act of selecting"
+  },
+  {
+    "headword": "coffee",
+    "cefr_receptive": "A1",
+    "ipa": "ˈkɒfi",
+    "definition_simple": "a hot drink made from roasted beans"
+  },
+  {
+    "headword": "community",
+    "cefr_receptive": "A1",
+    "ipa": "kəˈmjuːnəti",
+    "definition_simple": "a group of people living together"
+  },
+  {
+    "headword": "correct",
+    "cefr_receptive": "A1",
+    "ipa": "kəˈrekt",
+    "definition_simple": "right or accurate"
+  },
+  {
+    "headword": "couple",
+    "cefr_receptive": "A1",
+    "ipa": "ˈkʌpəl",
+    "definition_simple": "two people or things"
+  },
+  {
+    "headword": "create",
+    "cefr_receptive": "A1",
+    "ipa": "kriˈeɪt",
+    "definition_simple": "to make something new"
+  },
+  {
+    "headword": "department",
+    "cefr_receptive": "A1",
+    "ipa": "dɪˈpɑːrtmənt",
+    "definition_simple": "a division of an organization"
+  },
+  {
+    "headword": "design",
+    "cefr_receptive": "A1",
+    "ipa": "dɪˈzaɪn",
+    "definition_simple": "to plan how something will look or work"
+  },
+  {
+    "headword": "different",
+    "cefr_receptive": "A1",
+    "ipa": "ˈdɪfrənt",
+    "definition_simple": "not the same"
+  },
+  {
+    "headword": "discuss",
+    "cefr_receptive": "A1",
+    "ipa": "dɪˈskʌs",
+    "definition_simple": "to talk about something"
+  },
+  {
+    "headword": "drink",
+    "cefr_receptive": "A0",
+    "ipa": "drɪŋk",
+    "definition_simple": "to take liquid into your mouth and swallow it"
+  },
+  {
+    "headword": "eight",
+    "cefr_receptive": "A0",
+    "ipa": "eɪt",
+    "definition_simple": "the number 8"
+  },
+  {
+    "headword": "exact",
+    "cefr_receptive": "A1",
+    "ipa": "ɪɡˈzækt",
+    "definition_simple": "precise"
+  },
+  {
+    "headword": "final",
+    "cefr_receptive": "A1",
+    "ipa": "ˈfaɪnəl",
+    "definition_simple": "last"
+  },
+  {
+    "headword": "five",
+    "cefr_receptive": "A0",
+    "ipa": "faɪv",
+    "definition_simple": "the number 5"
+  },
+  {
+    "headword": "four",
+    "cefr_receptive": "A0",
+    "ipa": "fɔːr",
+    "definition_simple": "the number 4"
+  },
+  {
+    "headword": "fresh",
+    "cefr_receptive": "A1",
+    "ipa": "freʃ",
+    "definition_simple": "new or recently made"
+  },
+  {
+    "headword": "girl",
+    "cefr_receptive": "A0",
+    "ipa": "ɡɜːrl",
+    "definition_simple": "a female child"
+  },
+  {
+    "headword": "government",
+    "cefr_receptive": "A1",
+    "ipa": "ˈɡʌvərnmənt",
+    "definition_simple": "the group that controls a country"
+  },
+  {
+    "headword": "hospital",
+    "cefr_receptive": "A1",
+    "ipa": "ˈhɒspɪtəl",
+    "definition_simple": "a place for medical treatment"
+  },
+  {
+    "headword": "hotel",
+    "cefr_receptive": "A1",
+    "ipa": "həʊˈtel",
+    "definition_simple": "a place providing accommodation"
+  },
+  {
+    "headword": "however",
+    "cefr_receptive": "A1",
+    "ipa": "haʊˈevər",
+    "definition_simple": "despite this"
+  },
+  {
+    "headword": "I",
+    "cefr_receptive": "A0",
+    "ipa": "aɪ",
+    "definition_simple": "the person who is speaking or writing"
+  },
+  {
+    "headword": "important",
+    "cefr_receptive": "A1",
+    "ipa": "ɪmˈpɔːrtənt",
+    "definition_simple": "having great value or significance"
+  },
+  {
+    "headword": "improve",
+    "cefr_receptive": "A1",
+    "ipa": "ɪmˈpruːv",
+    "definition_simple": "to make better"
+  },
+  {
+    "headword": "industry",
+    "cefr_receptive": "A1",
+    "ipa": "ˈɪndəstri",
+    "definition_simple": "economic activity or sector"
+  },
+  {
+    "headword": "judge",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "key",
+    "cefr_receptive": "A1",
+    "ipa": "kiː",
+    "definition_simple": "a device for opening locks"
+  },
+  {
+    "headword": "list",
+    "cefr_receptive": "A1",
+    "ipa": "lɪst",
+    "definition_simple": "a series of items written down"
+  },
+  {
+    "headword": "manage",
+    "cefr_receptive": "A1",
+    "ipa": "ˈmænɪdʒ",
+    "definition_simple": "to be in charge of"
+  },
+  {
+    "headword": "meeting",
+    "cefr_receptive": "A1",
+    "ipa": "ˈmiːtɪŋ",
+    "definition_simple": "a gathering of people for discussion"
+  },
+  {
+    "headword": "method",
+    "cefr_receptive": "A1",
+    "ipa": "ˈmeθəd",
+    "definition_simple": "a way of doing something"
+  },
+  {
+    "headword": "moon",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "news",
+    "cefr_receptive": "A1",
+    "ipa": "njuːz",
+    "definition_simple": "information about recent events"
+  },
+  {
+    "headword": "nice",
+    "cefr_receptive": "A0",
+    "ipa": "naɪs",
+    "definition_simple": "pleasant or good"
+  },
+  {
+    "headword": "nine",
+    "cefr_receptive": "A0",
+    "ipa": "naɪn",
+    "definition_simple": "the number 9"
+  },
+  {
+    "headword": "on",
+    "cefr_receptive": "A0",
+    "ipa": "ɒn",
+    "definition_simple": "touching the surface of something"
+  },
+  {
+    "headword": "only",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "out of",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pair",
+    "cefr_receptive": "A1",
+    "ipa": "peər",
+    "definition_simple": "two things used together"
+  },
+  {
+    "headword": "parent",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpeərənt",
+    "definition_simple": "a mother or father"
+  },
+  {
+    "headword": "park",
+    "cefr_receptive": "A1",
+    "ipa": "pɑːrk",
+    "definition_simple": "a public green space"
+  },
+  {
+    "headword": "particular",
+    "cefr_receptive": "A1",
+    "ipa": "pərˈtɪkjələr",
+    "definition_simple": "specific"
+  },
+  {
+    "headword": "path",
+    "cefr_receptive": "A1",
+    "ipa": "pɑːθ",
+    "definition_simple": "a way or track"
+  },
+  {
+    "headword": "pattern",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpætərn",
+    "definition_simple": "a repeated design or sequence"
+  },
+  {
+    "headword": "perform",
+    "cefr_receptive": "A1",
+    "ipa": "pərˈfɔːrm",
+    "definition_simple": "to do an action or task"
+  },
+  {
+    "headword": "period",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpɪəriəd",
+    "definition_simple": "a length of time"
+  },
+  {
+    "headword": "physical",
+    "cefr_receptive": "A1",
+    "ipa": "ˈfɪzɪkəl",
+    "definition_simple": "relating to the body or material world"
+  },
+  {
+    "headword": "policy",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpɒləsi",
+    "definition_simple": "a plan or rule"
+  },
+  {
+    "headword": "practice",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpræktɪs",
+    "definition_simple": "repeated exercise or custom"
+  },
+  {
+    "headword": "pressure",
+    "cefr_receptive": "A1",
+    "ipa": "ˈpreʃər",
+    "definition_simple": "force or stress"
+  },
+  {
+    "headword": "property",
+    "cefr_receptive": "A1",
+    "ipa": "ˈprɒpərti",
+    "definition_simple": "a building or land"
+  },
+  {
+    "headword": "question",
+    "cefr_receptive": "A1",
+    "ipa": "ˈkwestʃən",
+    "definition_simple": "a sentence asking for information"
+  },
+  {
+    "headword": "quick",
+    "cefr_receptive": "A1",
+    "ipa": "kwɪk",
+    "definition_simple": "fast"
+  },
+  {
+    "headword": "range",
+    "cefr_receptive": "A1",
+    "ipa": "reɪndʒ",
+    "definition_simple": "a variety or extent"
+  },
+  {
+    "headword": "region",
+    "cefr_receptive": "A1",
+    "ipa": "ˈriːdʒən",
+    "definition_simple": "an area of a country or world"
+  },
+  {
+    "headword": "require",
+    "cefr_receptive": "A1",
+    "ipa": "rɪˈkwaɪər",
+    "definition_simple": "to need something"
+  },
+  {
+    "headword": "sale",
+    "cefr_receptive": "A1",
+    "ipa": "seɪl",
+    "definition_simple": "the act of selling"
+  },
+  {
+    "headword": "section",
+    "cefr_receptive": "A1",
+    "ipa": "ˈsekʃən",
+    "definition_simple": "a part of something"
+  },
+  {
+    "headword": "service",
+    "cefr_receptive": "A1",
+    "ipa": "ˈsɜːrvɪs",
+    "definition_simple": "help or work provided"
+  },
+  {
+    "headword": "seven",
+    "cefr_receptive": "A0",
+    "ipa": "sevən",
+    "definition_simple": "the number 7"
+  },
+  {
+    "headword": "shop",
+    "cefr_receptive": "A0",
+    "ipa": "ʃɒp",
+    "definition_simple": "a place where you buy things"
+  },
+  {
+    "headword": "similar",
+    "cefr_receptive": "A1",
+    "ipa": "ˈsɪmələr",
+    "definition_simple": "alike but not the same"
+  },
+  {
+    "headword": "six",
+    "cefr_receptive": "A0",
+    "ipa": "sɪks",
+    "definition_simple": "the number 6"
+  },
+  {
+    "headword": "social",
+    "cefr_receptive": "A1",
+    "ipa": "ˈsəʊʃəl",
+    "definition_simple": "relating to society or interaction"
+  },
+  {
+    "headword": "stream",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "student",
+    "cefr_receptive": "A0",
+    "ipa": "ˈstuːdənt",
+    "definition_simple": "a person who is learning"
+  },
+  {
+    "headword": "tax",
+    "cefr_receptive": "A1",
+    "ipa": "tæks",
+    "definition_simple": "money paid to government"
+  },
+  {
+    "headword": "tea",
+    "cefr_receptive": "A1",
+    "ipa": "tiː",
+    "definition_simple": "a hot drink made from leaves"
+  },
+  {
+    "headword": "teacher",
+    "cefr_receptive": "A0",
+    "ipa": "ˈtiːtʃər",
+    "definition_simple": "a person who teaches"
+  },
+  {
+    "headword": "ten",
+    "cefr_receptive": "A0",
+    "ipa": "ten",
+    "definition_simple": "the number 10"
+  },
+  {
+    "headword": "thank",
+    "cefr_receptive": "A0",
+    "ipa": "θæŋk",
+    "definition_simple": "to tell someone you are grateful"
+  },
+  {
+    "headword": "those",
+    "cefr_receptive": "A0",
+    "ipa": "ðəʊz",
+    "definition_simple": "used to talk about things far or not present (plural)"
+  },
+  {
+    "headword": "three",
+    "cefr_receptive": "A0",
+    "ipa": "θriː",
+    "definition_simple": "the number 3"
+  },
+  {
+    "headword": "title",
+    "cefr_receptive": "A1",
+    "ipa": "ˈtaɪtəl",
+    "definition_simple": "a name or position"
+  },
+  {
+    "headword": "tomorrow",
+    "cefr_receptive": "A1",
+    "ipa": "təˈmɒrəʊ",
+    "definition_simple": "the day after today"
+  },
+  {
+    "headword": "tonight",
+    "cefr_receptive": "A1",
+    "ipa": "təˈnaɪt",
+    "definition_simple": "the night of today"
+  },
+  {
+    "headword": "toward/s",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "true",
+    "cefr_receptive": "A1",
+    "ipa": "truː",
+    "definition_simple": "accurate or genuine"
+  },
+  {
+    "headword": "two",
+    "cefr_receptive": "A0",
+    "ipa": "tuː",
+    "definition_simple": "the number 2"
+  },
+  {
+    "headword": "unit",
+    "cefr_receptive": "A1",
+    "ipa": "ˈjuːnɪt",
+    "definition_simple": "a single thing or group"
+  },
+  {
+    "headword": "unless",
+    "cefr_receptive": "A1",
+    "ipa": "ənˈles",
+    "definition_simple": "except if"
+  },
+  {
+    "headword": "wage",
+    "cefr_receptive": "A1",
+    "ipa": "weɪdʒ",
+    "definition_simple": "payment for work"
+  },
+  {
+    "headword": "warm",
+    "cefr_receptive": "A1",
+    "ipa": "wɔːrm",
+    "definition_simple": "moderately hot"
+  },
+  {
+    "headword": "wash",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "weather",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wet",
+    "cefr_receptive": "A1",
+    "ipa": "wet",
+    "definition_simple": "covered with water"
+  },
+  {
+    "headword": "your",
+    "cefr_receptive": "A0",
+    "ipa": "jɔːr",
+    "definition_simple": "belonging to the person you are speaking to"
+  }
+]

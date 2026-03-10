@@ -1,0 +1,80 @@
+================================================================================
+VOCABULARY MIGRATION PROGRESS REPORT
+================================================================================
+Generated: 10/03/2026, 14:17:32
+
+OVERALL PROGRESS
+--------------------------------------------------------------------------------
+Total Batches: 7
+Applied Batches: 7/7
+Completed Words: 42/1000
+Overall Completion: 4%
+
+COMPLETION BY CEFR LEVEL
+--------------------------------------------------------------------------------
+A0: 16% ⚠ IN PROGRESS
+A1: 14% ⚠ IN PROGRESS
+
+BATCH DETAILS
+--------------------------------------------------------------------------------
+[✓] Batch 1: A0 Pronouns and Basic Verbs
+    Pronouns, basic verbs (be, have, do, go, come, get, make, take, etc.)
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000002_enhance_gsl_vocabulary_batch_1.sql
+    Missing: boy, girl, father, mother, brother, sister, home, house, room, door...
+
+[✓] Batch 2: A0 Common Nouns and Adjectives
+    Common nouns (time, person, year, way, day, etc.) and basic adjectives
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000003_enhance_gsl_vocabulary_batch_2.sql
+    Missing: boy, girl, father, mother, brother, sister, home, house, room, door...
+
+[✓] Batch 3: A0 Prepositions, Determiners, Conjunctions
+    Prepositions, determiners, conjunctions, and function words
+    Progress: [██████░░░░░░░░░░░░░░░░░░░░░░░░] 21%
+    Completed: 21/100 words
+    Migration: 20260310000004_enhance_gsl_vocabulary_batch_3.sql
+    Missing: boy, girl, father, mother, brother, sister, home, house, room, door...
+
+[✓] Batch 4: A1 Work and Business Vocabulary
+    Work-related nouns, professional verbs, business concepts
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000005_enhance_gsl_vocabulary_batch_4_a1_work.sql
+    Missing: able, accord, across, act, actual, admit, adopt, advance, affair, afford...
+
+[✓] Batch 5: A1 Communication and Technology
+    Communication verbs, technology nouns, communication concepts
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000006_enhance_gsl_vocabulary_batch_5_a1_communication.sql
+    Missing: able, accord, across, act, actual, admit, adopt, advance, affair, afford...
+
+[✓] Batch 6: A1 Time and Quantity
+    Time expressions, quantity words, temporal concepts
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000007_enhance_gsl_vocabulary_batch_6_a1_time_quantity.sql
+    Missing: able, accord, across, act, actual, admit, adopt, advance, affair, afford...
+
+[✓] Batch 7: A1 Remaining High-Frequency Words
+    Modal verbs, common verbs, common adjectives
+    Progress: [████░░░░░░░░░░░░░░░░░░░░░░░░░░] 14%
+    Completed: 21/150 words
+    Migration: 20260310000008_enhance_gsl_vocabulary_batch_7_a1_remaining.sql
+    Missing: able, accord, across, act, actual, admit, adopt, advance, affair, afford...
+
+NEXT STEPS
+--------------------------------------------------------------------------------
+The following batches need attention:
+  - Complete batch 1: A0 Pronouns and Basic Verbs (14%)
+  - Complete batch 2: A0 Common Nouns and Adjectives (14%)
+  - Complete batch 3: A0 Prepositions, Determiners, Conjunctions (21%)
+  - Complete batch 4: A1 Work and Business Vocabulary (14%)
+  - Complete batch 5: A1 Communication and Technology (14%)
+  - Complete batch 6: A1 Time and Quantity (14%)
+  - Complete batch 7: A1 Remaining High-Frequency Words (14%)
+
+================================================================================

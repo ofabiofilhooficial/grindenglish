@@ -1,0 +1,242 @@
+[
+  {
+    "headword": "bed",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "book",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "boy",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "bread",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "brother",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "car",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "chair",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "child",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "city",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "cold",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "country",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "door",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "eye",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "family",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "father",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "fine",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "food",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "friend",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "girl",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "hand",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "happy",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "head",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "home",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "hot",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "house",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "left",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "long",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "man",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "money",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "mother",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "near",
+    "pos": "prep",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "nice",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "of",
+    "pos": "prep",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "people",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "person",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "room",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "school",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "shop",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "short",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "sister",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "street",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "student",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "table",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "teacher",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "water",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "window",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "woman",
+    "pos": "noun",
+    "cefr_receptive": "A0"
+  },
+  {
+    "headword": "young",
+    "pos": "adj",
+    "cefr_receptive": "A0"
+  }
+]

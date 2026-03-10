@@ -1,0 +1,4076 @@
+[
+  {
+    "headword": "able",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "accord",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "across",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "act",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "actual",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "admit",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "adopt",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "advance",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "affair",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "afford",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ago",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "air",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "almost",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "alone",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "along",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "always",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ancient",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "animal",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "appoint",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "arise",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "arm",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "army",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "around",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "art",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "article",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "association",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "attack",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "average",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "away",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "back",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ball",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bank",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bar",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "battle",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bear",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "beauty",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "behind",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "being",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "below",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "beneath",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "beside",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "best",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "better",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "beyond",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bill",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bird",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bit",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "blood",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "blow",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "boat",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "body",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "born",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "box",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "breadth",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "break",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bridge",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bright",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "bring",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "burn",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "capital",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "care",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "catch",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "centre",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "certain",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "chance",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "chief",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "church",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "circle",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "clean",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "clear",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "clock",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "club",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "coast",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "college",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "colour",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "command",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "common",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "corner",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "council",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "count",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "court",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "creature",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "cross",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "crowd",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "cry",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "current",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "custom",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "cut",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dance",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "danger",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dare",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dark",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "date",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "daughter",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dead",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "declare",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "deep",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "degree",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "desert",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "desire",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "destroy",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "die",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "difficult",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "disease",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "distance",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "distinguish",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "district",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "doctor",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dog",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "double",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "doubt",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dream",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dress",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "drop",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "dry",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "due",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ear",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "early",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "earth",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "east",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "easy",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "edge",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "else",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "end",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "enemy",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "English",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "enjoy",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "enough",
+    "pos": "det",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "entire",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "equal",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "escape",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "even",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "evening",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "event",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ever",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "evil",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "excellent",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "except",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "exchange",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "exercise",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "expense",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "experiment",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "face",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "factory",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fair",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "faith",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fall",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "familiar",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "famous",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "farm",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fashion",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fast",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "favour",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "favourite",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fear",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "feed",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fellow",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "field",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "finger",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fire",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fish",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "floor",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "flower",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "foreign",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "former",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "forth",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "fortune",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "forward",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "free",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "full",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "further",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "future",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "game",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "garden",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "gate",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "gather",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "general",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "gentle",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "glad",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "glass",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "God",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "gold",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "great",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ground",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "group",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "guard",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "habit",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "half",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hall",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hang",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "happen",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hard",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hardly",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "health",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hear",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "heat",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "heaven",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "heavy",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hide",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "high",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hill",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "history",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "honour",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "hope",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "horse",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "husband",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "impossible",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "inch",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "indeed",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "independent",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "influence",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "instead",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "intend",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "interest",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "introduce",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "iron",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "its",
+    "pos": "det",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "judge",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "just",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "keep",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "kill",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "kind",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lack",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lady",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "land",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "large",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "last",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "late",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "law",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lay",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "learn",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "least",
+    "pos": "det",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "leave",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "length",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "less",
+    "pos": "det",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "let",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "letter",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "level",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "library",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lie",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "life",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lift",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "light",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "likely",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "limit",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "line",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "local",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lose",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lost",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "lot",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "low",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "machine",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "main",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "manner",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "manners",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "march",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mark",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "market",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "marry",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mass",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "material",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "matter",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "measure",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "meet",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "member",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "memory",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mention",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mere",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "metal",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "middle",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mile",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mind",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mine",
+    "pos": "pron",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "minister",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "miss",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "modern",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "moon",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "moreover",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "motor",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mountain",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "mouth",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "move",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "music",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "narrow",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "nation",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "native",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "nature",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "necessary",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "neck",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "neighbour",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "never",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "next",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "none",
+    "pos": "pron",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "nor",
+    "pos": "conj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "north",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "note",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "notice",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "object",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "observe",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "occasion",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "offer",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "often",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "oil",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "only",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "operation",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "opinion",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "opportunity",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "order",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ordinary",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "organize",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "otherwise",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ought",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ounce",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "out of",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "owe",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "own",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "page",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pain",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "paint",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "paper",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "party",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pass",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "past",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "peace",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "perfect",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "perhaps",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "permanent",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "permit",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "picture",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "piece",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "plant",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "play",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "political",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "poor",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "popular",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "population",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "position",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "possess",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "possible",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "post",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pound",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "poverty",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "power",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "practical",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "prepare",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "present",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "preserve",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "press",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pretty",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "prevent",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "price",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "print",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "private",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "produce",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "product",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "production",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "program",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "programme",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "progress",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "promise",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "proof",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "proper",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "propose",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "protect",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "prove",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "provide",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "public",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "pull",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "purpose",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "put",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "quality",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "quarter",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "quiet",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "quite",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "race",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "raise",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rank",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rate",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rather",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "reach",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "real",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "receive",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "recent",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "recognize",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "record",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "reduce",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "refuse",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "regard",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "regular",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "relation",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "religion",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "remain",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "remark",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "remember",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "repeat",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "reply",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "represent",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "respect",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rest",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "result",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "return",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rich",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ride",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ring",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rise",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "river",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "road",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "roll",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rough",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "round",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rule",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "ruler",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "rush",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "safe",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sail",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "save",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "saw",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "scale",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "scarce",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "scene",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "science",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sea",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "season",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "seat",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "secret",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "secretary",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "seem",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "seize",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sell",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sense",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "separate",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "serious",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "serve",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "set",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "settle",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "several",
+    "pos": "det",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shadow",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shake",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shall",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shape",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "share",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shave",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shine",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shoe",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shoot",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shore",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "shoulder",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "side",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sight",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sign",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "silence",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "silver",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "simple",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "single",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sir",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "situation",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "size",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "skill",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sky",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "slight",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "slow",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "smile",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "society",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "soft",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "soil",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "son",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sort",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sound",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "south",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "space",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "special",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "speed",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spend",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spirit",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spite",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spot",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spread",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "spring",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "square",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stage",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "state",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "station",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stay",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "steal",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "steel",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "step",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stick",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stock",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stone",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stop",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "store",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "storm",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "story",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "straight",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "strange",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stream",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "strength",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "stretch",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "strike",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "strong",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "struggle",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "study",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "subject",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "substance",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "succeed",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sudden",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "suffer",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "suggest",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "summer",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sun",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "supply",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "support",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "suppose",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sure",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "surface",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "surprise",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "surround",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "sweet",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "system",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "taste",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "teach",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "tear",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "term",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "terrible",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "test",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "thought",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "throw",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "thus",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "together",
+    "pos": "adv",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "top",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "total",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "touch",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "toward/s",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "town",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "trade",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "train",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "travel",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "tree",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "trouble",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "trust",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "truth",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "try",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "turn",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "type",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "union",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "unite",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "university",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "upon",
+    "pos": "prep",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "usual",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "valley",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "value",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "various",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "view",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "village",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "visit",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "voice",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "vote",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wall",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "war",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "warn",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wash",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "waste",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "watch",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wave",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "weak",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wear",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "weather",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "west",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wide",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wife",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wild",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "win",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wind",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wing",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "winter",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wise",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wish",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wonder",
+    "pos": "verb",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "wood",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "world",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "worse",
+    "pos": "adj",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  },
+  {
+    "headword": "worth",
+    "pos": "noun",
+    "cefr_receptive": "A1",
+    "ipa": null,
+    "definition_simple": null
+  }
+]
