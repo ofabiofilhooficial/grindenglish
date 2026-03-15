@@ -1,0 +1,11 @@
+﻿-- Add B1 Grammar Lessons
+-- This migration adds 32 B1-level grammar lessons to the grammar_chapters table.
+
+INSERT INTO public.grammar_chapters (chapter_code, title, cefr_level, form_content, meaning_content, use_content, contrast_notes, common_errors, diagnostic_hook, task_upgrades, micro_practice, cross_links, is_published, sort_order)
+SELECT * FROM (VALUES
+  ('B1.G.01', 'Present Perfect vs Past Simple', 'B1', 'Present Perfect: Subject + have/has + V3. Past Simple: Subject + V2 + time marker', 'Past Simple: finished time. Present Perfect: unfinished time or relevant result', 'Choose Past Simple for 'when exactly?' Choose Present Perfect for experience or result', 'My grandfather went to Mexico (deceased). I have been to Mexico (alive, might go again)', 'Error: I have visited London last year. Fix: I visited London last year', 'Explain problems affecting you now. Share life experiences in interviews', 'Starter: I didn''t see him today → Upgrade: I haven''t seen him around today', '[{"type":"multiple_choice","prompt":"I ___ my keys yesterday","options":["have lost","lost"],"answer":"lost"}]'::jsonb, '[{"type":"prerequisite","chapter_code":"A2.G.01"},{"type":"advanced","chapter_code":"B1.G.02"}]'::jsonb, true, 1),
+  ('B1.G.02', 'Present Perfect Continuous', 'B1', 'Subject + have/has + been + V-ing', 'Emphasizes duration and continuous nature of activity', 'Use with for/since to show how long. Focus on visible evidence', 'I have painted (result done). I have been painting (activity ongoing)', 'Error: I have been knowing him. Fix: I have known him (state verbs)', 'Explain why you look tired or stressed. Talk about duration', 'Starter: I work on this project recently → Upgrade: I''ve been spending time on this lately', '[{"type":"fill_blank","prompt":"Your eyes are red. Have you been ___?","answer":"crying"}]'::jsonb, '[{"type":"prerequisite","chapter_code":"B1.G.01"},{"type":"advanced","chapter_code":"B1.G.03"}]'::jsonb, true, 2),) AS new_chapters(chapter_code, title, cefr_level, form_content, meaning_content, use_content, contrast_notes, common_errors, diagnostic_hook, task_upgrades, micro_practice, cross_links, is_published, sort_order)
+WHERE NOT EXISTS (
+  SELECT 1 FROM public.grammar_chapters 
+  WHERE chapter_code = new_chapters.chapter_code
+);
