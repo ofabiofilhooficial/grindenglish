@@ -23,6 +23,7 @@ interface NavItem {
 const learnerNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'My Course', href: '/course', icon: GraduationCap },
+  { label: 'Active Lexicon', href: '/active-lexicon', icon: BookOpen },
   { label: 'Review Center', href: '/review', icon: RefreshCw },
   { label: 'Portfolio', href: '/portfolio', icon: FolderOpen },
   { label: 'Progress', href: '/progress', icon: BarChart3 },

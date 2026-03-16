@@ -16,7 +16,9 @@
     "vocab:report": "tsx src/test/vocabulary/cli.ts report",
     "vocab:help": "tsx src/test/vocabulary/cli.ts help",
     "vocab:verify": "tsx verify_vocabulary.ts",
-    "vocab:debug": "tsx debug_database.ts"
+    "vocab:debug": "tsx debug_database.ts",
+    "active-lexicon:seed": "supabase db execute -f supabase/seed/active_lexicon_seed.sql",
+    "active-lexicon:verify": "supabase db execute -f supabase/migrations/VERIFICATION_CHECKLIST.sql"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

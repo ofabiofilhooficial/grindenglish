@@ -17,6 +17,9 @@ import LessonPlayerPage from "./pages/LessonPlayerPage";
 import NotFound from "./pages/NotFound";
 import ProgressDashboardPage from "./pages/ProgressDashboardPage";
 import SettingsPage from "./pages/SettingsPage";
+import ActiveLexiconDashboardPage from "./pages/active-lexicon/ActiveLexiconDashboardPage";
+import ActiveLexiconHubPage from "./pages/active-lexicon/ActiveLexiconHubPage";
+import ActiveLexiconPracticePage from "./pages/active-lexicon/ActiveLexiconPracticePage";
 
 // Admin
 import UserManagementPage from "./pages/admin/UserManagementPage";
@@ -70,6 +73,9 @@ const App = () => (
             <Route path="/course/:level/:unitId/:lessonId" element={<ProtectedRoute><LessonPlayerPage /></ProtectedRoute>} />
             <Route path="/progress" element={<ProtectedRoute><ProgressDashboardPage /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+            <Route path="/active-lexicon" element={<ProtectedRoute><ActiveLexiconDashboardPage /></ProtectedRoute>} />
+            <Route path="/active-lexicon/lexicon" element={<ProtectedRoute><ActiveLexiconHubPage /></ProtectedRoute>} />
+            <Route path="/active-lexicon/practice" element={<ProtectedRoute><ActiveLexiconPracticePage /></ProtectedRoute>} />
 
             {/* Reference */}
             <Route path="/lexicon" element={<ProtectedRoute><VocabularyReferencePage /></ProtectedRoute>} />
