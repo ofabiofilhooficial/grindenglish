@@ -46,7 +46,13 @@ export default function LessonEditorPage() {
       supabase.from('lesson_assets' as any).select('*').eq('lesson_id', lessonId).order('order_index'),
     ]);
     if (lessonRes.data) setLesson(lessonRes.data);
-    if (stagesRes.data) setStages(stagesRes.data);
+    if (stagesRes.data) {
+      // Keep a JSON string representation for editor textarea to avoid object display issues.
+      setStages(stagesRes.data.map((stage: any) => ({
+        ...stage,
+        contentJson: JSON.stringify(stage.content || {}, null, 2),
+      })));
+    }
     if (assetsRes.data) setLinkedAssets(assetsRes.data as LessonAsset[]);
     setLoading(false);
   };
@@ -259,6 +265,33 @@ export default function LessonEditorPage() {
                           placeholder="What should students do in this stage? Add instructions, descriptions, or any text content..."
                           rows={3}
                           className="resize-y"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label className="text-xs text-muted-foreground">Stage Content JSON (for learner display)</Label>
+                        <Textarea
+                          value={stage.contentJson || ''}
+                          onChange={(e) => {
+                            const updated = [...stages];
+                            updated[i] = { ...stage, contentJson: e.target.value };
+                            setStages(updated);
+                          }}
+                          onBlur={() => {
+                            try {
+                              const parsed = stage.contentJson ? JSON.parse(stage.contentJson) : {};
+                              updateStage(stage.id, 'content', parsed);
+                            } catch (error: any) {
+                              toast({
+                                title: 'Invalid JSON',
+                                description: 'Please enter valid JSON for stage content.',
+                                variant: 'destructive',
+                              });
+                            }
+                          }}
+                          placeholder={"{\n  \"objective\": \"...\",\n  \"grammar_focus\": { ... }\n}"}
+                          rows={8}
+                          className="font-mono text-xs resize-y"
                         />
                       </div>
 
