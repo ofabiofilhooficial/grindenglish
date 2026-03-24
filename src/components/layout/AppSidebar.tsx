@@ -23,16 +23,12 @@ interface NavItem {
 const learnerNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { label: 'My Course', href: '/course', icon: GraduationCap },
-  { label: 'Review Center', href: '/review', icon: RefreshCw },
-  { label: 'Portfolio', href: '/portfolio', icon: FolderOpen },
   { label: 'Progress', href: '/progress', icon: BarChart3 },
 ];
 
 const referenceNavItems: NavItem[] = [
   { label: 'Vocabulary', href: '/lexicon', icon: BookOpen },
   { label: 'Grammar', href: '/grammar', icon: Languages },
-  { label: 'Pronunciation', href: '/pronunciation', icon: Mic },
-  { label: 'Pragmatics', href: '/pragmatics', icon: Speech },
 ];
 
 const authorNavItems: NavItem[] = [
@@ -111,9 +107,9 @@ export function AppSidebar({ className }: AppSidebarProps) {
     )}>
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-sidebar-border">
-        <img 
-          src="/icon.png" 
-          alt="Grind English" 
+        <img
+          src="/icon.png"
+          alt="Grind English"
           className="h-10 w-10"
         />
         <div>
