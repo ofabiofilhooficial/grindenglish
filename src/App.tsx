@@ -17,6 +17,8 @@ import LessonPlayerPage from "./pages/LessonPlayerPage";
 import NotFound from "./pages/NotFound";
 import ProgressDashboardPage from "./pages/ProgressDashboardPage";
 import SettingsPage from "./pages/SettingsPage";
+import OnboardingIntroPage from "./pages/onboarding/OnboardingIntroPage";
+import PlacementPage from "./pages/onboarding/PlacementPage";
 
 // Admin
 import UserManagementPage from "./pages/admin/UserManagementPage";
@@ -64,6 +66,8 @@ const App = () => (
 
             {/* Learner (authenticated) */}
             <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+            <Route path="/onboarding" element={<ProtectedRoute><OnboardingIntroPage /></ProtectedRoute>} />
+            <Route path="/onboarding/placement" element={<ProtectedRoute><PlacementPage /></ProtectedRoute>} />
             <Route path="/course" element={<ProtectedRoute><CoursePage /></ProtectedRoute>} />
             <Route path="/course/level/:levelId" element={<ProtectedRoute><LevelPage /></ProtectedRoute>} />
             <Route path="/course/:level/:unitId" element={<ProtectedRoute><UnitPage /></ProtectedRoute>} />
